@@ -1,4 +1,4 @@
-import 'package:asiagolf_app/app/modules/assets/button/button_widget.dart';
+import 'package:asiagolf_app/app/modules/splash/widget/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
