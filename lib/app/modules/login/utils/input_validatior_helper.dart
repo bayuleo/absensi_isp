@@ -73,6 +73,23 @@ class InputValidatorHelper {
     return null;
   }
 
+  static ValidatorResult validateConfirmPassword(
+      String? password, String? confirmPassword) {
+    if (password == null ||
+        password.trim().isEmpty ||
+        confirmPassword == null ||
+        confirmPassword.trim().isEmpty) {
+      return ValidatorResult.empty;
+    }
+    if (!RegExp(passwordRegex).hasMatch(confirmPassword)) {
+      return ValidatorResult.invalid;
+    }
+    if (password == confirmPassword) {
+      return ValidatorResult.valid;
+    }
+    return ValidatorResult.other;
+  }
+
   static validateRequired(value) {
     final validatorResult = validatorRequired(value);
     if (validatorResult == ValidatorResult.empty) {

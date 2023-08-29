@@ -28,7 +28,9 @@ class LoginController extends GetxController {
     Get.offAndToNamed(Routes.HOME);
   }
 
-  void onClickForgotPassword() {}
+  void onClickForgotPassword() {
+    Get.toNamed(Routes.FORGOT_PASSWORD);
+  }
 
   void onClickRegister() {
     Get.toNamed(Routes.REGISTER);
