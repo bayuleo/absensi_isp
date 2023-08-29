@@ -1,27 +1,23 @@
-import 'package:asiagolf_app/app/modules/splash/widget/button_widget.dart';
+import 'package:asiagolf_app/app/modules/splash/views/widget/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
 
 import '../controllers/splash_controller.dart';
+import 'widget/slide_screen_widget.dart';
 
 class SplashView extends GetView<SplashController> {
   const SplashView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('SplashView'),
-        centerTitle: true,
-      ),
       body: GetBuilder<SplashController>(
         builder: (controller) => Padding(
-          padding: const EdgeInsets.only(
-            left: 20,
-            right: 20,
-            bottom: 68,
+          padding: EdgeInsets.only(
+            left: 20.w,
+            right: 20.w,
+            bottom: 50.w,
           ),
           child: Column(
             children: [
@@ -65,8 +61,8 @@ class SplashView extends GetView<SplashController> {
                       unselectedColor: Colors.black12,
                       selectedColor: const Color(0xff369B43),
                     ),
-                    const SizedBox(
-                      height: 64,
+                    SizedBox(
+                      height: 64.h,
                     ),
                     controller.pageIndex == 0
                         ? ButtonWidget(
@@ -74,8 +70,8 @@ class SplashView extends GetView<SplashController> {
                               Icons.arrow_forward,
                               color: Colors.white,
                             ),
-                            width: 54,
-                            pd: const EdgeInsets.all(16),
+                            width: 54.w,
+                            pd: EdgeInsets.all(16.w),
                             mg: EdgeInsets.zero,
                             onTap: controller.onTapButtonNext,
                           )
@@ -88,10 +84,10 @@ class SplashView extends GetView<SplashController> {
                                   color: Colors.white,
                                 ),
                                 buttonColor: const Color(0x662E398F),
-                                width: 54,
-                                pd: const EdgeInsets.symmetric(
-                                  horizontal: 16,
-                                  vertical: 16,
+                                width: 54.w,
+                                pd: EdgeInsets.symmetric(
+                                  horizontal: 16.w,
+                                  vertical: 16.w,
                                 ),
                                 mg: EdgeInsets.zero,
                                 onTap: controller.onTapButtonBack,
@@ -104,8 +100,8 @@ class SplashView extends GetView<SplashController> {
                                   color: Colors.white,
                                 ),
                                 width: 140.w,
-                                pd: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 14),
+                                pd: EdgeInsets.symmetric(
+                                    horizontal: 20.w, vertical: 10.h),
                                 mg: const EdgeInsets.symmetric(horizontal: 12),
                                 onTap: controller.onTapButtonNext,
                               ),
@@ -118,58 +114,6 @@ class SplashView extends GetView<SplashController> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class SlideScreenWidget extends StatelessWidget {
-  final String assets;
-  final String title;
-  final String desc;
-  const SlideScreenWidget({
-    required this.assets,
-    required this.title,
-    required this.desc,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SvgPicture.asset(
-          assets,
-        ),
-        SizedBox(
-          height: 40.h,
-        ),
-        Text(
-          title,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 20.sp,
-            fontWeight: FontWeight.w700,
-            height: 1.5,
-          ),
-        ),
-        const SizedBox(
-          height: 12,
-        ),
-        Text(
-          desc,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 14.sp,
-            fontWeight: FontWeight.w400,
-            height: 1.5,
-          ),
-        ),
-        const SizedBox(
-          height: 40,
-        ),
-      ],
     );
   }
 }

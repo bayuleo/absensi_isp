@@ -110,7 +110,9 @@ class ButtonWidget extends StatelessWidget {
                               style: textStyle ??
                                   TextStyle(
                                     color: isFill
-                                        ? (enabled ? Colors.white : Colors.grey)
+                                        ? (enabled
+                                            ? Colors.white
+                                            : Colors.white30)
                                         : (enabled
                                             ? const Color(0xff2E398F)
                                             : Colors.grey),

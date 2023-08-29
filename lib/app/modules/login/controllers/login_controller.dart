@@ -1,9 +1,15 @@
+import 'package:asiagolf_app/app/modules/login/utils/input_validatior_helper.dart';
+import 'package:asiagolf_app/app/routes/app_pages.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
-  //TODO: Implement LoginController
+  bool isShowPassword = false;
+  bool enableLogin = false;
 
-  final count = 0.obs;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   @override
   void onInit() {
     super.onInit();
@@ -14,10 +20,42 @@ class LoginController extends GetxController {
     super.onReady();
   }
 
-  @override
-  void onClose() {
-    super.onClose();
+  void onClickLogin() {
+    Get.offAndToNamed(Routes.HOME);
   }
 
-  void increment() => count.value++;
+  void onClickSkip() {
+    Get.offAndToNamed(Routes.HOME);
+  }
+
+  void onClickForgotPassword() {}
+
+  void onClickRegister() {
+    Get.toNamed(Routes.REGISTER);
+  }
+
+  onChangedText(value) {
+    if (InputValidatorHelper.validatorRequired(emailController.text.trim()) ==
+            ValidatorResult.valid &&
+        InputValidatorHelper.validatorRequired(
+                passwordController.text.trim()) ==
+            ValidatorResult.valid) {
+      enableLogin = true;
+    } else {
+      enableLogin = false;
+    }
+    update();
+  }
+
+  onTapShowPassword() {
+    isShowPassword = !isShowPassword;
+    update();
+  }
+
+  @override
+  void onClose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.onClose();
+  }
 }
