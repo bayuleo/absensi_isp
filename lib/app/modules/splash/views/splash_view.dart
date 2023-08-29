@@ -16,73 +16,106 @@ class SplashView extends GetView<SplashController> {
         title: const Text('SplashView'),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(
-          left: 20,
-          right: 20,
-          bottom: 68,
-        ),
-        child: Column(
-          children: [
-            const Expanded(
-              flex: 1,
-              child: SizedBox(),
-            ),
-            Expanded(
-              flex: 6,
-              child: PageView(
-                controller: controller.pageController,
-                children: const [
-                  SlideScreenWidget(
-                    assets: 'assets/icons/splash_woman.svg',
-                    title: 'Beli Peralatan Golf Dengan Mudah di AsiaGolf',
-                    desc:
-                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                  ),
-                  SlideScreenWidget(
-                    assets: 'assets/icons/splash_golf.svg',
-                    title: 'Beli Peralatan Golf Dengan Mudah di AsiaGolf',
-                    desc:
-                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                  ),
-                  SlideScreenWidget(
-                    assets: 'assets/icons/splash_hockey.svg',
-                    title: 'Beli Peralatan Golf Dengan Mudah di AsiaGolf',
-                    desc:
-                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                  ),
-                ],
+      body: GetBuilder<SplashController>(
+        builder: (controller) => Padding(
+          padding: const EdgeInsets.only(
+            left: 20,
+            right: 20,
+            bottom: 68,
+          ),
+          child: Column(
+            children: [
+              const Expanded(
+                flex: 1,
+                child: SizedBox(),
               ),
-            ),
-            Expanded(
-              flex: 2,
-              child: GetBuilder<SplashController>(
-                builder: (controller) => Column(
+              Expanded(
+                flex: 6,
+                child: PageView(
+                  controller: controller.pageController,
+                  children: const [
+                    SlideScreenWidget(
+                      assets: 'assets/icons/splash_woman.svg',
+                      title: 'Beli Peralatan Golf Dengan Mudah di AsiaGolf',
+                      desc:
+                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                    ),
+                    SlideScreenWidget(
+                      assets: 'assets/icons/splash_golf.svg',
+                      title: 'Beli Peralatan Golf Dengan Mudah di AsiaGolf',
+                      desc:
+                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                    ),
+                    SlideScreenWidget(
+                      assets: 'assets/icons/splash_hockey.svg',
+                      title: 'Beli Peralatan Golf Dengan Mudah di AsiaGolf',
+                      desc:
+                          'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                flex: 2,
+                child: Column(
                   children: [
                     PageViewDotIndicator(
                       currentItem: controller.pageIndex,
                       count: 3,
                       unselectedColor: Colors.black12,
-                      selectedColor: Color(0xff369B43),
+                      selectedColor: const Color(0xff369B43),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 64,
                     ),
-                    ButtonWidget(
-                      widget: Icon(
-                        Icons.arrow_forward,
-                        color: Colors.white,
-                      ),
-                      width: 54,
-                      pd: EdgeInsets.all(16),
-                      mg: EdgeInsets.zero,
-                      onTap: () {},
-                    )
+                    controller.pageIndex == 0
+                        ? ButtonWidget(
+                            widget: const Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                            ),
+                            width: 54,
+                            pd: const EdgeInsets.all(16),
+                            mg: EdgeInsets.zero,
+                            onTap: controller.onTapButtonNext,
+                          )
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              ButtonWidget(
+                                widget: const Icon(
+                                  Icons.arrow_back,
+                                  color: Colors.white,
+                                ),
+                                buttonColor: const Color(0x662E398F),
+                                width: 54,
+                                pd: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                  vertical: 16,
+                                ),
+                                mg: EdgeInsets.zero,
+                                onTap: controller.onTapButtonBack,
+                              ),
+                              ButtonWidget(
+                                text: 'Next',
+                                fontSize: 20.sp,
+                                tail: const Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.white,
+                                ),
+                                width: 140.w,
+                                pd: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 14),
+                                mg: const EdgeInsets.symmetric(horizontal: 12),
+                                onTap: controller.onTapButtonNext,
+                              ),
+                            ],
+                          )
                   ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -133,7 +166,7 @@ class SlideScreenWidget extends StatelessWidget {
             height: 1.5,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 40,
         ),
       ],
