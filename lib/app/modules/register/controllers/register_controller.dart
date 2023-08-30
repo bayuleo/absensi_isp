@@ -1,4 +1,4 @@
-import 'package:asiagolf_app/app/data/repositories/auth_repository_impl.dart';
+import 'package:asiagolf_app/app/data/repositories/auth/auth_repository_impl.dart';
 import 'package:asiagolf_app/app/domain/entities/auth_entity.dart';
 import 'package:asiagolf_app/app/domain/usecase/auth/register.dart';
 import 'package:asiagolf_app/app/modules/login/utils/input_validatior_helper.dart';

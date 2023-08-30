@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:asiagolf_app/app/utils/global.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import 'theme.dart';
@@ -15,7 +16,7 @@ bool isNotEmpty(dynamic value) =>
     !['null', '', '[]', '{}', '0'].contains("$value");
 
 Future<void> showSnack(String errorMsg, {String errCode = "0"}) async {
-  ScaffoldMessenger.of(globalNavKey.currentContext!).showSnackBar(
+  ScaffoldMessenger.of(Get.context!).showSnackBar(
     SnackBar(
       content: Text(errorMsg),
       dismissDirection: DismissDirection.horizontal,

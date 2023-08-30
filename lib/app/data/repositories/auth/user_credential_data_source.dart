@@ -1,19 +1,12 @@
 import 'dart:convert';
 
 import 'package:asiagolf_app/app/data/model/auth/auth_data_model.dart';
+import 'package:asiagolf_app/app/domain/repositories/user_credential_repository.dart';
 import 'package:asiagolf_app/app/utils/helpers.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract class UserCredentialsDataSource {
-  AuthDataModel? getCredential();
-
-  Future<bool> updateCredential(AuthDataModel credentials);
-
-  Future<bool> clearCredential();
-}
-
-class UserCredentialsDataSourceImpl implements UserCredentialsDataSource {
+class UserCredentialRepositoryImpl implements UserCredentialRepository {
   final _sharedPreferences = Get.find<SharedPreferences>();
 
   static const key = 'user_credentials';

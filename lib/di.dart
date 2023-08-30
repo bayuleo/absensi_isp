@@ -1,12 +1,12 @@
-import 'package:asiagolf_app/app/data/local/user_credential_data_source.dart';
+import 'package:asiagolf_app/app/data/repositories/auth/user_credential_data_source.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DependencyInjection {
   static Future<void> init() async {
     await Get.putAsync(() => StorageService().init());
-    Get.lazyPut<UserCredentialsDataSource>(
-        () => UserCredentialsDataSourceImpl(),
+    Get.lazyPut<UserCredentialRepositoryImpl>(
+        () => UserCredentialRepositoryImpl(),
         fenix: true);
   }
 }

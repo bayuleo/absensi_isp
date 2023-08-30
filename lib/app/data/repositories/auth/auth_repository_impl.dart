@@ -1,5 +1,5 @@
-import 'package:asiagolf_app/app/data/local/user_credential_data_source.dart';
 import 'package:asiagolf_app/app/data/model/auth/auth_model.dart';
+import 'package:asiagolf_app/app/data/repositories/auth/user_credential_data_source.dart';
 import 'package:asiagolf_app/app/domain/entities/auth_entity.dart';
 import 'package:asiagolf_app/app/domain/repositories/auth_repository.dart';
 import 'package:asiagolf_app/app/domain/usecase/auth/login.dart';
@@ -7,11 +7,11 @@ import 'package:asiagolf_app/app/utils/result.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
-import '../../utils/dio.dart';
+import '../../../utils/dio.dart';
 
 class AuthRepositoryImpl extends AuthRepository {
   final _dio = DioHelper.init();
-  final UserCredentialsDataSource _userCredentialsDataSource = Get.find();
+  final UserCredentialRepositoryImpl _localData = Get.find();
 
   @override
   Future<Result<AuthEntity>> login({
@@ -33,7 +33,7 @@ class AuthRepositoryImpl extends AuthRepository {
 
       if (response.statusCode == 200) {
         var auth = AuthModel.fromJson(response.data);
-        await _userCredentialsDataSource.updateCredential(auth.data);
+        await _localData.updateCredential(auth.data);
         return Result.success(auth.data);
       }
 
@@ -80,7 +80,7 @@ class AuthRepositoryImpl extends AuthRepository {
 
       if (response.statusCode == 200) {
         var auth = AuthModel.fromJson(response.data);
-        await _userCredentialsDataSource.updateCredential(auth.data);
+        await _localData.updateCredential(auth.data);
         return Result.success(auth.data);
       }
 

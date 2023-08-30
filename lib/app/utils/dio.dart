@@ -1,7 +1,14 @@
+import 'package:asiagolf_app/app/data/repositories/auth/user_credential_data_source.dart';
+import 'package:asiagolf_app/app/routes/app_pages.dart';
+import 'package:asiagolf_app/app/utils/helpers.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioHelper {
+  static final UserCredentialRepositoryImpl _localData = Get.find();
+
   static Dio init() {
     final option = BaseOptions(
       // baseUrl: baseUrl,
@@ -15,6 +22,14 @@ class DioHelper {
     }, onResponse: (response, handler) async {
       return handler.next(response);
     }, onError: (DioException e, handler) async {
+      if (e.response?.statusCode == 401) {
+        showSnack("Session Expired");
+        _localData.clearCredential();
+        Get.offNamedUntil(
+          Routes.LOGIN,
+          ModalRoute.withName(Routes.LOGIN),
+        );
+      }
       return handler.next(e);
     });
 

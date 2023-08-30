@@ -1,17 +1,15 @@
-import 'package:asiagolf_app/app/data/local/user_credential_data_source.dart';
+import 'package:asiagolf_app/app/data/repositories/auth/user_credential_data_source.dart';
 import 'package:asiagolf_app/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
   //TODO: Implement HomeController
-  final UserCredentialsDataSource _userCredentialsDataSource = Get.find();
+  final UserCredentialRepositoryImpl _localAuth = Get.find();
 
   String? token;
   @override
   void onInit() {
-    var x = _userCredentialsDataSource.getCredential();
-    token = x?.accessToken ?? '';
-    print(x);
+    token = _localAuth.getCredential()?.accessToken ?? '';
     super.onInit();
   }
 
@@ -26,7 +24,7 @@ class HomeController extends GetxController {
   }
 
   void onClickLogout() async {
-    if (await _userCredentialsDataSource.clearCredential()) {
+    if (await _localAuth.clearCredential()) {
       Get.offAllNamed(Routes.LOGIN);
     }
   }
