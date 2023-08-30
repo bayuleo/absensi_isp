@@ -82,6 +82,50 @@ class RegisterView extends GetView<RegisterController> {
                 SizedBox(
                   height: 16.h,
                 ),
+                Text(
+                  'Jenis Kelamin',
+                  style: TextStyle(color: Colors.black),
+                ),
+                SizedBox(
+                  height: 8.h,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: RadioListTile<Gender>(
+                        title: Text(
+                          'Laki-laki',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        visualDensity: const VisualDensity(
+                          vertical: VisualDensity.minimumDensity,
+                        ),
+                        value: Gender.male,
+                        groupValue: controller.gender,
+                        onChanged: (value) =>
+                            controller.onSelectedGender(value),
+                      ),
+                    ),
+                    Expanded(
+                      child: RadioListTile<Gender>(
+                        title: Text(
+                          'Perempuan',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        visualDensity: const VisualDensity(
+                          vertical: VisualDensity.minimumDensity,
+                        ),
+                        value: Gender.female,
+                        groupValue: controller.gender,
+                        onChanged: (value) =>
+                            controller.onSelectedGender(value),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 16.h,
+                ),
                 TextFieldWithLabelWidget(
                   label: "Email",
                   hint: "Email",

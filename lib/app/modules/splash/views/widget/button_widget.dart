@@ -1,3 +1,4 @@
+import 'package:asiagolf_app/app/utils/theme.dart';
 import 'package:flutter/material.dart';
 
 class ButtonWidget extends StatelessWidget {
@@ -64,17 +65,17 @@ class ButtonWidget extends StatelessWidget {
                     ? null
                     : Border.all(
                         width: 1,
-                        color: const Color(0xff2E398F),
+                        color: primaryColor,
                       ),
               )
           : BoxDecoration(
               borderRadius: BorderRadius.circular(borderRadiusSize),
-              color: const Color(0xff2E398F),
+              color: primaryColor,
             ),
       child: Material(
         borderRadius: BorderRadius.circular(borderRadiusSize),
         color: isFill
-            ? (enabled ? buttonColor ?? const Color(0xff2E398F) : Colors.grey)
+            ? (enabled ? buttonColor ?? primaryColor : disableColor)
             : Colors.white,
         child: InkWell(
           borderRadius: BorderRadius.circular(15),
@@ -112,9 +113,9 @@ class ButtonWidget extends StatelessWidget {
                                     color: isFill
                                         ? (enabled
                                             ? Colors.white
-                                            : Colors.white30)
+                                            : Colors.white60)
                                         : (enabled
-                                            ? const Color(0xff2E398F)
+                                            ? primaryColor
                                             : Colors.grey),
                                     fontSize: fontSize,
                                     fontWeight: fontWeight,

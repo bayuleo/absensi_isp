@@ -33,13 +33,13 @@ class AuthRepositoryImpl extends AuthRepository {
 
       if (response.statusCode == 200) {
         var auth = AuthModel.fromJson(response.data);
-        bool x = await _userCredentialsDataSource.updateCredential(auth.data);
+        await _userCredentialsDataSource.updateCredential(auth.data);
         return Result.success(auth.data);
       }
 
       return Result.error(
         message: response.data["message"],
-        // code: response.statusCode!,
+        code: response.statusCode,
       );
     } on DioException catch (e) {
       final errorMessage =
@@ -47,7 +47,7 @@ class AuthRepositoryImpl extends AuthRepository {
 
       return Result.error(
         message: e.message ?? errorMessage,
-        // code: e.response?.statusCode ?? -1,
+        code: e.response?.statusCode ?? -1,
       );
     } catch (e) {
       return Result.error(message: e.toString());
@@ -56,7 +56,10 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<Result<AuthEntity>> register({required params}) async {
-    var enpoint = "/auth/signup";
+    // var endpoint = "/auth/signup";
+    var endpoint =
+        "https://run.mocky.io/v3/77b1a5be-5fa4-446c-9d20-86ab38879dc7";
+
     final data = {
       "email": params.email,
       "name": params.name,
@@ -70,18 +73,20 @@ class AuthRepositoryImpl extends AuthRepository {
     };
 
     try {
-      var response = await _dio.post(
-        enpoint,
+      var response = await _dio.get(
+        endpoint,
         data: data,
       );
 
       if (response.statusCode == 200) {
-        return Result.success(AuthModel.fromJson(response.data).data);
+        var auth = AuthModel.fromJson(response.data);
+        await _userCredentialsDataSource.updateCredential(auth.data);
+        return Result.success(auth.data);
       }
 
       return Result.error(
         message: response.data["message"],
-        // code: response.statusCode!,
+        code: response.statusCode!,
       );
     } on DioException catch (e) {
       final errorMessage =
@@ -89,7 +94,7 @@ class AuthRepositoryImpl extends AuthRepository {
 
       return Result.error(
         message: e.message ?? errorMessage,
-        // code: e.response?.statusCode ?? -1,
+        code: e.response?.statusCode ?? -1,
       );
     } catch (e) {
       return Result.error(message: e.toString());
@@ -111,7 +116,7 @@ class AuthRepositoryImpl extends AuthRepository {
 
       return Result.error(
         message: response.data["message"],
-        // code: response.statusCode!,
+        code: response.statusCode!,
       );
     } on DioException catch (e) {
       final errorMessage =
@@ -119,7 +124,7 @@ class AuthRepositoryImpl extends AuthRepository {
 
       return Result.error(
         message: e.message ?? errorMessage,
-        // code: e.response?.statusCode ?? -1,
+        code: e.response?.statusCode ?? -1,
       );
     } catch (e) {
       return Result.error(message: e.toString());

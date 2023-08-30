@@ -47,36 +47,6 @@ class LoginController extends GetxController {
 
     if (result.status is Success) {
       Get.offAllNamed(Routes.HOME);
-      // SUCCESS
-      // Get.dialog(
-      //   Scaffold(
-      //     body: Stack(
-      //       children: [
-      //         Center(
-      //           child: Padding(
-      //             padding: const EdgeInsets.symmetric(horizontal: 40),
-      //             child: Column(
-      //               mainAxisSize: MainAxisSize.min,
-      //               children: [
-      //                 const Text(
-      //                   "Login berhasil",
-      //                   style: TextStyle(fontSize: 20),
-      //                 ),
-      //                 const SizedBox(height: 20),
-      //                 Text(result.data.email),
-      //                 Text(result.data.token),
-      //               ],
-      //             ),
-      //           ),
-      //         ),
-      //         const Align(
-      //           alignment: Alignment.topRight,
-      //           child: CloseButton(),
-      //         )
-      //       ],
-      //     ),
-      //   ),
-      // );
     } else {
       showSnack(result.message);
     }
