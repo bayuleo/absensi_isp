@@ -2,6 +2,9 @@ import 'package:asiagolf_app/app/data/model/auth/auth_model.dart';
 import 'package:asiagolf_app/app/data/repositories/auth/user_credential_data_source.dart';
 import 'package:asiagolf_app/app/domain/entities/auth_entity.dart';
 import 'package:asiagolf_app/app/domain/repositories/auth_repository.dart';
+import 'package:asiagolf_app/app/domain/usecase/auth/forgot_password.dart';
+import 'package:asiagolf_app/app/domain/usecase/auth/forgot_password_new_password.dart';
+import 'package:asiagolf_app/app/domain/usecase/auth/forgot_password_otp.dart';
 import 'package:asiagolf_app/app/domain/usecase/auth/login.dart';
 import 'package:asiagolf_app/app/utils/result.dart';
 import 'package:dio/dio.dart';
@@ -129,5 +132,26 @@ class AuthRepositoryImpl extends AuthRepository {
     } catch (e) {
       return Result.error(message: e.toString());
     }
+  }
+
+  @override
+  Future<Result<bool>> forgotPaswordNewPassword(
+      {required ForgotPasswordNewPasswordParams params}) {
+    // TODO: implement forgotPaswordNewPassword
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Result<bool>> forgotPaswordOTP(
+      {required ForgotPasswordOTPParams params}) {
+    // TODO: implement forgotPaswordOTP
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Result<bool>> forgotPaswordVerificationEmail(
+      {required ForgotPasswordParams params}) {
+    // TODO: implement forgotPaswordVerificationEmail
+    throw UnimplementedError();
   }
 }
