@@ -1,8 +1,12 @@
+import 'package:asiagolf_app/app/data/local/user_credential_data_source.dart';
 import 'package:asiagolf_app/app/routes/app_pages.dart';
+import 'package:asiagolf_app/app/utils/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {
+  final UserCredentialsDataSource _userCredentialsDataSource = Get.find();
+
   int pageIndex = 0;
   final pageController = PageController();
 
@@ -10,6 +14,15 @@ class SplashController extends GetxController {
   void onInit() {
     pageController.addListener(onChangedPage);
     super.onInit();
+  }
+
+  @override
+  void onReady() {
+    var credential = _userCredentialsDataSource.getCredential();
+    if (isNotEmpty(credential)) {
+      Get.offAndToNamed(Routes.HOME);
+    }
+    super.onReady();
   }
 
   void onChangedPage() {

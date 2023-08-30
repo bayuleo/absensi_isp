@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../controllers/home_controller.dart';
@@ -13,11 +12,26 @@ class HomeView extends GetView<HomeController> {
         title: const Text('HomeView'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'HomeView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: Column(
+        children: [
+          Expanded(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'HomeView is working ${controller.token}',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  ElevatedButton(
+                    onPressed: controller.onClickLogout,
+                    child: Text('Logout'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

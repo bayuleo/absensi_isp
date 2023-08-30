@@ -99,6 +99,7 @@ class LoginView extends GetView<LoginController> {
                 ),
                 ButtonWidget(
                   text: "Login",
+                  isLoading: controller.loadingBtn,
                   enabled: controller.enableLogin,
                   onTap: controller.onClickLogin,
                 ),
