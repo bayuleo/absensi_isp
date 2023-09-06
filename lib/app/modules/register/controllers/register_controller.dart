@@ -1,5 +1,8 @@
+import 'package:asiagolf_app/app/data/model/auth/register/request_register_model.dart';
+import 'package:asiagolf_app/app/data/model/auth/register/response_register_model.dart';
 import 'package:asiagolf_app/app/data/repositories/auth/auth_repository_impl.dart';
-import 'package:asiagolf_app/app/domain/entities/auth_entity.dart';
+import 'package:asiagolf_app/app/domain/entities/login_entity.dart';
+import 'package:asiagolf_app/app/domain/entities/register_entity.dart';
 import 'package:asiagolf_app/app/domain/usecase/auth/register.dart';
 import 'package:asiagolf_app/app/modules/login/utils/input_validatior_helper.dart';
 import 'package:asiagolf_app/app/routes/app_pages.dart';
@@ -80,23 +83,20 @@ class RegisterController extends GetxController {
   }
 
   void onClickRegister() async {
-    late RegisterParams params;
+    late RequestRegisterModel params;
     late RegisterUseCase register;
-    late Result<AuthEntity> result;
+    late Result<RegisterEntity> result;
 
     loadingBtn = true;
     update();
 
-    params = RegisterParams(
+    params = RequestRegisterModel(
       name: nameController.text.trim(),
       address: addressController.text.trim(),
       phone: phoneController.text.trim(),
       email: emailController.text.trim(),
       password: passwordController.text.trim(),
-      passwordConfirmation: passwordController.text.trim(),
       gender: gender.value,
-      longitude: _position?.longitude.toString() ?? '',
-      latitude: _position?.latitude.toString() ?? '',
     );
 
     register = RegisterUseCase(authRepository: AuthRepositoryImpl());

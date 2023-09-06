@@ -84,7 +84,7 @@ class ForgotPasswordOtpView extends GetView<ForgotPasswordOtpController> {
                   },
                   //runs when every textfield is filled
                   onSubmit: (String verificationCode) {
-                    controller.onCompleteInputOTP();
+                    controller.onCompleteInputOTP(verificationCode);
                     showDialog(
                         context: context,
                         builder: (context) {

@@ -1,9 +1,9 @@
-import 'package:asiagolf_app/app/data/model/auth/auth_data_model.dart';
+import 'package:asiagolf_app/app/data/model/auth/login/response_login_data_model.dart';
 
 abstract class UserCredentialRepository {
-  AuthDataModel? getCredential();
+  ResponseLoginDataModel? getCredential();
 
-  Future<bool> updateCredential(AuthDataModel credentials);
+  Future<bool> updateCredential(ResponseLoginDataModel credentials);
 
   Future<bool> clearCredential();
 }

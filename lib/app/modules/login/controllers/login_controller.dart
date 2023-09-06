@@ -1,5 +1,6 @@
+import 'package:asiagolf_app/app/data/model/auth/login/request_login_model.dart';
 import 'package:asiagolf_app/app/data/repositories/auth/auth_repository_impl.dart';
-import 'package:asiagolf_app/app/domain/entities/auth_entity.dart';
+import 'package:asiagolf_app/app/domain/entities/login_entity.dart';
 import 'package:asiagolf_app/app/domain/usecase/auth/login.dart';
 import 'package:asiagolf_app/app/modules/login/utils/input_validatior_helper.dart';
 import 'package:asiagolf_app/app/routes/app_pages.dart';
@@ -27,16 +28,16 @@ class LoginController extends GetxController {
   }
 
   Future<void> onClickLogin() async {
-    late LoginParams params;
+    late RequestLoginModel params;
     late LoginUseCase login;
-    late Result<AuthEntity> result;
+    late Result<LoginEntity> result;
 
     loadingBtn = true;
     update();
 
-    params = LoginParams(
-      userName: emailController.text.trim(),
-      password: passwordController.text.trim(),
+    params = RequestLoginModel(
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(), fcmToken: 'abc', // TODO need integration with FCM
     );
 
     login = LoginUseCase(authRepository: AuthRepositoryImpl());

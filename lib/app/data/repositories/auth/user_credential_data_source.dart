@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:asiagolf_app/app/data/model/auth/auth_data_model.dart';
+import 'package:asiagolf_app/app/data/model/auth/login/response_login_data_model.dart';
 import 'package:asiagolf_app/app/domain/repositories/user_credential_repository.dart';
 import 'package:asiagolf_app/app/utils/helpers.dart';
 import 'package:get/get.dart';
@@ -17,10 +17,10 @@ class UserCredentialRepositoryImpl implements UserCredentialRepository {
   }
 
   @override
-  AuthDataModel? getCredential() {
+  ResponseLoginDataModel? getCredential() {
     final rawCredentials = _sharedPreferences.getString(key);
     if (isNotEmpty(rawCredentials)) {
-      return AuthDataModel.fromJson(
+      return ResponseLoginDataModel.fromJson(
         jsonDecode(rawCredentials!),
       );
     }

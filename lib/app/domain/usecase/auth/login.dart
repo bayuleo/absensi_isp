@@ -1,29 +1,20 @@
-import 'package:asiagolf_app/app/domain/entities/auth_entity.dart';
+import 'package:asiagolf_app/app/data/model/auth/login/request_login_model.dart';
+import 'package:asiagolf_app/app/domain/entities/login_entity.dart';
 import 'package:asiagolf_app/app/domain/repositories/auth_repository.dart';
 import 'package:asiagolf_app/app/utils/result.dart';
 import 'package:asiagolf_app/app/utils/usecase.dart';
 
-class LoginUseCase extends UseCase<dynamic, LoginParams> {
+class LoginUseCase extends UseCase<dynamic, RequestLoginModel> {
   final AuthRepository authRepository;
 
   LoginUseCase({required this.authRepository});
 
   @override
-  Future<Result<AuthEntity>> call(LoginParams params) async {
+  Future<Result<LoginEntity>> call(RequestLoginModel params) async {
     if (!await hasInternetConnection) {
       return Result.noInternet();
     }
 
-    return authRepository.login(params: params);
+    return authRepository.login(params);
   }
-}
-
-class LoginParams {
-  final String userName;
-  final String password;
-
-  LoginParams({
-    required this.userName,
-    required this.password,
-  });
 }

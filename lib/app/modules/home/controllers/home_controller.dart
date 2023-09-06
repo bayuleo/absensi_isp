@@ -9,7 +9,7 @@ class HomeController extends GetxController {
   String? token;
   @override
   void onInit() {
-    token = _localAuth.getCredential()?.accessToken ?? '';
+    token = _localAuth.getCredential()?.token ?? '';
     super.onInit();
   }
 
