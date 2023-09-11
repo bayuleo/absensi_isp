@@ -1,15 +1,15 @@
-import 'package:asiagolf_app/app/data/repositories/auth/user_credential_data_source.dart';
+import 'package:asiagolf_app/app/data/repositories/auth/auth_repository_impl.dart';
+import 'package:asiagolf_app/app/domain/usecase/auth/logout.dart';
 import 'package:asiagolf_app/app/routes/app_pages.dart';
+import 'package:asiagolf_app/app/utils/helpers.dart';
+import 'package:asiagolf_app/app/utils/result.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
   //TODO: Implement HomeController
-  final UserCredentialRepositoryImpl _localAuth = Get.find();
 
-  String? token;
   @override
   void onInit() {
-    token = _localAuth.getCredential()?.accessToken ?? '';
     super.onInit();
   }
 
@@ -24,7 +24,14 @@ class HomeController extends GetxController {
   }
 
   void onClickLogout() async {
-    if (await _localAuth.clearCredential()) {
+    late LogoutUseCase logout;
+    late Result<bool> result;
+
+    logout = LogoutUseCase(authRepository: AuthRepositoryImpl());
+
+    result = await logout.call(null);
+    if (result.status is Success) {
+      showSnack(result.message);
       Get.offAllNamed(Routes.LOGIN);
     }
   }

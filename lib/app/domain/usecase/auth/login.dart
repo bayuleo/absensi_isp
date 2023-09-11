@@ -1,5 +1,5 @@
-import 'package:asiagolf_app/app/domain/entities/auth_entity.dart';
-import 'package:asiagolf_app/app/domain/repositories/auth_repository.dart';
+import 'package:asiagolf_app/app/domain/entities/auth/auth_entity.dart';
+import 'package:asiagolf_app/app/domain/repositories/auth/auth_repository.dart';
 import 'package:asiagolf_app/app/utils/result.dart';
 import 'package:asiagolf_app/app/utils/usecase.dart';
 
@@ -19,11 +19,13 @@ class LoginUseCase extends UseCase<dynamic, LoginParams> {
 }
 
 class LoginParams {
-  final String userName;
+  final String account;
   final String password;
 
   LoginParams({
-    required this.userName,
+    required this.account,
     required this.password,
   });
+
+  Map<String, dynamic> toJson() => {'account': account, 'password': password};
 }

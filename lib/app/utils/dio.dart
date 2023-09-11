@@ -9,12 +9,20 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 class DioHelper {
   static final UserCredentialRepositoryImpl _localData = Get.find();
 
+  Dio dio = init();
+
   static Dio init() {
-    final option = BaseOptions(
-      // baseUrl: baseUrl,
-      connectTimeout: const Duration(minutes: 5),
-      receiveTimeout: const Duration(minutes: 5),
-      contentType: Headers.formUrlEncodedContentType,
+    var dio = Dio(
+      BaseOptions(
+        baseUrl: 'http://asiagolf.bhirawasoft.com/api/v1',
+        connectTimeout: const Duration(minutes: 5),
+        receiveTimeout: const Duration(minutes: 5),
+        followRedirects: false,
+        headers: <String, String>{
+          'Authorization': 'Bearer ${_localData.getCredential()?.token ?? ''}',
+          'Content-Type': 'application/json',
+        },
+      ),
     );
 
     final interceptors = InterceptorsWrapper(onRequest: (options, handler) {
@@ -33,13 +41,11 @@ class DioHelper {
       return handler.next(e);
     });
 
-    final dio = Dio(option);
-
     dio.interceptors.add(interceptors);
 
     dio.interceptors.add(
       PrettyDioLogger(
-        requestHeader: false,
+        requestHeader: true,
         requestBody: true,
         responseBody: true,
         responseHeader: false,
@@ -50,5 +56,19 @@ class DioHelper {
     );
 
     return dio;
+  }
+
+  void updateToken() {
+    _addHeaderEntries({
+      'Authorization': 'Bearer ${_localData.getCredential()?.token ?? ''}',
+    });
+  }
+
+  void _addHeaderEntries(Map<String, String> entries) {
+    dio.options.headers.addEntries(entries.entries);
+  }
+
+  void _removeHeaderEntry(String key) {
+    dio.options.headers.remove(key);
   }
 }

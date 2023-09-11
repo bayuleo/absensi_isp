@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:asiagolf_app/app/data/model/auth/auth_data_model.dart';
-import 'package:asiagolf_app/app/domain/repositories/user_credential_repository.dart';
+import 'package:asiagolf_app/app/domain/repositories/auth/user_credential_repository.dart';
 import 'package:asiagolf_app/app/utils/helpers.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';

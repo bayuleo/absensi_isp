@@ -1,19 +1,19 @@
+import 'package:asiagolf_app/app/modules/auth/login/bindings/login_binding.dart';
+import 'package:asiagolf_app/app/modules/auth/login/views/login_view.dart';
+import 'package:asiagolf_app/app/modules/auth/splash/views/splash_view.dart';
 import 'package:get/get.dart';
 
-import '../modules/change_password/bindings/change_password_binding.dart';
-import '../modules/change_password/views/change_password_view.dart';
-import '../modules/forgot_password/bindings/forgot_password_binding.dart';
-import '../modules/forgot_password/views/forgot_password_view.dart';
-import '../modules/forgot_password_otp/bindings/forgot_password_otp_binding.dart';
-import '../modules/forgot_password_otp/views/forgot_password_otp_view.dart';
+import '../modules/auth/change_password/bindings/change_password_binding.dart';
+import '../modules/auth/change_password/views/change_password_view.dart';
+import '../modules/auth/forgot_password/bindings/forgot_password_binding.dart';
+import '../modules/auth/forgot_password/views/forgot_password_view.dart';
+import '../modules/auth/forgot_password_otp/bindings/forgot_password_otp_binding.dart';
+import '../modules/auth/forgot_password_otp/views/forgot_password_otp_view.dart';
+import '../modules/auth/register/bindings/register_binding.dart';
+import '../modules/auth/register/views/register_view.dart';
+import '../modules/auth/splash/bindings/splash_binding.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
-import '../modules/login/bindings/login_binding.dart';
-import '../modules/login/views/login_view.dart';
-import '../modules/register/bindings/register_binding.dart';
-import '../modules/register/views/register_view.dart';
-import '../modules/splash/bindings/splash_binding.dart';
-import '../modules/splash/views/splash_view.dart';
 
 part 'app_routes.dart';
 

@@ -1,4 +1,4 @@
-import 'package:asiagolf_app/app/domain/repositories/auth_repository.dart';
+import 'package:asiagolf_app/app/domain/repositories/auth/auth_repository.dart';
 import 'package:asiagolf_app/app/utils/result.dart';
 import 'package:asiagolf_app/app/utils/usecase.dart';
 

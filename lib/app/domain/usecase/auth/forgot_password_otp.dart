@@ -1,4 +1,4 @@
-import 'package:asiagolf_app/app/domain/repositories/auth_repository.dart';
+import 'package:asiagolf_app/app/domain/repositories/auth/auth_repository.dart';
 import 'package:asiagolf_app/app/utils/result.dart';
 import 'package:asiagolf_app/app/utils/usecase.dart';
 
@@ -20,8 +20,12 @@ class ForgotPasswordOTPUseCase
 
 class ForgotPasswordOTPParams {
   final String otp;
+  final String email;
 
   ForgotPasswordOTPParams({
     required this.otp,
+    required this.email,
   });
+
+  Map<String, dynamic> toJson() => {'otp': otp, 'email': email};
 }

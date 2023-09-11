@@ -19,8 +19,8 @@ class HomeView extends GetView<HomeController> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    'HomeView is working ${controller.token}',
+                  const Text(
+                    'HomeView is working',
                     style: TextStyle(fontSize: 20),
                   ),
                   ElevatedButton(

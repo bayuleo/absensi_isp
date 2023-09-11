@@ -1,15 +1,15 @@
-import 'package:asiagolf_app/app/domain/entities/auth_entity.dart';
-import 'package:asiagolf_app/app/domain/repositories/auth_repository.dart';
+import 'package:asiagolf_app/app/domain/entities/auth/register_entity.dart';
+import 'package:asiagolf_app/app/domain/repositories/auth/auth_repository.dart';
 import 'package:asiagolf_app/app/utils/result.dart';
 import 'package:asiagolf_app/app/utils/usecase.dart';
 
-class RegisterUseCase extends UseCase<dynamic, RegisterParams> {
+class RegisterUseCase extends UseCase<RegisterEntity, RegisterParams> {
   final AuthRepository authRepository;
 
   RegisterUseCase({required this.authRepository});
 
   @override
-  Future<Result<AuthEntity>> call(RegisterParams params) async {
+  Future<Result<RegisterEntity>> call(RegisterParams params) async {
     if (!await hasInternetConnection) {
       return Result.noInternet();
     }
@@ -40,4 +40,17 @@ class RegisterParams {
     required this.password,
     required this.passwordConfirmation,
   });
+
+  Map<String, dynamic> toJson() => {
+        'email': email,
+        'name': name,
+        'address': address,
+        'address': address,
+        'phone': phone,
+        'gender': gender,
+        'latitude': latitude,
+        'longitude': longitude,
+        'password': password,
+        'password_confirmation': passwordConfirmation
+      };
 }
