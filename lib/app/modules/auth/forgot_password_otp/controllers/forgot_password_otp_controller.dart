@@ -36,7 +36,7 @@ class ForgotPasswordOtpController extends GetxController {
     // TODO need integration
   }
 
-  void onCompleteInputOTP() {
+  void onCompleteInputOTP(String otp) {
     enableButton = !enableButton;
     update();
   }

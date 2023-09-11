@@ -107,6 +107,7 @@ class RegisterController extends GetxController {
       loadingBtn = false;
     }
     if (result.status is Success) {
+      showSnack('Daftar Berhasil');
       Get.offAllNamed(Routes.LOGIN);
     } else {
       showSnack(result.message);

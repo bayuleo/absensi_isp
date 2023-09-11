@@ -160,7 +160,7 @@ class RegisterView extends GetView<RegisterController> {
                 ButtonWidget(
                   enabled: controller.enableRegister,
                   text: "Daftar",
-                  // enabled: controller.enableLogin,
+                  isLoading: controller.loadingBtn,
                   onTap: controller.onClickRegister,
                 ),
                 SizedBox(
