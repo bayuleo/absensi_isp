@@ -62,10 +62,10 @@ class ForgotPasswordOtpView extends GetView<ForgotPasswordOtpController> {
                   height: 16.h,
                 ),
                 OtpTextField(
-                  numberOfFields: 4,
-                  fieldWidth: 50.w,
+                  numberOfFields: 6,
+                  fieldWidth: 44.w,
                   margin: EdgeInsets.symmetric(
-                    horizontal: 12.w,
+                    horizontal: 2.w,
                   ),
                   borderColor: Colors.black,
                   focusedBorderColor: Colors.black,
@@ -85,14 +85,6 @@ class ForgotPasswordOtpView extends GetView<ForgotPasswordOtpController> {
                   //runs when every textfield is filled
                   onSubmit: (String verificationCode) {
                     controller.onCompleteInputOTP(verificationCode);
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: const Text("Verification Code"),
-                            content: Text('Code entered is $verificationCode'),
-                          );
-                        });
                   }, // end onSubmit
                 ),
                 SizedBox(
@@ -100,7 +92,7 @@ class ForgotPasswordOtpView extends GetView<ForgotPasswordOtpController> {
                 ),
                 ButtonWidget(
                   text: "Next",
-                  enabled: controller.enableButton,
+                  // enabled: controller.enableButton,
                   isLoading: controller.isLoadingBtn,
                   onTap: controller.onClickNext,
                 ),

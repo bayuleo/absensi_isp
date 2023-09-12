@@ -134,16 +134,9 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<Result<bool>> forgotPaswordNewPassword(
+  Future<Result<bool>> forgotPasswordNewPassword(
       {required ForgotPasswordNewPasswordParams params}) async {
-    // TODO: implement forgotPaswordOTP
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Result<bool>> forgotPaswordOTP(
-      {required ForgotPasswordOTPParams params}) async {
-    var endpoint = "/auth/send_otp";
+    var endpoint = "/auth/forgot_pass";
 
     try {
       var response = await _dioHelper.dio.post(
@@ -177,7 +170,43 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<Result<bool>> forgotPaswordVerificationEmail(
+  Future<Result<bool>> forgotPasswordOTP(
+      {required ForgotPasswordOTPParams params}) async {
+    var endpoint = "/auth/verify_otp";
+
+    try {
+      var response = await _dioHelper.dio.post(
+        endpoint,
+        data: jsonEncode(
+          params.toJson(),
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        return Result.success(true);
+      }
+
+      return Result.error(
+        message: response.data["message"],
+        code: response.statusCode!,
+      );
+    } on DioException catch (e) {
+      final errorMessage =
+          "Get Auth -> Error Code ${e.response?.statusCode} = ${e.message}";
+
+      var data = CommonModel.fromJson(e.response?.data);
+
+      return Result.error(
+        message: data.message ?? errorMessage,
+        code: e.response?.statusCode ?? -1,
+      );
+    } catch (e) {
+      return Result.error(message: e.toString());
+    }
+  }
+
+  @override
+  Future<Result<bool>> forgotPasswordVerificationEmail(
       {required ForgotPasswordParams params}) async {
     var endpoint = "/auth/send_otp";
 
@@ -190,7 +219,9 @@ class AuthRepositoryImpl extends AuthRepository {
       );
 
       if (response.statusCode == 200) {
-        return Result.success(true);
+        return Result.success(true,
+            message:
+                "OTP reset kata sandi berhasil dikirim, silakan cek kotak masuk email Anda");
       }
 
       return Result.error(

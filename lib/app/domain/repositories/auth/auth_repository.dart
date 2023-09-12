@@ -16,15 +16,15 @@ abstract class AuthRepository {
     required RegisterParams params,
   });
 
-  Future<Result<bool>> forgotPaswordVerificationEmail({
+  Future<Result<bool>> forgotPasswordVerificationEmail({
     required ForgotPasswordParams params,
   });
 
-  Future<Result<bool>> forgotPaswordOTP({
+  Future<Result<bool>> forgotPasswordOTP({
     required ForgotPasswordOTPParams params,
   });
 
-  Future<Result<bool>> forgotPaswordNewPassword({
+  Future<Result<bool>> forgotPasswordNewPassword({
     required ForgotPasswordNewPasswordParams params,
   });
 

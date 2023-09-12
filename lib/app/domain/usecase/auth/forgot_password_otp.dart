@@ -14,7 +14,7 @@ class ForgotPasswordOTPUseCase
       return Result.noInternet();
     }
 
-    return authRepository.forgotPaswordOTP(params: params);
+    return authRepository.forgotPasswordOTP(params: params);
   }
 }
 

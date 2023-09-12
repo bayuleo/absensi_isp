@@ -62,7 +62,7 @@ class SplashView extends GetView<SplashController> {
                       selectedColor: const Color(0xff369B43),
                     ),
                     SizedBox(
-                      height: 64.h,
+                      height: 30.h,
                     ),
                     controller.pageIndex == 0
                         ? ButtonWidget(

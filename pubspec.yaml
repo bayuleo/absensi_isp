@@ -25,6 +25,7 @@ dependencies:
     sdk: flutter
   json_to_model: ^3.2.4
   quiver: ^3.2.1
+  flutter_native_splash: ^2.3.2
 
 dev_dependencies: 
   flutter_lints: 2.0.2
@@ -42,3 +43,15 @@ flutter_launcher_icons:
   image_path_android: "assets/icons/main_logo_bayu_android.png"
   image_path_ios: "assets/icons/main_logo_bayu.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
+
+flutter_native_splash:
+  fullscreen: true
+  color: "#ffffff"
+  color_dark: "#ffffff"
+  image: "assets/icons/main_logo_splash_bayu.png"
+  android_12:
+    color: "#ffffff"
+    color_dark: "#2E398F"
+    icon_background_color_dark: "#2E398F"
+    image: "assets/icons/main_logo_splash_bayu.png"
+    image_dark: "assets/icons/main_logo_splash_dark_bayu.png"

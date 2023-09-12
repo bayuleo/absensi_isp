@@ -14,14 +14,27 @@ class ForgotPasswordNewPasswordUseCase
       return Result.noInternet();
     }
 
-    return authRepository.forgotPaswordNewPassword(params: params);
+    return authRepository.forgotPasswordNewPassword(params: params);
   }
 }
 
 class ForgotPasswordNewPasswordParams {
+  final String otp;
+  final String email;
   final String password;
+  final String passwordConfirmation;
 
   ForgotPasswordNewPasswordParams({
+    required this.otp,
+    required this.email,
     required this.password,
+    required this.passwordConfirmation,
   });
+
+  Map<String, dynamic> toJson() => {
+        'password': password,
+        'otp': otp,
+        'email': email,
+        'password_confirmation': passwordConfirmation
+      };
 }

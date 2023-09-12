@@ -13,7 +13,7 @@ class ForgotPasswordUseCase extends UseCase<dynamic, ForgotPasswordParams> {
       return Result.noInternet();
     }
 
-    return authRepository.forgotPaswordVerificationEmail(params: params);
+    return authRepository.forgotPasswordVerificationEmail(params: params);
   }
 }
 

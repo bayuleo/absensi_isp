@@ -80,6 +80,7 @@ class RegisterController extends GetxController {
   }
 
   void onClickRegister() async {
+    FocusScope.of(Get.context!).unfocus();
     late RegisterParams params;
     late RegisterUseCase register;
     late Result<RegisterEntity> result;

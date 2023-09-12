@@ -27,6 +27,7 @@ class LoginController extends GetxController {
   }
 
   Future<void> onClickLogin() async {
+    FocusScope.of(Get.context!).unfocus();
     late LoginParams params;
     late LoginUseCase login;
     late Result<AuthEntity> result;

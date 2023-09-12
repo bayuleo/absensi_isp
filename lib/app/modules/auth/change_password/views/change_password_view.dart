@@ -91,6 +91,7 @@ class ChangePasswordView extends GetView<ChangePasswordController> {
                       ButtonWidget(
                         text: "Next",
                         enabled: controller.enableButton,
+                        isLoading: controller.isLoadingBtn,
                         onTap: controller.onClickNext,
                       ),
                       SizedBox(

@@ -40,6 +40,7 @@ class ForgotPasswordController extends GetxController {
   }
 
   void onClickNext() async {
+    FocusScope.of(Get.context!).unfocus();
     late ForgotPasswordParams params;
     late ForgotPasswordUseCase forgotPassword;
     late Result<bool> result;

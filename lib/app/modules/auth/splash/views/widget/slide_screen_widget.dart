@@ -21,9 +21,10 @@ class SlideScreenWidget extends StatelessWidget {
       children: [
         SvgPicture.asset(
           assets,
+          height: 100.h,
         ),
         SizedBox(
-          height: 40.h,
+          height: 20.h,
         ),
         Text(
           title,
@@ -34,8 +35,8 @@ class SlideScreenWidget extends StatelessWidget {
             height: 1.5,
           ),
         ),
-        const SizedBox(
-          height: 12,
+        SizedBox(
+          height: 12.h,
         ),
         Text(
           desc,
@@ -46,8 +47,8 @@ class SlideScreenWidget extends StatelessWidget {
             height: 1.5,
           ),
         ),
-        const SizedBox(
-          height: 40,
+        SizedBox(
+          height: 40.h,
         ),
       ],
     );
