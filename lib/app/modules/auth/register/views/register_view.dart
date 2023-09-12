@@ -97,6 +97,8 @@ class RegisterView extends GetView<RegisterController> {
                           'Laki-laki',
                           style: TextStyle(color: Colors.black),
                         ),
+                        contentPadding: EdgeInsets.all(0),
+                        dense: true,
                         visualDensity: const VisualDensity(
                           vertical: VisualDensity.minimumDensity,
                         ),
@@ -112,6 +114,8 @@ class RegisterView extends GetView<RegisterController> {
                           'Perempuan',
                           style: TextStyle(color: Colors.black),
                         ),
+                        contentPadding: EdgeInsets.all(0),
+                        dense: true,
                         visualDensity: const VisualDensity(
                           vertical: VisualDensity.minimumDensity,
                         ),
