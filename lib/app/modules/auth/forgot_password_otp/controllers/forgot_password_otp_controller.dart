@@ -86,7 +86,6 @@ class ForgotPasswordOtpController extends GetxController {
     }
 
     if (result.status is Success) {
-      showSnack(result.message);
       Get.toNamed(
         Routes.CHANGE_PASSWORD,
         arguments: [email, otp],
