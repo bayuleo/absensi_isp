@@ -30,11 +30,4 @@ class ForgotPasswordNewPasswordParams {
     required this.password,
     required this.passwordConfirmation,
   });
-
-  Map<String, dynamic> toJson() => {
-        'password': password,
-        'otp': otp,
-        'email': email,
-        'password_confirmation': passwordConfirmation
-      };
 }

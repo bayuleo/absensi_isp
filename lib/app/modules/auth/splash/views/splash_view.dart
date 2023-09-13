@@ -1,6 +1,6 @@
 import 'package:asiagolf_app/app/modules/auth/splash/views/widget/button_widget.dart';
+import 'package:asiagolf_app/app/utils/extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
 
@@ -62,7 +62,7 @@ class SplashView extends GetView<SplashController> {
                       selectedColor: const Color(0xff369B43),
                     ),
                     SizedBox(
-                      height: 30.h,
+                      height: 32.h,
                     ),
                     controller.pageIndex == 0
                         ? ButtonWidget(
@@ -94,7 +94,7 @@ class SplashView extends GetView<SplashController> {
                               ),
                               ButtonWidget(
                                 text: 'Next',
-                                fontSize: 20.sp,
+                                fontSize: 20,
                                 tail: const Icon(
                                   Icons.arrow_forward,
                                   color: Colors.white,

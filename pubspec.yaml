@@ -10,7 +10,6 @@ dependencies:
   get: 4.6.5
   get_cli: ^1.8.1
   flutter_svg: ^2.0.7
-  flutter_screenutil: ^5.9.0
   page_view_dot_indicator: ^2.3.0
   flutter_otp_text_field: ^1.1.1
   flutter_countdown_timer: ^4.1.0

@@ -1,5 +1,5 @@
+import 'package:asiagolf_app/app/utils/extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SlideScreenWidget extends StatelessWidget {
@@ -21,16 +21,16 @@ class SlideScreenWidget extends StatelessWidget {
       children: [
         SvgPicture.asset(
           assets,
-          height: 100.h,
+          height: 120.h,
         ),
         SizedBox(
-          height: 20.h,
+          height: 32.h,
         ),
         Text(
           title,
           textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 20.sp,
+          style: const TextStyle(
+            fontSize: 20,
             fontWeight: FontWeight.w700,
             height: 1.5,
           ),
@@ -41,8 +41,8 @@ class SlideScreenWidget extends StatelessWidget {
         Text(
           desc,
           textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 14.sp,
+          style: const TextStyle(
+            fontSize: 14,
             fontWeight: FontWeight.w400,
             height: 1.5,
           ),

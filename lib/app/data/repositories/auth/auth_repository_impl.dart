@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:asiagolf_app/app/data/model/auth/api_response_model.dart';
 import 'package:asiagolf_app/app/data/model/auth/auth_data_model.dart';
 import 'package:asiagolf_app/app/data/model/auth/common_model.dart';
@@ -27,13 +25,15 @@ class AuthRepositoryImpl extends AuthRepository {
     required LoginParams params,
   }) async {
     var enpoint = "/auth/login";
+    final data = {
+      'account': params.account,
+      'password': params.password,
+    };
 
     try {
       var response = await _dioHelper.dio.post(
         enpoint,
-        data: jsonEncode(
-          params.toJson(),
-        ),
+        data: data,
       );
 
       if (response.statusCode == 200) {
@@ -66,13 +66,22 @@ class AuthRepositoryImpl extends AuthRepository {
   @override
   Future<Result<RegisterEntity>> register({required params}) async {
     var endpoint = "/auth/register";
+    var data = {
+      'email': params.email,
+      'name': params.name,
+      'address': params.address,
+      'phone': params.phone,
+      'gender': params.gender,
+      'latitude': params.latitude,
+      'longitude': params.longitude,
+      'password': params.password,
+      'password_confirmation': params.passwordConfirmation,
+    };
 
     try {
       var response = await _dioHelper.dio.post(
         endpoint,
-        data: jsonEncode(
-          params.toJson(),
-        ),
+        data: data,
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
@@ -137,13 +146,17 @@ class AuthRepositoryImpl extends AuthRepository {
   Future<Result<bool>> forgotPasswordNewPassword(
       {required ForgotPasswordNewPasswordParams params}) async {
     var endpoint = "/auth/forgot_pass";
+    var data = {
+      'password': params.password,
+      'otp': params.otp,
+      'email': params.email,
+      'password_confirmation': params.passwordConfirmation,
+    };
 
     try {
       var response = await _dioHelper.dio.post(
         endpoint,
-        data: jsonEncode(
-          params.toJson(),
-        ),
+        data: data,
       );
 
       if (response.statusCode == 200) {
@@ -173,13 +186,15 @@ class AuthRepositoryImpl extends AuthRepository {
   Future<Result<bool>> forgotPasswordOTP(
       {required ForgotPasswordOTPParams params}) async {
     var endpoint = "/auth/verify_otp";
+    var data = {
+      'otp': params.otp,
+      'email': params.email,
+    };
 
     try {
       var response = await _dioHelper.dio.post(
         endpoint,
-        data: jsonEncode(
-          params.toJson(),
-        ),
+        data: data,
       );
 
       if (response.statusCode == 200) {
@@ -209,13 +224,14 @@ class AuthRepositoryImpl extends AuthRepository {
   Future<Result<bool>> forgotPasswordVerificationEmail(
       {required ForgotPasswordParams params}) async {
     var endpoint = "/auth/send_otp";
+    var data = {
+      'email': params.email,
+    };
 
     try {
       var response = await _dioHelper.dio.post(
         endpoint,
-        data: jsonEncode(
-          params.toJson(),
-        ),
+        data: data,
       );
 
       if (response.statusCode == 200) {

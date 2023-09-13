@@ -40,17 +40,4 @@ class RegisterParams {
     required this.password,
     required this.passwordConfirmation,
   });
-
-  Map<String, dynamic> toJson() => {
-        'email': email,
-        'name': name,
-        'address': address,
-        'address': address,
-        'phone': phone,
-        'gender': gender,
-        'latitude': latitude,
-        'longitude': longitude,
-        'password': password,
-        'password_confirmation': passwordConfirmation
-      };
 }

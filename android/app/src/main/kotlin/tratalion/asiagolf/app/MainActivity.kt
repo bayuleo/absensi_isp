@@ -1,4 +1,4 @@
-package tratalion.asiagolf.app.asiagolf_app
+package tratalion.asiagolf.app
 
 import io.flutter.embedding.android.FlutterActivity
 

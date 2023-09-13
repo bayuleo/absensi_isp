@@ -1,15 +1,16 @@
-import 'package:asiagolf_app/app/modules/auth/login/utils/input_validatior_helper.dart';
 import 'package:asiagolf_app/app/modules/auth/login/views/widget/text_field_with_label_widget.dart';
 import 'package:asiagolf_app/app/modules/auth/splash/views/widget/button_widget.dart';
+import 'package:asiagolf_app/app/utils/extensions.dart';
+import 'package:asiagolf_app/app/utils/validation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../controllers/change_password_controller.dart';
 import 'widget/success_screen_widget.dart';
 
-class ChangePasswordView extends GetView<ChangePasswordController> {
+class ChangePasswordView extends GetView<ChangePasswordController>
+    with Validation {
   const ChangePasswordView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -31,20 +32,20 @@ class ChangePasswordView extends GetView<ChangePasswordController> {
                       SizedBox(
                         height: 48.h,
                       ),
-                      Text(
+                      const Text(
                         'Forgot Password',
                         style: TextStyle(
-                          fontSize: 20.sp,
+                          fontSize: 20,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
                       SizedBox(
                         height: 8.h,
                       ),
-                      Text(
+                      const Text(
                         'Masukan email yang terhubung ke akun Anda.',
                         style: TextStyle(
-                          fontSize: 14.sp,
+                          fontSize: 14,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -62,9 +63,8 @@ class ChangePasswordView extends GetView<ChangePasswordController> {
                           'toggle_obscure_password_button',
                         ),
                         onTapRightIcon: () => controller.onTapShowPassword(),
-                        onChangedText: controller.onEditForm,
                         controller: controller.passwordController,
-                        validator: InputValidatorHelper.validatePassword,
+                        validator: passwordRequired,
                       ),
                       const SizedBox(
                         height: 20,
@@ -81,16 +81,17 @@ class ChangePasswordView extends GetView<ChangePasswordController> {
                         ),
                         onTapRightIcon: () =>
                             controller.onTapShowPassword(true),
-                        onChangedText: controller.onEditForm,
                         controller: controller.confirmPasswordController,
-                        validator: validateConfirmPassword,
+                        validator: (value) => repasswordRequired(
+                          controller.passwordController.text.trim(),
+                          value,
+                        ),
                       ),
                       SizedBox(
                         height: 40.h,
                       ),
                       ButtonWidget(
                         text: "Next",
-                        enabled: controller.enableButton,
                         isLoading: controller.isLoadingBtn,
                         onTap: controller.onClickNext,
                       ),
@@ -100,24 +101,9 @@ class ChangePasswordView extends GetView<ChangePasswordController> {
                     ],
                   ),
                 )
-              : SuccessScreenWidget(),
+              : const SuccessScreenWidget(),
         ),
       ),
     );
-  }
-
-  validateConfirmPassword(value) {
-    final validatorResult = InputValidatorHelper.validateConfirmPassword(
-        controller.passwordController.text, value);
-    if (validatorResult == ValidatorResult.empty) {
-      return 'Password wajib terisi';
-    }
-    if (validatorResult == ValidatorResult.invalid) {
-      return 'Minimal 8 karakter huruf atau angka';
-    }
-    if (validatorResult == ValidatorResult.other) {
-      return 'Confirm password tidak cocok';
-    }
-    return null;
   }
 }

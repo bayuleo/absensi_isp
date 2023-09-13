@@ -1,7 +1,6 @@
 import 'package:asiagolf_app/app/data/repositories/auth/auth_repository_impl.dart';
 import 'package:asiagolf_app/app/domain/entities/auth/register_entity.dart';
 import 'package:asiagolf_app/app/domain/usecase/auth/register.dart';
-import 'package:asiagolf_app/app/modules/auth/login/utils/input_validatior_helper.dart';
 import 'package:asiagolf_app/app/routes/app_pages.dart';
 import 'package:asiagolf_app/app/utils/helpers.dart';
 import 'package:asiagolf_app/app/utils/result.dart';
@@ -26,7 +25,6 @@ enum Gender {
 
 class RegisterController extends GetxController {
   bool isShowPassword = false;
-  bool enableRegister = false;
   bool loadingBtn = false;
 
   Gender gender = Gender.male;
@@ -57,26 +55,6 @@ class RegisterController extends GetxController {
     emailController.dispose();
     passwordController.dispose();
     super.onClose();
-  }
-
-  void onChangedText(value) {
-    if (InputValidatorHelper.validatorRequired(nameController.text.trim()) ==
-            ValidatorResult.valid &&
-        InputValidatorHelper.validatorRequired(addressController.text.trim()) ==
-            ValidatorResult.valid &&
-        InputValidatorHelper.validatorPhoneNumber(
-                phoneController.text.trim()) ==
-            ValidatorResult.valid &&
-        InputValidatorHelper.validatorEmail(emailController.text.trim()) ==
-            ValidatorResult.valid &&
-        InputValidatorHelper.validatorPassword(
-                passwordController.text.trim()) ==
-            ValidatorResult.valid) {
-      enableRegister = true;
-    } else {
-      enableRegister = false;
-    }
-    update();
   }
 
   void onClickRegister() async {

@@ -1,8 +1,8 @@
 import 'package:asiagolf_app/app/modules/auth/splash/views/widget/button_widget.dart';
+import 'package:asiagolf_app/app/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/index.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -29,10 +29,10 @@ class ForgotPasswordOtpView extends GetView<ForgotPasswordOtpController> {
                 SizedBox(
                   height: 48.h,
                 ),
-                Text(
+                const Text(
                   'Forgot Password',
                   style: TextStyle(
-                    fontSize: 20.sp,
+                    fontSize: 20,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -42,10 +42,10 @@ class ForgotPasswordOtpView extends GetView<ForgotPasswordOtpController> {
                 RichText(
                   text: TextSpan(
                     text: 'Kami telah mengirimkan kode ke ',
-                    style: TextStyle(
-                      fontSize: 12.sp,
+                    style: const TextStyle(
+                      fontSize: 12,
                       fontWeight: FontWeight.w400,
-                      color: const Color(0xff2D2D2D),
+                      color: Color(0xff2D2D2D),
                     ),
                     children: <TextSpan>[
                       TextSpan(
@@ -70,8 +70,8 @@ class ForgotPasswordOtpView extends GetView<ForgotPasswordOtpController> {
                   borderColor: Colors.black,
                   focusedBorderColor: Colors.black,
                   cursorColor: Colors.black,
-                  textStyle: TextStyle(
-                    fontSize: 20.sp,
+                  textStyle: const TextStyle(
+                    fontSize: 20,
                     fontWeight: FontWeight.w500,
                   ),
                   borderWidth: 2,
@@ -92,7 +92,6 @@ class ForgotPasswordOtpView extends GetView<ForgotPasswordOtpController> {
                 ),
                 ButtonWidget(
                   text: "Next",
-                  // enabled: controller.enableButton,
                   isLoading: controller.isLoadingBtn,
                   onTap: controller.onClickNext,
                 ),

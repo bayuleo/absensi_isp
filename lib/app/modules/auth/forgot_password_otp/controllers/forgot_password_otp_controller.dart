@@ -9,7 +9,6 @@ import 'package:flutter_countdown_timer/index.dart';
 import 'package:get/get.dart';
 
 class ForgotPasswordOtpController extends GetxController {
-  bool enableButton = false;
   bool isShowResendOTP = false;
   bool isLoadingBtn = false;
   late CountdownTimerController countdownController;

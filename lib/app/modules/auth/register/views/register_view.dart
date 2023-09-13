@@ -1,14 +1,14 @@
-import 'package:asiagolf_app/app/modules/auth/login/utils/input_validatior_helper.dart';
 import 'package:asiagolf_app/app/modules/auth/login/views/widget/text_field_with_label_widget.dart';
 import 'package:asiagolf_app/app/modules/auth/splash/views/widget/button_widget.dart';
+import 'package:asiagolf_app/app/utils/extensions.dart';
+import 'package:asiagolf_app/app/utils/validation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../controllers/register_controller.dart';
 
-class RegisterView extends GetView<RegisterController> {
+class RegisterView extends GetView<RegisterController> with Validation {
   const RegisterView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -29,20 +29,20 @@ class RegisterView extends GetView<RegisterController> {
                 SizedBox(
                   height: 48.h,
                 ),
-                Text(
+                const Text(
                   'Daftar',
                   style: TextStyle(
-                    fontSize: 20.sp,
+                    fontSize: 20,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 SizedBox(
                   height: 8.h,
                 ),
-                Text(
+                const Text(
                   'Silakan buat akun terlebih dahulu.',
                   style: TextStyle(
-                    fontSize: 14.sp,
+                    fontSize: 14,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -53,9 +53,8 @@ class RegisterView extends GetView<RegisterController> {
                   label: "Nama",
                   hint: "Nama",
                   controller: controller.nameController,
-                  onChangedText: controller.onChangedText,
                   keyboardType: TextInputType.text,
-                  validator: InputValidatorHelper.validateRequired,
+                  validator: nameRequired,
                 ),
                 SizedBox(
                   height: 16.h,
@@ -64,9 +63,8 @@ class RegisterView extends GetView<RegisterController> {
                   label: "Alamat",
                   hint: "Alamat",
                   controller: controller.addressController,
-                  onChangedText: controller.onChangedText,
                   keyboardType: TextInputType.text,
-                  validator: InputValidatorHelper.validateRequired,
+                  validator: inputRequired,
                 ),
                 SizedBox(
                   height: 16.h,
@@ -75,14 +73,13 @@ class RegisterView extends GetView<RegisterController> {
                   label: "No Telepon",
                   hint: "No Telepon",
                   controller: controller.phoneController,
-                  onChangedText: controller.onChangedText,
                   keyboardType: TextInputType.phone,
-                  validator: InputValidatorHelper.validatePhoneNumber,
+                  validator: inputRequired,
                 ),
                 SizedBox(
                   height: 16.h,
                 ),
-                Text(
+                const Text(
                   'Jenis Kelamin',
                   style: TextStyle(color: Colors.black),
                 ),
@@ -93,11 +90,11 @@ class RegisterView extends GetView<RegisterController> {
                   children: [
                     Expanded(
                       child: RadioListTile<Gender>(
-                        title: Text(
+                        title: const Text(
                           'Laki-laki',
                           style: TextStyle(color: Colors.black),
                         ),
-                        contentPadding: EdgeInsets.all(0),
+                        contentPadding: const EdgeInsets.all(0),
                         dense: true,
                         visualDensity: const VisualDensity(
                           vertical: VisualDensity.minimumDensity,
@@ -110,11 +107,11 @@ class RegisterView extends GetView<RegisterController> {
                     ),
                     Expanded(
                       child: RadioListTile<Gender>(
-                        title: Text(
+                        title: const Text(
                           'Perempuan',
                           style: TextStyle(color: Colors.black),
                         ),
-                        contentPadding: EdgeInsets.all(0),
+                        contentPadding: const EdgeInsets.all(0),
                         dense: true,
                         visualDensity: const VisualDensity(
                           vertical: VisualDensity.minimumDensity,
@@ -134,9 +131,8 @@ class RegisterView extends GetView<RegisterController> {
                   label: "Email",
                   hint: "Email",
                   controller: controller.emailController,
-                  onChangedText: controller.onChangedText,
                   keyboardType: TextInputType.emailAddress,
-                  validator: InputValidatorHelper.validateEmail,
+                  validator: emailRequired,
                 ),
                 SizedBox(
                   height: 16.h,
@@ -155,14 +151,12 @@ class RegisterView extends GetView<RegisterController> {
                     'toggle_obscure_password_button',
                   ),
                   onTapRightIcon: controller.onTapShowPassword,
-                  onChangedText: controller.onChangedText,
-                  validator: InputValidatorHelper.validatePassword,
+                  validator: passwordRequired,
                 ),
                 SizedBox(
                   height: 40.h,
                 ),
                 ButtonWidget(
-                  enabled: controller.enableRegister,
                   text: "Daftar",
                   isLoading: controller.loadingBtn,
                   onTap: controller.onClickRegister,

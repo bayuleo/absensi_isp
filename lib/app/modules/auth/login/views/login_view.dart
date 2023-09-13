@@ -1,14 +1,14 @@
-import 'package:asiagolf_app/app/modules/auth/login/utils/input_validatior_helper.dart';
 import 'package:asiagolf_app/app/modules/auth/login/views/widget/text_field_with_label_widget.dart';
 import 'package:asiagolf_app/app/modules/auth/splash/views/widget/button_widget.dart';
+import 'package:asiagolf_app/app/utils/extensions.dart';
+import 'package:asiagolf_app/app/utils/validation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../controllers/login_controller.dart';
 
-class LoginView extends GetView<LoginController> {
+class LoginView extends GetView<LoginController> with Validation {
   const LoginView({Key? key}) : super(key: key);
 
   @override
@@ -30,20 +30,20 @@ class LoginView extends GetView<LoginController> {
                 SizedBox(
                   height: 48.h,
                 ),
-                Text(
+                const Text(
                   'Selamat Datang',
                   style: TextStyle(
-                    fontSize: 20.sp,
+                    fontSize: 20,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 SizedBox(
                   height: 8.h,
                 ),
-                Text(
+                const Text(
                   'Silakan Login ke akun Anda.',
                   style: TextStyle(
-                    fontSize: 14.sp,
+                    fontSize: 14,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -54,9 +54,8 @@ class LoginView extends GetView<LoginController> {
                   label: "Email",
                   hint: "Email",
                   controller: controller.emailController,
-                  onChangedText: controller.onChangedText,
                   keyboardType: TextInputType.text,
-                  validator: InputValidatorHelper.validateRequired,
+                  validator: emailRequired,
                 ),
                 SizedBox(
                   height: 16.h,
@@ -75,8 +74,7 @@ class LoginView extends GetView<LoginController> {
                     'toggle_obscure_password_button',
                   ),
                   onTapRightIcon: controller.onTapShowPassword,
-                  onChangedText: controller.onChangedText,
-                  validator: InputValidatorHelper.validateRequired,
+                  validator: passwordRequired,
                 ),
                 SizedBox(
                   height: 16.h,
@@ -101,7 +99,6 @@ class LoginView extends GetView<LoginController> {
                 ButtonWidget(
                   text: "Login",
                   isLoading: controller.loadingBtn,
-                  enabled: controller.enableLogin,
                   onTap: controller.onClickLogin,
                 ),
                 SizedBox(

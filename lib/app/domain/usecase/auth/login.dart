@@ -26,6 +26,4 @@ class LoginParams {
     required this.account,
     required this.password,
   });
-
-  Map<String, dynamic> toJson() => {'account': account, 'password': password};
 }
