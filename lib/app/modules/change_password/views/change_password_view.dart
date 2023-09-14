@@ -1,5 +1,5 @@
-import 'package:asiagolf_app/app/modules/auth/login/views/widget/text_field_with_label_widget.dart';
-import 'package:asiagolf_app/app/modules/auth/splash/views/widget/button_widget.dart';
+import 'package:asiagolf_app/app/modules/login/views/widget/text_field_with_label_widget.dart';
+import 'package:asiagolf_app/app/modules/splash/views/widget/button_widget.dart';
 import 'package:asiagolf_app/app/utils/extensions.dart';
 import 'package:asiagolf_app/app/utils/validation.dart';
 import 'package:flutter/material.dart';

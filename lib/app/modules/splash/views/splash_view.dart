@@ -1,10 +1,10 @@
-import 'package:asiagolf_app/app/modules/auth/splash/views/widget/button_widget.dart';
 import 'package:asiagolf_app/app/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
 
 import '../controllers/splash_controller.dart';
+import 'widget/button_widget.dart';
 import 'widget/slide_screen_widget.dart';
 
 class SplashView extends GetView<SplashController> {

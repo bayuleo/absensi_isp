@@ -1,5 +1,4 @@
-import 'package:asiagolf_app/app/modules/auth/login/views/widget/text_field_with_label_widget.dart';
-import 'package:asiagolf_app/app/modules/auth/splash/views/widget/button_widget.dart';
+import 'package:asiagolf_app/app/modules/splash/views/widget/button_widget.dart';
 import 'package:asiagolf_app/app/utils/extensions.dart';
 import 'package:asiagolf_app/app/utils/validation.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../controllers/login_controller.dart';
+import 'widget/text_field_with_label_widget.dart';
 
 class LoginView extends GetView<LoginController> with Validation {
   const LoginView({Key? key}) : super(key: key);

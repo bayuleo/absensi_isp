@@ -1,5 +1,5 @@
-import 'package:asiagolf_app/app/modules/auth/change_password/controllers/change_password_controller.dart';
-import 'package:asiagolf_app/app/modules/auth/splash/views/widget/button_widget.dart';
+import 'package:asiagolf_app/app/modules/change_password/controllers/change_password_controller.dart';
+import 'package:asiagolf_app/app/modules/splash/views/widget/button_widget.dart';
 import 'package:asiagolf_app/app/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

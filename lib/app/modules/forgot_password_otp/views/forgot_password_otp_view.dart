@@ -1,4 +1,4 @@
-import 'package:asiagolf_app/app/modules/auth/splash/views/widget/button_widget.dart';
+import 'package:asiagolf_app/app/modules/splash/views/widget/button_widget.dart';
 import 'package:asiagolf_app/app/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/index.dart';
