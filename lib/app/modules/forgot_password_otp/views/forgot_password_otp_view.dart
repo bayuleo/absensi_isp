@@ -79,9 +79,7 @@ class ForgotPasswordOtpView extends GetView<ForgotPasswordOtpController> {
                   //set to true to show as box or false to show as dash
                   showFieldAsBox: true,
                   //runs when a code is typed in
-                  onCodeChanged: (String code) {
-                    //handle validation or checks here
-                  },
+                  onCodeChanged: controller.onChangeInput,
                   //runs when every textfield is filled
                   onSubmit: (String verificationCode) {
                     controller.onCompleteInputOTP(verificationCode);
@@ -93,6 +91,7 @@ class ForgotPasswordOtpView extends GetView<ForgotPasswordOtpController> {
                 ButtonWidget(
                   text: "Next",
                   isLoading: controller.isLoadingBtn,
+                  enabled: controller.isEnableBtn,
                   onTap: controller.onClickNext,
                 ),
                 SizedBox(

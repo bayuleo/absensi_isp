@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class ChangePasswordController extends GetxController {
+  final changePassKey = GlobalKey<FormState>();
   bool isShowPassword = false;
   bool isShowConfirmPassword = false;
   bool isSuccess = false;
@@ -48,31 +49,33 @@ class ChangePasswordController extends GetxController {
     late ForgotPasswordNewPasswordUseCase forgotPassword;
     late Result<bool> result;
 
-    isLoadingBtn = true;
-    update();
+    if (changePassKey.currentState!.validate()) {
+      isLoadingBtn = true;
+      update();
 
-    params = ForgotPasswordNewPasswordParams(
-      password: passC.text.trim(),
-      passwordConfirmation: repassC.text.trim(),
-      otp: otp,
-      email: email,
-    );
+      params = ForgotPasswordNewPasswordParams(
+        password: passC.text.trim(),
+        passwordConfirmation: repassC.text.trim(),
+        otp: otp,
+        email: email,
+      );
 
-    forgotPassword =
-        ForgotPasswordNewPasswordUseCase(authRepository: AuthRepositoryImpl());
+      forgotPassword = ForgotPasswordNewPasswordUseCase(
+          authRepository: AuthRepositoryImpl());
 
-    try {
-      result = await forgotPassword.call(params);
-    } finally {
-      isLoadingBtn = false;
+      try {
+        result = await forgotPassword.call(params);
+      } finally {
+        isLoadingBtn = false;
+      }
+
+      if (result.status is Success) {
+        isSuccess = true;
+      } else {
+        showSnack(result.message);
+      }
+      update();
     }
-
-    if (result.status is Success) {
-      isSuccess = true;
-    } else {
-      showSnack(result.message);
-    }
-    update();
   }
 
   void onClickLogin() {

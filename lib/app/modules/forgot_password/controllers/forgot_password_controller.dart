@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class ForgotPasswordController extends GetxController {
+  final forgotPasswordKey = GlobalKey<FormState>();
   bool loadingBtn = false;
 
   TextEditingController emailController = TextEditingController();
@@ -33,31 +34,33 @@ class ForgotPasswordController extends GetxController {
     late ForgotPasswordUseCase forgotPassword;
     late Result<bool> result;
 
-    loadingBtn = true;
-    update();
+    if (forgotPasswordKey.currentState!.validate()) {
+      loadingBtn = true;
+      update();
 
-    params = ForgotPasswordParams(
-      email: emailController.text.trim(),
-    );
-
-    forgotPassword =
-        ForgotPasswordUseCase(authRepository: AuthRepositoryImpl());
-
-    try {
-      result = await forgotPassword.call(params);
-    } finally {
-      loadingBtn = false;
-    }
-
-    if (result.status is Success) {
-      showSnack(result.message);
-      Get.toNamed(
-        Routes.FORGOT_PASSWORD_OTP,
-        arguments: emailController.text.trim(),
+      params = ForgotPasswordParams(
+        email: emailController.text.trim(),
       );
-    } else {
-      showSnack(result.message);
+
+      forgotPassword =
+          ForgotPasswordUseCase(authRepository: AuthRepositoryImpl());
+
+      try {
+        result = await forgotPassword.call(params);
+      } finally {
+        loadingBtn = false;
+      }
+
+      if (result.status is Success) {
+        showSnack(result.message);
+        Get.toNamed(
+          Routes.FORGOT_PASSWORD_OTP,
+          arguments: emailController.text.trim(),
+        );
+      } else {
+        showSnack(result.message);
+      }
+      update();
     }
-    update();
   }
 }

@@ -11,8 +11,12 @@ import 'package:get/get.dart';
 class ForgotPasswordOtpController extends GetxController {
   bool isShowResendOTP = false;
   bool isLoadingBtn = false;
-  late CountdownTimerController countdownController;
+  bool isEnableBtn = false;
+
   String email = '';
+  String otp = '';
+
+  late CountdownTimerController countdownController;
 
   final count = 0.obs;
   @override
@@ -31,10 +35,6 @@ class ForgotPasswordOtpController extends GetxController {
   void onClose() {
     countdownController.dispose();
     super.onClose();
-  }
-
-  void onClickNext() {
-    Get.toNamed(Routes.CHANGE_PASSWORD);
   }
 
   void onClickResend() async {
@@ -61,12 +61,23 @@ class ForgotPasswordOtpController extends GetxController {
     update();
   }
 
-  void onCompleteInputOTP(String otp) async {
+  void onChangeInput(String otp) {
+    isEnableBtn = false;
+    update();
+  }
+
+  void onClickNext() {
+    onCompleteInputOTP(otp);
+  }
+
+  void onCompleteInputOTP(String value) async {
     FocusScope.of(Get.context!).unfocus();
     late ForgotPasswordOTPParams params;
     late ForgotPasswordOTPUseCase forgotPassword;
     late Result<bool> result;
 
+    otp = value;
+    isEnableBtn = true;
     isLoadingBtn = true;
     update();
 

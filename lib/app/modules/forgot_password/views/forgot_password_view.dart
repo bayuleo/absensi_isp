@@ -18,57 +18,60 @@ class ForgotPasswordView extends GetView<ForgotPasswordController>
         child: GetBuilder<ForgotPasswordController>(
           builder: (controller) => Padding(
             padding: EdgeInsets.all(20.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 40.h,
-                ),
-                SvgPicture.asset(
-                  'assets/icons/main_logo_bayu.svg',
-                ),
-                SizedBox(
-                  height: 48.h,
-                ),
-                const Text(
-                  'Forgot Password',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
+            child: Form(
+              key: controller.forgotPasswordKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 40.h,
                   ),
-                ),
-                SizedBox(
-                  height: 8.h,
-                ),
-                const Text(
-                  'Masukan email yang terhubung ke akun Anda.',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
+                  SvgPicture.asset(
+                    'assets/icons/main_logo_bayu.svg',
                   ),
-                ),
-                SizedBox(
-                  height: 16.h,
-                ),
-                TextFieldWithLabelWidget(
-                  label: "Email",
-                  hint: "Email",
-                  controller: controller.emailController,
-                  keyboardType: TextInputType.text,
-                  validator: emailRequired,
-                ),
-                SizedBox(
-                  height: 40.h,
-                ),
-                ButtonWidget(
-                  text: "Next",
-                  isLoading: controller.loadingBtn,
-                  onTap: controller.onClickNext,
-                ),
-                SizedBox(
-                  height: 16.h,
-                ),
-              ],
+                  SizedBox(
+                    height: 48.h,
+                  ),
+                  const Text(
+                    'Forgot Password',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 8.h,
+                  ),
+                  const Text(
+                    'Masukan email yang terhubung ke akun Anda.',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 16.h,
+                  ),
+                  TextFieldWithLabelWidget(
+                    label: "Email",
+                    hint: "Email",
+                    controller: controller.emailController,
+                    keyboardType: TextInputType.text,
+                    validator: emailRequired,
+                  ),
+                  SizedBox(
+                    height: 40.h,
+                  ),
+                  ButtonWidget(
+                    text: "Next",
+                    isLoading: controller.loadingBtn,
+                    onTap: controller.onClickNext,
+                  ),
+                  SizedBox(
+                    height: 16.h,
+                  ),
+                ],
+              ),
             ),
           ),
         ),

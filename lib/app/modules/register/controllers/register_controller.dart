@@ -24,6 +24,7 @@ enum Gender {
 }
 
 class RegisterController extends GetxController {
+  final registerKey = GlobalKey<FormState>();
   bool isShowPassword = false;
   bool loadingBtn = false;
 
@@ -36,6 +37,7 @@ class RegisterController extends GetxController {
   TextEditingController phoneController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
   @override
   void onInit() {
     super.onInit();
@@ -63,35 +65,37 @@ class RegisterController extends GetxController {
     late RegisterUseCase register;
     late Result<RegisterEntity> result;
 
-    loadingBtn = true;
-    update();
+    if (registerKey.currentState!.validate()) {
+      loadingBtn = true;
+      update();
 
-    params = RegisterParams(
-      name: nameController.text.trim(),
-      address: addressController.text.trim(),
-      phone: phoneController.text.trim(),
-      email: emailController.text.trim(),
-      password: passwordController.text.trim(),
-      passwordConfirmation: passwordController.text.trim(),
-      gender: gender.value,
-      longitude: _position?.longitude.toString() ?? '',
-      latitude: _position?.latitude.toString() ?? '',
-    );
+      params = RegisterParams(
+        name: nameController.text.trim(),
+        address: addressController.text.trim(),
+        phone: phoneController.text.trim(),
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+        passwordConfirmation: passwordController.text.trim(),
+        gender: gender.value,
+        longitude: _position?.longitude.toString() ?? '',
+        latitude: _position?.latitude.toString() ?? '',
+      );
 
-    register = RegisterUseCase(authRepository: AuthRepositoryImpl());
+      register = RegisterUseCase(authRepository: AuthRepositoryImpl());
 
-    try {
-      result = await register.call(params);
-    } finally {
-      loadingBtn = false;
+      try {
+        result = await register.call(params);
+      } finally {
+        loadingBtn = false;
+      }
+      if (result.status is Success) {
+        showSnack('Daftar Berhasil');
+        Get.offAllNamed(Routes.LOGIN);
+      } else {
+        showSnack(result.message);
+      }
+      update();
     }
-    if (result.status is Success) {
-      showSnack('Daftar Berhasil');
-      Get.offAllNamed(Routes.LOGIN);
-    } else {
-      showSnack(result.message);
-    }
-    update();
   }
 
   void onClickLogin() {
