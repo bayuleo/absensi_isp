@@ -20,16 +20,16 @@ class TextFieldWithLabelWidget extends StatelessWidget {
   final bool enabled;
   final bool obsecure;
   final bool readOnly;
-  final Function? validator;
-  final Function? onChangedText;
+  final String? Function(String?)? validator;
+  // final Function? onChangedText;
   final TextInputAction? textInputAction;
   final FocusNode? focusNode;
   final Key? rightIconKey;
   final bool changeBorderColorOnFocus;
   final Color? backgroundColor;
   final List<TextInputFormatter>? inputFormatter;
-  final AutovalidateMode? autovalidateMode;
-  final Function? onFieldSubmitted;
+  // final AutovalidateMode? autovalidateMode;
+  // final Function? onFieldSubmitted;
 
   const TextFieldWithLabelWidget({
     Key? key,
@@ -51,7 +51,7 @@ class TextFieldWithLabelWidget extends StatelessWidget {
     this.obsecure = false,
     this.readOnly = false,
     this.validator,
-    this.onChangedText,
+    // this.onChangedText,
     this.textInputAction,
     this.hintColor,
     this.focusNode,
@@ -59,8 +59,8 @@ class TextFieldWithLabelWidget extends StatelessWidget {
     this.changeBorderColorOnFocus = true,
     this.backgroundColor,
     this.inputFormatter,
-    this.autovalidateMode = AutovalidateMode.onUserInteraction,
-    this.onFieldSubmitted,
+    // this.autovalidateMode = AutovalidateMode.onUserInteraction,
+    // this.onFieldSubmitted,
   }) : super(key: key);
 
   @override
@@ -96,14 +96,14 @@ class TextFieldWithLabelWidget extends StatelessWidget {
             readOnly: readOnly,
             minLines: minLines,
             maxLines: maxLines,
-            autovalidateMode: autovalidateMode,
+            // autovalidateMode: autovalidateMode,
             enabled: enabled,
             initialValue: initialValue,
-            validator: (value) => validator?.call(value),
-            onChanged: (value) => onChangedText?.call(value),
-            onTap: onTap,
+            validator: validator,
+            // onChanged: (value) => onChangedText?.call(value),
+            // onTap: onTap,
             textInputAction: textInputAction,
-            onFieldSubmitted: (value) => onFieldSubmitted?.call(value),
+            // onFieldSubmitted: (value) => onFieldSubmitted?.call(value),
             style: TextStyle(
               color: enabled ? Colors.black : Colors.grey,
               fontSize: 14,

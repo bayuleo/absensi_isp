@@ -9,8 +9,7 @@ import 'package:get/get.dart';
 import '../controllers/change_password_controller.dart';
 import 'widget/success_screen_widget.dart';
 
-class ChangePasswordView extends GetView<ChangePasswordController>
-    with Validation {
+class ChangePasswordView extends GetView<ChangePasswordController> with Validation {
   const ChangePasswordView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -56,14 +55,12 @@ class ChangePasswordView extends GetView<ChangePasswordController>
                         label: 'New Password',
                         keyboardType: TextInputType.text,
                         obsecure: !controller.isShowPassword,
-                        rightIcon: controller.isShowPassword
-                            ? const Icon(Icons.visibility)
-                            : const Icon(Icons.visibility_off),
+                        rightIcon: controller.isShowPassword ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
                         rightIconKey: const ValueKey(
                           'toggle_obscure_password_button',
                         ),
                         onTapRightIcon: () => controller.onTapShowPassword(),
-                        controller: controller.passwordController,
+                        controller: controller.passC,
                         validator: passwordRequired,
                       ),
                       const SizedBox(
@@ -73,18 +70,15 @@ class ChangePasswordView extends GetView<ChangePasswordController>
                         label: 'Confirm Password',
                         keyboardType: TextInputType.text,
                         obsecure: !controller.isShowConfirmPassword,
-                        rightIcon: controller.isShowConfirmPassword
-                            ? const Icon(Icons.visibility)
-                            : const Icon(Icons.visibility_off),
+                        rightIcon: controller.isShowConfirmPassword ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
                         rightIconKey: const ValueKey(
                           'toggle_obscure_password_button',
                         ),
-                        onTapRightIcon: () =>
-                            controller.onTapShowPassword(true),
-                        controller: controller.confirmPasswordController,
+                        onTapRightIcon: () => controller.onTapShowPassword(true),
+                        controller: controller.repassC,
                         validator: (value) => repasswordRequired(
-                          controller.passwordController.text.trim(),
                           value,
+                          controller.passC.text.trim(),
                         ),
                       ),
                       SizedBox(

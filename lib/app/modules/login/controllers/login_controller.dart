@@ -11,18 +11,9 @@ class LoginController extends GetxController {
   bool isShowPassword = false;
   bool loadingBtn = false;
 
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  final emailC = TextEditingController();
+  final passC = TextEditingController();
+  final loginKey = GlobalKey<FormState>();
 
   Future<void> onClickLogin() async {
     FocusScope.of(Get.context!).unfocus();
@@ -30,28 +21,30 @@ class LoginController extends GetxController {
     late LoginUseCase login;
     late Result<AuthEntity> result;
 
-    loadingBtn = true;
-    update();
+    if (loginKey.currentState!.validate()) {
+      loadingBtn = true;
+      update();
 
-    params = LoginParams(
-      account: emailController.text.trim(),
-      password: passwordController.text.trim(),
-    );
+      params = LoginParams(
+        account: emailC.text.trim(),
+        password: passC.text.trim(),
+      );
 
-    login = LoginUseCase(authRepository: AuthRepositoryImpl());
+      login = LoginUseCase(authRepository: AuthRepositoryImpl());
 
-    try {
-      result = await login.call(params);
-    } finally {
-      loadingBtn = false;
+      try {
+        result = await login.call(params);
+      } finally {
+        loadingBtn = false;
+      }
+
+      if (result.status is Success) {
+        Get.offAllNamed(Routes.HOME);
+      } else {
+        showSnack(result.message);
+      }
+      update();
     }
-
-    if (result.status is Success) {
-      Get.offAllNamed(Routes.HOME);
-    } else {
-      showSnack(result.message);
-    }
-    update();
   }
 
   void onClickSkip() {
@@ -73,8 +66,8 @@ class LoginController extends GetxController {
 
   @override
   void onClose() {
-    emailController.dispose();
-    passwordController.dispose();
+    emailC.dispose();
+    passC.dispose();
     super.onClose();
   }
 }

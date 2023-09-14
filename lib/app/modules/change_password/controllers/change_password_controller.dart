@@ -15,8 +15,8 @@ class ChangePasswordController extends GetxController {
   String email = '';
   String otp = '';
 
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController confirmPasswordController = TextEditingController();
+  TextEditingController passC = TextEditingController();
+  TextEditingController repassC = TextEditingController();
 
   @override
   void onInit() {
@@ -52,8 +52,8 @@ class ChangePasswordController extends GetxController {
     update();
 
     params = ForgotPasswordNewPasswordParams(
-      password: passwordController.text.trim(),
-      passwordConfirmation: confirmPasswordController.text.trim(),
+      password: passC.text.trim(),
+      passwordConfirmation: repassC.text.trim(),
       otp: otp,
       email: email,
     );
