@@ -56,7 +56,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController>
                     label: "Email",
                     hint: "Email",
                     controller: controller.emailController,
-                    keyboardType: TextInputType.text,
+                    keyboardType: TextInputType.emailAddress,
                     validator: emailRequired,
                   ),
                   SizedBox(

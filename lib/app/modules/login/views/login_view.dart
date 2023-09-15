@@ -56,7 +56,7 @@ class LoginView extends GetView<LoginController> with Validation {
                     label: "Email",
                     hint: "Email",
                     controller: controller.emailC,
-                    keyboardType: TextInputType.text,
+                    keyboardType: TextInputType.emailAddress,
                     validator: emailRequired,
                   ),
                   SizedBox(

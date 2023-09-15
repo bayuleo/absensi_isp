@@ -89,41 +89,25 @@ class RegisterView extends GetView<RegisterController> with Validation {
                     height: 8.h,
                   ),
                   Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Expanded(
-                        child: RadioListTile<Gender>(
-                          title: const Text(
-                            'Laki-laki',
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          contentPadding: const EdgeInsets.all(0),
-                          dense: true,
-                          visualDensity: const VisualDensity(
-                            vertical: VisualDensity.minimumDensity,
-                          ),
-                          value: Gender.male,
-                          groupValue: controller.gender,
-                          onChanged: (value) =>
-                              controller.onSelectedGender(value),
-                        ),
+                      Radio(
+                        value: Gender.male,
+                        groupValue: controller.gender,
+                        onChanged: (value) =>
+                            controller.onSelectedGender(value),
                       ),
-                      Expanded(
-                        child: RadioListTile<Gender>(
-                          title: const Text(
-                            'Perempuan',
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          contentPadding: const EdgeInsets.all(0),
-                          dense: true,
-                          visualDensity: const VisualDensity(
-                            vertical: VisualDensity.minimumDensity,
-                          ),
-                          value: Gender.female,
-                          groupValue: controller.gender,
-                          onChanged: (value) =>
-                              controller.onSelectedGender(value),
-                        ),
+                      const Text('Laki-laki'),
+                      SizedBox(
+                        width: 12.w,
                       ),
+                      Radio(
+                        value: Gender.female,
+                        groupValue: controller.gender,
+                        onChanged: (value) =>
+                            controller.onSelectedGender(value),
+                      ),
+                      const Text('Perempuan'),
                     ],
                   ),
                   SizedBox(
