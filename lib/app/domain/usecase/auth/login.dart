@@ -19,11 +19,11 @@ class LoginUseCase extends UseCase<dynamic, LoginParams> {
 }
 
 class LoginParams {
-  final String account;
+  final String email;
   final String password;
 
   LoginParams({
-    required this.account,
+    required this.email,
     required this.password,
   });
 }

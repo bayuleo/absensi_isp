@@ -1,3 +1,4 @@
+import 'package:asiagolf_app/app/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -79,6 +80,8 @@ class TextFieldWithLabelWidget extends StatelessWidget {
                     label ?? '',
                     style: TextStyle(
                       fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: primaryColor,
                     ),
                   )
                 : null,
@@ -146,7 +149,7 @@ class TextFieldWithLabelWidget extends StatelessWidget {
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                     color:
-                        changeBorderColorOnFocus ? Colors.black : Colors.black,
+                        changeBorderColorOnFocus ? primaryColor : Colors.black,
                     width: 1),
                 borderRadius: BorderRadius.circular(12),
               ),

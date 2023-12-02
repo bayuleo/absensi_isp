@@ -2,5 +2,5 @@ import 'package:asiagolf_app/app/domain/entities/auth/auth_entity.dart';
 
 class AuthDataModel extends AuthEntity {
   AuthDataModel.fromJson(Map<String, dynamic> json)
-      : super(token: json['token'].toString());
+      : super(accessToken: json['accessToken'].toString());
 }

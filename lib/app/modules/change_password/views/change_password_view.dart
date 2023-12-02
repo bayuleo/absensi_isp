@@ -1,9 +1,9 @@
 import 'package:asiagolf_app/app/modules/login/views/widget/text_field_with_label_widget.dart';
 import 'package:asiagolf_app/app/modules/splash/views/widget/button_widget.dart';
 import 'package:asiagolf_app/app/utils/extensions.dart';
+import 'package:asiagolf_app/app/utils/theme.dart';
 import 'package:asiagolf_app/app/utils/validation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../controllers/change_password_controller.dart';
@@ -26,33 +26,28 @@ class ChangePasswordView extends GetView<ChangePasswordController>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          height: 40.h,
-                        ),
-                        SvgPicture.asset(
-                          'assets/icons/main_logo_bayu.svg',
-                        ),
-                        SizedBox(
                           height: 48.h,
                         ),
                         const Text(
-                          'Forgot Password',
+                          'New Password',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 26,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
                         SizedBox(
-                          height: 8.h,
+                          height: 12.h,
                         ),
                         const Text(
-                          'Masukan email yang terhubung ke akun Anda.',
+                          'Set password baru yang akan anda gunakan.',
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
+                            color: secondaryTextColor,
                           ),
                         ),
                         SizedBox(
-                          height: 16.h,
+                          height: 28.h,
                         ),
                         TextFieldWithLabelWidget(
                           label: 'New Password',
@@ -69,7 +64,7 @@ class ChangePasswordView extends GetView<ChangePasswordController>
                           validator: passwordRequired,
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 28,
                         ),
                         TextFieldWithLabelWidget(
                           label: 'Confirm Password',
@@ -90,7 +85,7 @@ class ChangePasswordView extends GetView<ChangePasswordController>
                           ),
                         ),
                         SizedBox(
-                          height: 40.h,
+                          height: 60.h,
                         ),
                         ButtonWidget(
                           text: "Next",

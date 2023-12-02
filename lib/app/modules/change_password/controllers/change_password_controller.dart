@@ -1,4 +1,3 @@
-import 'package:asiagolf_app/app/data/repositories/auth/auth_repository_impl.dart';
 import 'package:asiagolf_app/app/domain/usecase/auth/forgot_password_new_password.dart';
 import 'package:asiagolf_app/app/routes/app_pages.dart';
 import 'package:asiagolf_app/app/utils/helpers.dart';
@@ -60,20 +59,26 @@ class ChangePasswordController extends GetxController {
         email: email,
       );
 
-      forgotPassword = ForgotPasswordNewPasswordUseCase(
-          authRepository: AuthRepositoryImpl());
-
-      try {
-        result = await forgotPassword.call(params);
-      } finally {
-        isLoadingBtn = false;
-      }
-
-      if (result.status is Success) {
+      // forgotPassword = ForgotPasswordNewPasswordUseCase(
+      //     authRepository: AuthRepositoryImpl());
+      //
+      // try {
+      //   result = await forgotPassword.call(params);
+      // } finally {
+      //   isLoadingBtn = false;
+      // }
+      //
+      // if (result.status is Success) {
+      //   isSuccess = true;
+      // } else {
+      //   showSnack(result.message);
+      // }
+      if (true) {
         isSuccess = true;
       } else {
-        showSnack(result.message);
+        showSnack('error message');
       }
+      isLoadingBtn = true;
       update();
     }
   }

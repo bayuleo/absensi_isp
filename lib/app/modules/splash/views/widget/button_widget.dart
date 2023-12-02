@@ -32,7 +32,7 @@ class ButtonWidget extends StatelessWidget {
     this.fontSize = 15,
     this.fontWeight = FontWeight.w700,
     this.maxLines = 1,
-    this.borderRadiusSize = 10,
+    this.borderRadiusSize = 6,
     this.width,
     this.containerStyle,
     this.pd,

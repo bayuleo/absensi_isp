@@ -26,7 +26,7 @@ class AuthRepositoryImpl extends AuthRepository {
   }) async {
     var enpoint = "/auth/login";
     final data = {
-      'account': params.account,
+      'email': params.email,
       'password': params.password,
     };
 

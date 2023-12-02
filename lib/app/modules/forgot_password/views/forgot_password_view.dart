@@ -2,7 +2,6 @@ import 'package:asiagolf_app/app/modules/login/views/widget/text_field_with_labe
 import 'package:asiagolf_app/app/utils/extensions.dart';
 import 'package:asiagolf_app/app/utils/validation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../splash/views/widget/button_widget.dart';
@@ -24,37 +23,21 @@ class ForgotPasswordView extends GetView<ForgotPasswordController>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 40.h,
-                  ),
-                  SvgPicture.asset(
-                    'assets/icons/main_logo_bayu.svg',
-                  ),
-                  SizedBox(
                     height: 48.h,
                   ),
                   const Text(
                     'Forgot Password',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 26,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
                   SizedBox(
-                    height: 8.h,
-                  ),
-                  const Text(
-                    'Masukan email yang terhubung ke akun Anda.',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 16.h,
+                    height: 32.h,
                   ),
                   TextFieldWithLabelWidget(
                     label: "Email",
-                    hint: "Email",
+                    hint: "Insert your email address",
                     controller: controller.emailController,
                     keyboardType: TextInputType.emailAddress,
                     validator: emailRequired,
@@ -63,7 +46,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController>
                     height: 40.h,
                   ),
                   ButtonWidget(
-                    text: "Next",
+                    text: "Continue",
                     isLoading: controller.loadingBtn,
                     onTap: controller.onClickNext,
                   ),

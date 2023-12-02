@@ -1,6 +1,7 @@
 import 'package:asiagolf_app/app/modules/change_password/controllers/change_password_controller.dart';
 import 'package:asiagolf_app/app/modules/splash/views/widget/button_widget.dart';
 import 'package:asiagolf_app/app/utils/extensions.dart';
+import 'package:asiagolf_app/app/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -25,7 +26,7 @@ class SuccessScreenWidget extends StatelessWidget {
                   'assets/icons/success_logo_bayu.svg',
                 ),
                 SizedBox(
-                  height: 28.h,
+                  height: 40.h,
                 ),
                 const Text(
                   'Password Berhasil Diubah',
@@ -35,18 +36,19 @@ class SuccessScreenWidget extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 8.h,
+                  height: 12.h,
                 ),
                 const Text(
-                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                  'Password anda telah berhasil diubah, silahkan melakukan login ulang.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
+                    color: secondaryTextColor,
                   ),
                 ),
                 SizedBox(
-                  height: 28.h,
+                  height: 40.h,
                 ),
                 GetBuilder<ChangePasswordController>(
                   builder: (controller) => ButtonWidget(

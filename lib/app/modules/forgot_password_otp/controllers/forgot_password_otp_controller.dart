@@ -86,23 +86,27 @@ class ForgotPasswordOtpController extends GetxController {
       otp: otp,
     );
 
-    forgotPassword =
-        ForgotPasswordOTPUseCase(authRepository: AuthRepositoryImpl());
-
-    try {
-      result = await forgotPassword.call(params);
-    } finally {
-      isLoadingBtn = false;
-    }
-
-    if (result.status is Success) {
-      Get.toNamed(
-        Routes.CHANGE_PASSWORD,
-        arguments: [email, otp],
-      );
-    } else {
-      showSnack(result.message);
-    }
+    // forgotPassword =
+    //     ForgotPasswordOTPUseCase(authRepository: AuthRepositoryImpl());
+    //
+    // try {
+    //   result = await forgotPassword.call(params);
+    // } finally {
+    //   isLoadingBtn = false;
+    // }
+    //
+    // if (result.status is Success) {
+    //   Get.toNamed(
+    //     Routes.CHANGE_PASSWORD,
+    //     arguments: [email, otp],
+    //   );
+    // } else {
+    //   showSnack(result.message);
+    // }
+    Get.toNamed(
+      Routes.CHANGE_PASSWORD,
+      arguments: [email, otp],
+    );
     update();
   }
 

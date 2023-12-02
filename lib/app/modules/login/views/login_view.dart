@@ -1,8 +1,8 @@
 import 'package:asiagolf_app/app/modules/splash/views/widget/button_widget.dart';
 import 'package:asiagolf_app/app/utils/extensions.dart';
+import 'package:asiagolf_app/app/utils/theme.dart';
 import 'package:asiagolf_app/app/utils/validation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../controllers/login_controller.dart';
@@ -14,6 +14,7 @@ class LoginView extends GetView<LoginController> with Validation {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColor,
       body: SingleChildScrollView(
         child: GetBuilder<LoginController>(
           builder: (controller) => Padding(
@@ -24,29 +25,27 @@ class LoginView extends GetView<LoginController> with Validation {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 40.h,
+                    height: 100.h,
                   ),
-                  SvgPicture.asset(
-                    'assets/icons/main_logo_bayu.svg',
-                  ),
-                  SizedBox(
-                    height: 48.h,
-                  ),
-                  const Text(
-                    'Selamat Datang',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
+                  Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 40.w,
+                      ),
+                      child: Image.asset(
+                        'assets/icons/main_logo.png',
+                      ),
                     ),
                   ),
                   SizedBox(
-                    height: 8.h,
+                    height: 60.h,
                   ),
                   const Text(
-                    'Silakan Login ke akun Anda.',
+                    'Sign In',
                     style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      color: primaryTextColor,
                     ),
                   ),
                   SizedBox(
@@ -88,9 +87,8 @@ class LoginView extends GetView<LoginController> with Validation {
                       child: const Text(
                         'Forgot Password?',
                         style: TextStyle(
-                          color: Color(
-                            0xff369B43,
-                          ),
+                          color: primaryTextColor,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
@@ -99,43 +97,10 @@ class LoginView extends GetView<LoginController> with Validation {
                     height: 40.h,
                   ),
                   ButtonWidget(
-                    text: "Login",
+                    text: "Sign In",
                     isLoading: controller.loadingBtn,
                     onTap: controller.onClickLogin,
                   ),
-                  SizedBox(
-                    height: 16.h,
-                  ),
-                  ButtonWidget(
-                    text: "Skip",
-                    isFill: false,
-                    onTap: controller.onClickSkip,
-                  ),
-                  SizedBox(
-                    height: 40.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Belum punya akun? ',
-                        style: TextStyle(
-                          color: Colors.black,
-                        ),
-                      ),
-                      InkWell(
-                        onTap: controller.onClickRegister,
-                        child: const Text(
-                          'Daftar',
-                          style: TextStyle(
-                            color: Color(
-                              0xff369B43,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
                 ],
               ),
             ),

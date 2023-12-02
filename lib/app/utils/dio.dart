@@ -14,12 +14,13 @@ class DioHelper {
   static Dio init() {
     var dio = Dio(
       BaseOptions(
-        baseUrl: 'http://asiagolf.bhirawasoft.com/api/v1',
+        baseUrl: 'https://f12e-180-248-47-99.ngrok-free.app',
         connectTimeout: const Duration(minutes: 5),
         receiveTimeout: const Duration(minutes: 5),
         followRedirects: false,
         headers: <String, String>{
-          'Authorization': 'Bearer ${_localData.getCredential()?.token ?? ''}',
+          'Authorization':
+              'Bearer ${_localData.getCredential()?.accessToken ?? ''}',
           'Content-Type': 'application/json',
         },
       ),
@@ -60,7 +61,8 @@ class DioHelper {
 
   void updateToken() {
     _addHeaderEntries({
-      'Authorization': 'Bearer ${_localData.getCredential()?.token ?? ''}',
+      'Authorization':
+          'Bearer ${_localData.getCredential()?.accessToken ?? ''}',
     });
   }
 

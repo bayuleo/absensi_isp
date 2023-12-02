@@ -10,6 +10,10 @@ abstract class Routes {
   static const FORGOT_PASSWORD = _Paths.FORGOT_PASSWORD;
   static const FORGOT_PASSWORD_OTP = _Paths.FORGOT_PASSWORD_OTP;
   static const CHANGE_PASSWORD = _Paths.CHANGE_PASSWORD;
+  static const DETAIL_CLOCK_IN = _Paths.DETAIL_CLOCK_IN;
+  static const DETAIL_ABSENSI = _Paths.DETAIL_ABSENSI;
+  static const CAMERA_UTIL = _Paths.CAMERA_UTIL;
+  static const CAMERA_PREVIEW = _Paths.CAMERA_PREVIEW;
 }
 
 abstract class _Paths {
@@ -21,4 +25,8 @@ abstract class _Paths {
   static const FORGOT_PASSWORD = '/forgot-password';
   static const FORGOT_PASSWORD_OTP = '/forgot-password-otp';
   static const CHANGE_PASSWORD = '/change-password';
+  static const DETAIL_CLOCK_IN = '/detail-clock-in';
+  static const DETAIL_ABSENSI = '/detail-absensi';
+  static const CAMERA_UTIL = '/camera-util';
+  static const CAMERA_PREVIEW = '/camera-preview';
 }

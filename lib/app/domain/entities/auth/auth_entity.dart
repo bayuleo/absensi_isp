@@ -1,11 +1,20 @@
 class AuthEntity {
-  final String? token;
+  final int? id;
+  final String? email;
+  final String? accessToken;
+  final String? refreshToken;
 
   AuthEntity({
-    this.token,
+    this.id,
+    this.email,
+    this.accessToken,
+    this.refreshToken,
   });
 
   Map<String, dynamic> toJson() => {
-        'token': token,
+        'id': id,
+        'email': email,
+        'accessToken': accessToken,
+        'refreshToken': refreshToken,
       };
 }

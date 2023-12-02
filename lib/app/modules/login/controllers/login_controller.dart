@@ -26,7 +26,7 @@ class LoginController extends GetxController {
       update();
 
       params = LoginParams(
-        account: emailC.text.trim(),
+        email: emailC.text.trim(),
         password: passC.text.trim(),
       );
 
@@ -43,6 +43,8 @@ class LoginController extends GetxController {
       } else {
         showSnack(result.message);
       }
+      // Get.offAllNamed(Routes.HOME);
+      loadingBtn = false;
       update();
     }
   }

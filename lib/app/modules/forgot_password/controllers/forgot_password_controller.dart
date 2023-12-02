@@ -1,7 +1,5 @@
-import 'package:asiagolf_app/app/data/repositories/auth/auth_repository_impl.dart';
 import 'package:asiagolf_app/app/domain/usecase/auth/forgot_password.dart';
 import 'package:asiagolf_app/app/routes/app_pages.dart';
-import 'package:asiagolf_app/app/utils/helpers.dart';
 import 'package:asiagolf_app/app/utils/result.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -42,24 +40,29 @@ class ForgotPasswordController extends GetxController {
         email: emailController.text.trim(),
       );
 
-      forgotPassword =
-          ForgotPasswordUseCase(authRepository: AuthRepositoryImpl());
-
-      try {
-        result = await forgotPassword.call(params);
-      } finally {
-        loadingBtn = false;
-      }
-
-      if (result.status is Success) {
-        showSnack(result.message);
-        Get.toNamed(
-          Routes.FORGOT_PASSWORD_OTP,
-          arguments: emailController.text.trim(),
-        );
-      } else {
-        showSnack(result.message);
-      }
+      // forgotPassword =
+      //     ForgotPasswordUseCase(authRepository: AuthRepositoryImpl());
+      //
+      // try {
+      //   result = await forgotPassword.call(params);
+      // } finally {
+      //   loadingBtn = false;
+      // }
+      //
+      // if (result.status is Success) {
+      //   showSnack(result.message);
+      //   Get.toNamed(
+      //     Routes.FORGOT_PASSWORD_OTP,
+      //     arguments: emailController.text.trim(),
+      //   );
+      // } else {
+      //   showSnack(result.message);
+      // }
+      Get.toNamed(
+        Routes.FORGOT_PASSWORD_OTP,
+        arguments: emailController.text.trim(),
+      );
+      loadingBtn = false;
       update();
     }
   }
