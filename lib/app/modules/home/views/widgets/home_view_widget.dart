@@ -79,7 +79,9 @@ class HomeViewWidget extends StatelessWidget {
                           child: ButtonWidget(
                             buttonColor: primaryButtonColor,
                             text: 'Clock Out',
-                            onTap: () {},
+                            onTap: () {
+                              controller.onClickClockOut();
+                            },
                           ),
                         ),
                       ],

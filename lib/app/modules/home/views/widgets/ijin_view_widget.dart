@@ -41,8 +41,11 @@ class IjinViewWidget extends StatelessWidget {
                       ),
                       InputDropDownWidget(
                         items: controller.years,
-                        value: null,
+                        value: controller.yearIjin,
                         hint: 'Periode',
+                        onChange: (value) {
+                          controller.onChangeYearIjin(value);
+                        },
                       ),
                     ],
                   ),
@@ -123,8 +126,12 @@ class IjinViewWidget extends StatelessWidget {
                         InputDropDownWidget(
                           items: controller.status,
                           hint: 'Status',
+                          value: controller.statusIjin,
                           bgColor: primaryColor,
                           textColor: Colors.white,
+                          onChange: (value) {
+                            controller.onChangeStatusIjin(value);
+                          },
                         ),
                       ],
                     ),

@@ -1,8 +1,6 @@
-import 'package:asiagolf_app/app/data/repositories/auth/auth_repository_impl.dart';
 import 'package:asiagolf_app/app/domain/entities/auth/auth_entity.dart';
 import 'package:asiagolf_app/app/domain/usecase/auth/login.dart';
 import 'package:asiagolf_app/app/routes/app_pages.dart';
-import 'package:asiagolf_app/app/utils/helpers.dart';
 import 'package:asiagolf_app/app/utils/result.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -30,20 +28,20 @@ class LoginController extends GetxController {
         password: passC.text.trim(),
       );
 
-      login = LoginUseCase(authRepository: AuthRepositoryImpl());
-
-      try {
-        result = await login.call(params);
-      } finally {
-        loadingBtn = false;
-      }
-
-      if (result.status is Success) {
-        Get.offAllNamed(Routes.HOME);
-      } else {
-        showSnack(result.message);
-      }
-      // Get.offAllNamed(Routes.HOME);
+      // login = LoginUseCase(authRepository: AuthRepositoryImpl());
+      //
+      // try {
+      //   result = await login.call(params);
+      // } finally {
+      //   loadingBtn = false;
+      // }
+      //
+      // if (result.status is Success) {
+      //   Get.offAllNamed(Routes.HOME);
+      // } else {
+      //   showSnack(result.message);
+      // }
+      Get.offAllNamed(Routes.HOME);
       loadingBtn = false;
       update();
     }

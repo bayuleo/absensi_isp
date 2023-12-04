@@ -41,8 +41,11 @@ class LemburViewWidget extends StatelessWidget {
                       ),
                       InputDropDownWidget(
                         items: controller.years,
-                        value: null,
+                        value: controller.yearLembur,
                         hint: 'Periode',
+                        onChange: (value) {
+                          controller.onChangeYearLembur(value);
+                        },
                       ),
                     ],
                   ),
@@ -123,8 +126,12 @@ class LemburViewWidget extends StatelessWidget {
                         InputDropDownWidget(
                           items: controller.status,
                           hint: 'Status',
+                          value: 'All',
                           bgColor: primaryColor,
                           textColor: Colors.white,
+                          onChange: (value) {
+                            controller.onChangeStatusLembur(value);
+                          },
                         ),
                       ],
                     ),

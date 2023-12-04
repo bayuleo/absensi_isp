@@ -1,10 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="tratalion.asiagolf.app">
+    package="com.bayuleo.cpp">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
    <application
-        android:label="asiagolf_app"
+        android:label="CPP Absen"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

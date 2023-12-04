@@ -3,6 +3,9 @@ import 'package:asiagolf_app/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../../../utils/helpers.dart';
+import '../../../utils/result.dart';
+
 class ChangePasswordController extends GetxController {
   final changePassKey = GlobalKey<FormState>();
   bool isShowPassword = false;

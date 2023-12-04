@@ -1,3 +1,4 @@
+import 'package:asiagolf_app/app/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,6 +10,7 @@ class InputDropDownWidget extends StatelessWidget {
     this.hint,
     this.bgColor,
     this.textColor,
+    required this.onChange,
   });
 
   final List<DropdownMenuItem> items;
@@ -16,6 +18,7 @@ class InputDropDownWidget extends StatelessWidget {
   final String? hint;
   final Color? bgColor;
   final Color? textColor;
+  final Function(dynamic) onChange;
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +32,15 @@ class InputDropDownWidget extends StatelessWidget {
       ),
       child: DropdownButton(
         items: items,
-        onChanged: (_) {},
+        onChanged: onChange,
         value: value,
         dropdownColor: Colors.white,
         isDense: true,
         hint: Text(
           hint ?? '',
-          style: TextStyle(color: textColor),
+          style: TextStyle(
+            color: primaryTextColor,
+          ),
         ),
         iconEnabledColor: textColor,
       ),
