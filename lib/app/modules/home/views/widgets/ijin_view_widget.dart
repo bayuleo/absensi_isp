@@ -31,7 +31,7 @@ class IjinViewWidget extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         'Ijin',
                         style: TextStyle(
                           fontSize: 20,
@@ -60,16 +60,16 @@ class IjinViewWidget extends StatelessWidget {
                         Radius.circular(12),
                       ),
                     ),
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
                           child: CurrentValueMonitorWidget(
-                            title: '1',
+                            title: '${controller.ijinCountData?.pending}',
                             desc: 'Pending',
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 40,
                           child: VerticalDivider(
                             thickness: 2,
@@ -77,11 +77,11 @@ class IjinViewWidget extends StatelessWidget {
                         ),
                         Expanded(
                           child: CurrentValueMonitorWidget(
-                            title: '1',
+                            title: '${controller.ijinCountData?.reject}',
                             desc: 'Reject',
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 40,
                           child: VerticalDivider(
                             thickness: 2,
@@ -89,7 +89,7 @@ class IjinViewWidget extends StatelessWidget {
                         ),
                         Expanded(
                           child: CurrentValueMonitorWidget(
-                            title: '1',
+                            title: '${controller.ijinCountData?.approve}',
                             desc: 'Approve',
                           ),
                         ),
@@ -131,6 +131,16 @@ class IjinViewWidget extends StatelessWidget {
                           textColor: Colors.white,
                           onChange: (value) {
                             controller.onChangeStatusIjin(value);
+                          },
+                          selectedItemBuilder: (BuildContext ctxt) {
+                            return controller.status.map<Widget>((item) {
+                              return DropdownMenuItem(
+                                  value: item.value,
+                                  child: Text(
+                                    "${item.value}",
+                                    style: const TextStyle(color: Colors.white),
+                                  ));
+                            }).toList();
                           },
                         ),
                       ],

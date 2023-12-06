@@ -1,3 +1,4 @@
+import 'package:asiagolf_app/app/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +12,7 @@ class SplashView extends GetView<SplashController> {
     return GetBuilder<SplashController>(
       builder: (controller) {
         return Scaffold(
+          backgroundColor: backgroundColor,
           body: Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(

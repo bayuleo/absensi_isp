@@ -1,8 +1,4 @@
-import 'package:asiagolf_app/app/data/repositories/auth/auth_repository_impl.dart';
-import 'package:asiagolf_app/app/domain/usecase/auth/forgot_password.dart';
-import 'package:asiagolf_app/app/domain/usecase/auth/forgot_password_otp.dart';
 import 'package:asiagolf_app/app/routes/app_pages.dart';
-import 'package:asiagolf_app/app/utils/helpers.dart';
 import 'package:asiagolf_app/app/utils/result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/index.dart';
@@ -38,26 +34,26 @@ class ForgotPasswordOtpController extends GetxController {
   }
 
   void onClickResend() async {
-    late ForgotPasswordParams params;
-    late ForgotPasswordUseCase forgotPassword;
+    // late ForgotPasswordParams params;
+    // late ForgotPasswordUseCase forgotPassword;
     late Result<bool> result;
 
-    params = ForgotPasswordParams(
-      email: email,
-    );
+    // params = ForgotPasswordParams(
+    //   email: email,
+    // );
 
-    forgotPassword =
-        ForgotPasswordUseCase(authRepository: AuthRepositoryImpl());
-
-    result = await forgotPassword.call(params);
-
-    if (result.status is Success) {
-      showSnack(result.message);
-      _setupTimer();
-      isShowResendOTP = false;
-    } else {
-      showSnack(result.message);
-    }
+    // forgotPassword =
+    //     ForgotPasswordUseCase(authRepository: AuthRepositoryImpl());
+    //
+    // result = await forgotPassword.call(params);
+    //
+    // if (result.status is Success) {
+    //   showSnack(result.message);
+    //   _setupTimer();
+    //   isShowResendOTP = false;
+    // } else {
+    //   showSnack(result.message);
+    // }
     update();
   }
 
@@ -72,8 +68,8 @@ class ForgotPasswordOtpController extends GetxController {
 
   void onCompleteInputOTP(String value) async {
     FocusScope.of(Get.context!).unfocus();
-    late ForgotPasswordOTPParams params;
-    late ForgotPasswordOTPUseCase forgotPassword;
+    // late ForgotPasswordOTPParams params;
+    // late ForgotPasswordOTPUseCase forgotPassword;
     late Result<bool> result;
 
     otp = value;
@@ -81,10 +77,10 @@ class ForgotPasswordOtpController extends GetxController {
     isLoadingBtn = true;
     update();
 
-    params = ForgotPasswordOTPParams(
-      email: email,
-      otp: otp,
-    );
+    // params = ForgotPasswordOTPParams(
+    //   email: email,
+    //   otp: otp,
+    // );
 
     // forgotPassword =
     //     ForgotPasswordOTPUseCase(authRepository: AuthRepositoryImpl());

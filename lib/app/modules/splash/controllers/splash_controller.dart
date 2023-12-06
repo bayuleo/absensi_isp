@@ -1,26 +1,31 @@
 import 'package:asiagolf_app/app/routes/app_pages.dart';
+import 'package:asiagolf_app/app/utils/location.dart';
 import 'package:get/get.dart';
 
+import '../../../data/repository/user_credentials_repository.dart';
+
 class SplashController extends GetxController {
+  static final UserCredentialsRepository _localData = Get.find();
+
   @override
   void onInit() {
     super.onInit();
-    print('bayu');
   }
 
   @override
-  void onReady() {
+  void onReady() async {
     super.onReady();
     startAppHandler();
   }
 
   Future<void> startAppHandler() async {
     await Future.delayed(const Duration(milliseconds: 2000));
-    // final credential = _userCredentialsRepository.getCredentials();
-    // if (credential.accessToken != null) {
-    //   Get.offAllNamed(Routes.MAIN_CONTENT);
-    // } else {
-    Get.offAllNamed(Routes.LOGIN);
-    // }
+    await getPosition();
+    final credential = _localData.getCredentials();
+    if (credential.accessToken != null) {
+      Get.offAllNamed(Routes.HOME);
+    } else {
+      Get.offAllNamed(Routes.LOGIN);
+    }
   }
 }

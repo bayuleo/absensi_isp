@@ -11,6 +11,7 @@ class InputDropDownWidget extends StatelessWidget {
     this.bgColor,
     this.textColor,
     required this.onChange,
+    this.selectedItemBuilder,
   });
 
   final List<DropdownMenuItem> items;
@@ -19,6 +20,7 @@ class InputDropDownWidget extends StatelessWidget {
   final Color? bgColor;
   final Color? textColor;
   final Function(dynamic) onChange;
+  final List<Widget> Function(BuildContext)? selectedItemBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +38,8 @@ class InputDropDownWidget extends StatelessWidget {
         value: value,
         dropdownColor: Colors.white,
         isDense: true,
+        style: TextStyle(color: Colors.black),
+        selectedItemBuilder: selectedItemBuilder,
         hint: Text(
           hint ?? '',
           style: TextStyle(

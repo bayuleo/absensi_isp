@@ -126,11 +126,21 @@ class LemburViewWidget extends StatelessWidget {
                         InputDropDownWidget(
                           items: controller.status,
                           hint: 'Status',
-                          value: 'All',
+                          value: controller.statusLembur,
                           bgColor: primaryColor,
                           textColor: Colors.white,
                           onChange: (value) {
                             controller.onChangeStatusLembur(value);
+                          },
+                          selectedItemBuilder: (BuildContext ctxt) {
+                            return controller.status.map<Widget>((item) {
+                              return DropdownMenuItem(
+                                  value: item.value,
+                                  child: Text(
+                                    "${item.value}",
+                                    style: const TextStyle(color: Colors.white),
+                                  ));
+                            }).toList();
                           },
                         ),
                       ],

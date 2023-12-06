@@ -1,4 +1,3 @@
-import 'package:asiagolf_app/app/domain/usecase/auth/forgot_password_new_password.dart';
 import 'package:asiagolf_app/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -45,20 +44,20 @@ class ChangePasswordController extends GetxController {
 
   void onClickNext() async {
     FocusScope.of(Get.context!).unfocus();
-    late ForgotPasswordNewPasswordParams params;
-    late ForgotPasswordNewPasswordUseCase forgotPassword;
+    // late ForgotPasswordNewPasswordParams params;
+    // late ForgotPasswordNewPasswordUseCase forgotPassword;
     late Result<bool> result;
 
     if (changePassKey.currentState!.validate()) {
       isLoadingBtn = true;
       update();
 
-      params = ForgotPasswordNewPasswordParams(
-        password: passC.text.trim(),
-        passwordConfirmation: repassC.text.trim(),
-        otp: otp,
-        email: email,
-      );
+      // params = ForgotPasswordNewPasswordParams(
+      //   password: passC.text.trim(),
+      //   passwordConfirmation: repassC.text.trim(),
+      //   otp: otp,
+      //   email: email,
+      // );
 
       // forgotPassword = ForgotPasswordNewPasswordUseCase(
       //     authRepository: AuthRepositoryImpl());

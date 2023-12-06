@@ -1,19 +1,24 @@
-import 'package:asiagolf_app/app/data/repositories/auth/auth_repository_impl.dart';
-import 'package:asiagolf_app/app/domain/usecase/auth/logout.dart';
+import 'package:asiagolf_app/app/core/base/base_controllerr.dart';
+import 'package:asiagolf_app/app/core/widgets/dialog/confirmation_dialog_widget.dart';
+import 'package:asiagolf_app/app/data/local/user_credentials_data_source.dart';
+import 'package:asiagolf_app/app/data/model/index.dart';
+import 'package:asiagolf_app/app/data/remote/ijin_data_source.dart';
+import 'package:asiagolf_app/app/data/remote/users_data_source.dart';
 import 'package:asiagolf_app/app/modules/detail_clock_in/controllers/detail_clock_in_controller.dart';
 import 'package:asiagolf_app/app/modules/home/views/widgets/home_view_widget.dart';
 import 'package:asiagolf_app/app/modules/home/views/widgets/lembur_view_widget.dart';
 import 'package:asiagolf_app/app/routes/app_pages.dart';
 import 'package:asiagolf_app/app/utils/enum/status.dart';
-import 'package:asiagolf_app/app/utils/helpers.dart';
-import 'package:asiagolf_app/app/utils/result.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../views/widgets/ijin_view_widget.dart';
 import '../views/widgets/profile_view_widget.dart';
 
-class HomeController extends GetxController {
+class HomeController extends BaseController {
+  final _userCredentialLocal = Get.find<UserCredentialsDataSource>();
+  final _usersDataSource = Get.find<UsersDataSource>();
+  final _ijinDataSource = Get.find<IjinDataSource>();
   int selectedScreen = 0;
 
   //Filter
@@ -21,6 +26,9 @@ class HomeController extends GetxController {
   String yearIjin = '2023';
   String statusLembur = StatusRequest.all.value;
   String statusIjin = StatusRequest.all.value;
+
+  ResponseUsersDataModel? profileData;
+  ResponseIjinDataModel? ijinCountData;
 
   List<Widget> screen = <Widget>[
     HomeViewWidget(),
@@ -61,6 +69,8 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     generateYearPicker();
+    getProfile();
+    getCountIjin();
   }
 
   @override
@@ -74,16 +84,21 @@ class HomeController extends GetxController {
   }
 
   void onClickLogout() async {
-    late LogoutUseCase logout;
-    late Result<bool> result;
-
-    logout = LogoutUseCase(authRepository: AuthRepositoryImpl());
-
-    result = await logout.call(null);
-    if (result.status is Success) {
-      showSnack(result.message);
-      Get.offAllNamed(Routes.LOGIN);
-    }
+    Get.dialog(
+      ConfirmDialogWidget(
+        title: 'Keluar Aplikasi',
+        content: 'Apakah anda yakin ingin keluar dari aplikasi ?',
+        onConfirm: () async {
+          Get.back();
+          // await _signOut(); //TODO integrate logout
+          _userCredentialLocal.clearToken();
+          Get.offAllNamed(Routes.LOGIN);
+        },
+        onCancel: () {
+          Get.back();
+        },
+      ),
+    );
   }
 
   void onClickClockIn() {
@@ -140,13 +155,33 @@ class HomeController extends GetxController {
     update();
   }
 
-  void onChangeStatusLembur(StatusRequest selected) {
-    statusLembur = selected.value;
+  void onChangeStatusLembur(String selected) {
+    statusLembur = selected;
     update();
   }
 
-  void onChangeStatusIjin(StatusRequest selected) {
-    statusIjin = selected.value;
+  void onChangeStatusIjin(String selected) {
+    statusIjin = selected;
     update();
+  }
+
+  void getCountIjin() {
+    callDataService<ResponseIjinModel>(
+      () => _ijinDataSource.getCountIjin(),
+      onSuccess: (res) {
+        ijinCountData = res.data;
+        update();
+      },
+    );
+  }
+
+  void getProfile() {
+    callDataService<ResponseUsersModel>(
+      () => _usersDataSource.getProfile(),
+      onSuccess: (res) {
+        profileData = res.data;
+        update();
+      },
+    );
   }
 }

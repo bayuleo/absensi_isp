@@ -1,4 +1,3 @@
-import 'package:asiagolf_app/app/domain/usecase/auth/forgot_password.dart';
 import 'package:asiagolf_app/app/routes/app_pages.dart';
 import 'package:asiagolf_app/app/utils/result.dart';
 import 'package:flutter/cupertino.dart';
@@ -28,17 +27,17 @@ class ForgotPasswordController extends GetxController {
 
   void onClickNext() async {
     FocusScope.of(Get.context!).unfocus();
-    late ForgotPasswordParams params;
-    late ForgotPasswordUseCase forgotPassword;
+    // late ForgotPasswordParams params;
+    // late ForgotPasswordUseCase forgotPassword;
     late Result<bool> result;
 
     if (forgotPasswordKey.currentState!.validate()) {
       loadingBtn = true;
       update();
 
-      params = ForgotPasswordParams(
-        email: emailController.text.trim(),
-      );
+      // params = ForgotPasswordParams(
+      //   email: emailController.text.trim(),
+      // );
 
       // forgotPassword =
       //     ForgotPasswordUseCase(authRepository: AuthRepositoryImpl());

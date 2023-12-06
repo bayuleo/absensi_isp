@@ -1,5 +1,5 @@
 {
-  "status": true,
-  "message": "Login berhasil!",
+  "success": true,
+  "timestamp": "2023-12-05T13:52:43.369Z",
   "data?": "$./response_login_data_model"
 }

@@ -1,10 +1,6 @@
 {
   "id": 1,
-  "nama": "Gafar",
-  "email": "gafardev@tratalion.com",
-  "phone": "0879979007",
-  "gender": "L",
-  "birth_date": "1997-01-01 05:55",
-  "token": "token",
-  "refresh_token": "refresh"
+  "email": "adminadmin@yopmail.com",
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZGF0YSI6ImFkbWluYWRtaW5AeW9wbWFpbC5jb20iLCJpYXQiOjE3MDE3ODQzNjMsImV4cCI6MzQwMzY1NTEyNn0.0yn4-hHbuVxPffY1zvwG5dv3n29B6e_8viHM6leuW_E",
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZGF0YSI6ImFkbWluYWRtaW5AeW9wbWFpbC5jb20iLCJpYXQiOjE3MDE3ODQzNjMsImV4cCI6MzQwMzY1NTEyNn0.0yn4-hHbuVxPffY1zvwG5dv3n29B6e_8viHM6leuW_E"
 }
