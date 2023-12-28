@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:asiagolf_app/app/data/local/user_credentials_data_source.dart';
 import 'package:asiagolf_app/app/data/model/index.dart';
 import 'package:asiagolf_app/app/network/dio_config.dart';
 import 'package:asiagolf_app/app/network/endpoints.dart';
@@ -17,11 +18,16 @@ abstract class AbsentDataSource {
     String? desc,
     String? filePath,
   });
+
+  Future<ResponseAbsentModel> getMyAbsent();
+
+  Future<ResponseDetailAbsentModel> getDetailAbsen(int id);
 }
 
 class AbsentDataSourceImpl implements AbsentDataSource {
   final dioConfigure = Get.find<DioConfigure>();
   final endpoints = Get.find<Endpoints>();
+  final _userCredentialLocal = Get.find<UserCredentialsDataSource>();
 
   @override
   Future<ResponseAbsentModel> clockIn({
@@ -81,5 +87,19 @@ class AbsentDataSourceImpl implements AbsentDataSource {
       data: jsonEncode(body),
     );
     return ResponseAbsentModel.fromJson(response.data);
+  }
+
+  @override
+  Future<ResponseAbsentModel> getMyAbsent() async {
+    final userId = _userCredentialLocal.getUserCredentials().id;
+    var response =
+        await dioConfigure.dio.get('${endpoints.absent.myAbsent}/$userId');
+    return ResponseAbsentModel.fromJson(response.data);
+  }
+
+  @override
+  Future<ResponseDetailAbsentModel> getDetailAbsen(int id) async {
+    var response = await dioConfigure.dio.get('${endpoints.absent.detail}/$id');
+    return ResponseDetailAbsentModel.fromJson(response.data);
   }
 }

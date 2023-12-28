@@ -15,7 +15,8 @@ class HomeView extends GetView<HomeController> {
           appBar: controller.selectedScreen == 0
               ? AppBar(
                   backgroundColor: primaryColor,
-                  title: const Text('User Login Name'),
+                  title: Text(
+                      'Hi, ${controller.profileData?.name ?? 'User Login Name'}'),
                   elevation: 0,
                 )
               : null,

@@ -7,6 +7,10 @@ import '../remote/auth_data_source.dart';
 abstract class AuthRepository {
   Future<ResponseLoginModel> login(RequestLoginModel data);
 
+  Future<ResponseForgotPasswordModel> forgotPassword(String email);
+
+  Future<ResponseOtpModel> otp(String email, String otp);
+
   // Future<void> signOut();
 }
 
@@ -24,5 +28,17 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<ResponseLoginModel> login(RequestLoginModel data) async {
     final res = await _authDataSource.login(data);
     return res;
+  }
+
+  @override
+  Future<ResponseForgotPasswordModel> forgotPassword(String email) {
+    // TODO: implement forgotPassword
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ResponseOtpModel> otp(String email, String otp) {
+    // TODO: implement otp
+    throw UnimplementedError();
   }
 }

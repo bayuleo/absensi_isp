@@ -1,10 +1,14 @@
+import 'package:asiagolf_app/app/core/base/base_controllerr.dart';
+import 'package:asiagolf_app/app/data/model/auth/forgot_password/response_forgot_password_model.dart';
+import 'package:asiagolf_app/app/data/remote/auth_data_source.dart';
 import 'package:asiagolf_app/app/routes/app_pages.dart';
 import 'package:asiagolf_app/app/utils/result.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class ForgotPasswordController extends GetxController {
+class ForgotPasswordController extends BaseController {
   final forgotPasswordKey = GlobalKey<FormState>();
+  final _authDataSource = Get.find<AuthDataSource>();
   bool loadingBtn = false;
 
   TextEditingController emailController = TextEditingController();
@@ -27,40 +31,21 @@ class ForgotPasswordController extends GetxController {
 
   void onClickNext() async {
     FocusScope.of(Get.context!).unfocus();
-    // late ForgotPasswordParams params;
-    // late ForgotPasswordUseCase forgotPassword;
     late Result<bool> result;
 
     if (forgotPasswordKey.currentState!.validate()) {
       loadingBtn = true;
       update();
 
-      // params = ForgotPasswordParams(
-      //   email: emailController.text.trim(),
-      // );
-
-      // forgotPassword =
-      //     ForgotPasswordUseCase(authRepository: AuthRepositoryImpl());
-      //
-      // try {
-      //   result = await forgotPassword.call(params);
-      // } finally {
-      //   loadingBtn = false;
-      // }
-      //
-      // if (result.status is Success) {
-      //   showSnack(result.message);
-      //   Get.toNamed(
-      //     Routes.FORGOT_PASSWORD_OTP,
-      //     arguments: emailController.text.trim(),
-      //   );
-      // } else {
-      //   showSnack(result.message);
-      // }
-      Get.toNamed(
-        Routes.FORGOT_PASSWORD_OTP,
-        arguments: emailController.text.trim(),
-      );
+      await callDataService<ResponseForgotPasswordModel>(
+          () => _authDataSource.forgotPassword(
+                emailController.text.trim(),
+              ), onSuccess: (res) {
+        Get.toNamed(
+          Routes.FORGOT_PASSWORD_OTP,
+          arguments: emailController.text.trim(),
+        );
+      });
       loadingBtn = false;
       update();
     }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "982141277460",
+    "project_id": "cpp-management",
+    "storage_bucket": "cpp-management.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982141277460:android:d2709375331626dffd1e01",
+        "android_client_info": {
+          "package_name": "com.bayuleo.cpp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBN8WK_cI1l2Jsy9ql0d19wG2EVNnqcCKk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

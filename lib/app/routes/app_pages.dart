@@ -8,6 +8,8 @@ import '../modules/detail_absensi/bindings/detail_absensi_binding.dart';
 import '../modules/detail_absensi/views/detail_absensi_view.dart';
 import '../modules/detail_clock_in/bindings/detail_clock_in_binding.dart';
 import '../modules/detail_clock_in/views/detail_clock_in_view.dart';
+import '../modules/detail_request/bindings/detail_request_binding.dart';
+import '../modules/detail_request/views/detail_request_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/forgot_password_otp/bindings/forgot_password_otp_binding.dart';
@@ -71,6 +73,11 @@ class AppPages {
       name: _Paths.CAMERA_PREVIEW,
       page: () => const CameraPreviewView(),
       binding: CameraPreviewBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_REQUEST,
+      page: () => const DetailRequestView(),
+      binding: DetailRequestBinding(),
     ),
   ];
 }

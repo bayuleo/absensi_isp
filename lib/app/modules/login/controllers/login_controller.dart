@@ -72,9 +72,9 @@ class LoginController extends BaseController {
   }
 
   @override
-  void onClose() {
+  void dispose() {
+    super.dispose();
     emailC.dispose();
     passC.dispose();
-    super.onClose();
   }
 }

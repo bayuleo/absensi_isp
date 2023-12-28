@@ -29,10 +29,10 @@ class DioConfigure {
     var dio = Dio(
       BaseOptions(
         baseUrl: 'https://api.ccpmanagement.my.id/',
-        receiveTimeout: const Duration(seconds: 30),
+        receiveTimeout: const Duration(seconds: 60),
         // 15 seconds
-        connectTimeout: const Duration(seconds: 30),
-        sendTimeout: const Duration(seconds: 30),
+        connectTimeout: const Duration(seconds: 60),
+        sendTimeout: const Duration(seconds: 60),
         headers: <String, String>{
           'Authorization':
               'Bearer ${_userCredentialsRepository.getUserCredentials().accessToken}',

@@ -1,12 +1,19 @@
+import 'package:asiagolf_app/app/core/base/base_controllerr.dart';
+import 'package:asiagolf_app/app/data/model/index.dart';
+import 'package:asiagolf_app/app/data/remote/auth_data_source.dart';
 import 'package:asiagolf_app/app/routes/app_pages.dart';
 import 'package:asiagolf_app/app/utils/result.dart';
+import 'package:asiagolf_app/app/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/index.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
-class ForgotPasswordOtpController extends GetxController {
+class ForgotPasswordOtpController extends BaseController {
+  final _authDataSource = Get.find<AuthDataSource>();
   bool isShowResendOTP = false;
   bool isLoadingBtn = false;
+  bool isLoadingResendBtn = false;
   bool isEnableBtn = false;
 
   String email = '';
@@ -34,26 +41,24 @@ class ForgotPasswordOtpController extends GetxController {
   }
 
   void onClickResend() async {
-    // late ForgotPasswordParams params;
-    // late ForgotPasswordUseCase forgotPassword;
-    late Result<bool> result;
+    isLoadingResendBtn = true;
+    update();
 
-    // params = ForgotPasswordParams(
-    //   email: email,
-    // );
+    await callDataService<ResponseForgotPasswordModel>(
+        () => _authDataSource.forgotPassword(
+              email,
+            ), onSuccess: (res) {
+      Fluttertoast.showToast(
+          msg: "OTP Berhasil Dikirim",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: primaryColor,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    });
 
-    // forgotPassword =
-    //     ForgotPasswordUseCase(authRepository: AuthRepositoryImpl());
-    //
-    // result = await forgotPassword.call(params);
-    //
-    // if (result.status is Success) {
-    //   showSnack(result.message);
-    //   _setupTimer();
-    //   isShowResendOTP = false;
-    // } else {
-    //   showSnack(result.message);
-    // }
+    isLoadingResendBtn = false;
     update();
   }
 
@@ -68,8 +73,6 @@ class ForgotPasswordOtpController extends GetxController {
 
   void onCompleteInputOTP(String value) async {
     FocusScope.of(Get.context!).unfocus();
-    // late ForgotPasswordOTPParams params;
-    // late ForgotPasswordOTPUseCase forgotPassword;
     late Result<bool> result;
 
     otp = value;
@@ -77,32 +80,16 @@ class ForgotPasswordOtpController extends GetxController {
     isLoadingBtn = true;
     update();
 
-    // params = ForgotPasswordOTPParams(
-    //   email: email,
-    //   otp: otp,
-    // );
-
-    // forgotPassword =
-    //     ForgotPasswordOTPUseCase(authRepository: AuthRepositoryImpl());
-    //
-    // try {
-    //   result = await forgotPassword.call(params);
-    // } finally {
-    //   isLoadingBtn = false;
-    // }
-    //
-    // if (result.status is Success) {
-    //   Get.toNamed(
-    //     Routes.CHANGE_PASSWORD,
-    //     arguments: [email, otp],
-    //   );
-    // } else {
-    //   showSnack(result.message);
-    // }
-    Get.toNamed(
-      Routes.CHANGE_PASSWORD,
-      arguments: [email, otp],
+    await callDataService<ResponseOtpModel>(
+      () => _authDataSource.otp(email, otp),
+      onSuccess: (res) {
+        Get.toNamed(
+          Routes.CHANGE_PASSWORD,
+          arguments: [email, otp],
+        );
+      },
     );
+    isLoadingBtn = false;
     update();
   }
 

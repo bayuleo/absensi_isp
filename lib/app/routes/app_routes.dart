@@ -15,6 +15,7 @@ abstract class Routes {
   static const CAMERA_UTIL = _Paths.CAMERA_UTIL;
   static const CAMERA_PREVIEW = _Paths.CAMERA_PREVIEW;
   static const INTRO = _Paths.INTRO;
+  static const DETAIL_REQUEST = _Paths.DETAIL_REQUEST;
 }
 
 abstract class _Paths {
@@ -31,4 +32,5 @@ abstract class _Paths {
   static const CAMERA_UTIL = '/camera-util';
   static const CAMERA_PREVIEW = '/camera-preview';
   static const INTRO = '/intro';
+  static const DETAIL_REQUEST = '/detail-request';
 }

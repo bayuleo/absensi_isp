@@ -103,15 +103,27 @@ class ForgotPasswordOtpView extends GetView<ForgotPasswordOtpController> {
                     controller.isShowResendOTP
                         ? InkWell(
                             onTap: controller.onClickResend,
-                            child: const Text(
-                              'Kirim ulang.',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                color: Color(
-                                  0xff333333,
-                                ),
-                              ),
-                            ),
+                            child: controller.isLoadingResendBtn
+                                ? Padding(
+                                    padding: EdgeInsets.only(left: 8),
+                                    child: SizedBox(
+                                      width: 12,
+                                      height: 12,
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                        color: primaryColor,
+                                      ),
+                                    ),
+                                  )
+                                : Text(
+                                    'Kirim ulang.',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      color: Color(
+                                        0xff333333,
+                                      ),
+                                    ),
+                                  ),
                           )
                         : CountdownTimer(
                             controller: controller.countdownController,

@@ -1,0 +1,15 @@
+{
+    "title": "new ijin4",
+    "type": "ijin2",
+    "date_ijin": "2023-12-18",
+    "description": "shoping",
+    "users": "$./response_create_ijin_user_model",
+    "path": null,
+    "filename": null,
+    "mimetype": null,
+    "notes": null,
+    "id": 6,
+    "status": "pending",
+    "created_at": "2023-12-18T13:41:03.084Z",
+    "updated_at": "2023-12-18T13:41:03.084Z"
+}

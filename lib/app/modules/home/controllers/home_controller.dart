@@ -1,16 +1,19 @@
 import 'package:asiagolf_app/app/core/base/base_controllerr.dart';
+import 'package:asiagolf_app/app/core/enum/absent_type.dart';
 import 'package:asiagolf_app/app/core/widgets/dialog/confirmation_dialog_widget.dart';
 import 'package:asiagolf_app/app/data/local/user_credentials_data_source.dart';
 import 'package:asiagolf_app/app/data/model/index.dart';
+import 'package:asiagolf_app/app/data/remote/absent_data_source.dart';
 import 'package:asiagolf_app/app/data/remote/ijin_data_source.dart';
 import 'package:asiagolf_app/app/data/remote/users_data_source.dart';
-import 'package:asiagolf_app/app/modules/detail_clock_in/controllers/detail_clock_in_controller.dart';
 import 'package:asiagolf_app/app/modules/home/views/widgets/home_view_widget.dart';
 import 'package:asiagolf_app/app/modules/home/views/widgets/lembur_view_widget.dart';
 import 'package:asiagolf_app/app/routes/app_pages.dart';
 import 'package:asiagolf_app/app/utils/enum/status.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 import '../views/widgets/ijin_view_widget.dart';
 import '../views/widgets/profile_view_widget.dart';
@@ -19,16 +22,36 @@ class HomeController extends BaseController {
   final _userCredentialLocal = Get.find<UserCredentialsDataSource>();
   final _usersDataSource = Get.find<UsersDataSource>();
   final _ijinDataSource = Get.find<IjinDataSource>();
+  final _absentDataSource = Get.find<AbsentDataSource>();
   int selectedScreen = 0;
 
   //Filter
-  String yearLembur = '2023';
-  String yearIjin = '2023';
+  String yearLembur = DateFormat('yyyy').format(DateTime.now());
+  String yearIjin = DateFormat('yyyy').format(DateTime.now());
   String statusLembur = StatusRequest.all.value;
   String statusIjin = StatusRequest.all.value;
 
   ResponseUsersDataModel? profileData;
-  ResponseIjinDataModel? ijinCountData;
+  ResponseIjinCountModel? lemburCountData;
+  ResponseIjinCountModel? ijinCountData;
+  ResponseIjinListModel? listIjin;
+  ResponseIjinListModel? listLembur;
+  ResponseAbsentDataModel? absentDataModel;
+
+  RefreshController homeRefreshController =
+      RefreshController(initialRefresh: false);
+  RefreshController lemburRefreshController =
+      RefreshController(initialRefresh: false);
+  RefreshController ijinRefreshController =
+      RefreshController(initialRefresh: false);
+  RefreshController profileRefreshController =
+      RefreshController(initialRefresh: false);
+
+  bool isLoadingAbsent = false;
+  bool isLoadingLembur = false;
+  bool isLoadingIjin = false;
+  bool isLoadingCountLembur = false;
+  bool isLoadingCountIjin = false;
 
   List<Widget> screen = <Widget>[
     HomeViewWidget(),
@@ -66,11 +89,15 @@ class HomeController extends BaseController {
   ];
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
     generateYearPicker();
     getProfile();
+    getCountLembur();
     getCountIjin();
+    getAbsent();
+    getListLembur();
+    getListIjin();
   }
 
   @override
@@ -81,6 +108,15 @@ class HomeController extends BaseController {
   @override
   void onClose() {
     super.onClose();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    homeRefreshController.dispose();
+    lemburRefreshController.dispose();
+    ijinRefreshController.dispose();
+    profileRefreshController.dispose();
   }
 
   void onClickLogout() async {
@@ -101,23 +137,36 @@ class HomeController extends BaseController {
     );
   }
 
-  void onClickClockIn() {
-    Get.toNamed(
+  void onClickClockIn() async {
+    var result = await Get.toNamed(
       Routes.DETAIL_CLOCK_IN,
-      arguments: AbsenMode.ClockIn,
+      arguments: AbsentType.checkIn,
     );
+    if (result) {
+      Future.delayed(
+        Duration(seconds: 3),
+      );
+      getAbsent();
+    }
   }
 
-  void onClickClockOut() {
-    Get.toNamed(
+  void onClickClockOut() async {
+    var result = await Get.toNamed(
       Routes.DETAIL_CLOCK_IN,
-      arguments: AbsenMode.ClockOut,
+      arguments: AbsentType.checkOut,
     );
+    if (result) {
+      Future.delayed(
+        Duration(seconds: 3),
+      );
+      getAbsent();
+    }
   }
 
-  void onClickLogAbsenItem() {
+  void onClickLogAbsenItem(int? id) {
     Get.toNamed(
       Routes.DETAIL_ABSENSI,
+      arguments: id,
     );
   }
 
@@ -131,7 +180,7 @@ class HomeController extends BaseController {
     var currentYear = DateTime.now().year;
     List<DropdownMenuItem> result = [];
     for (int i = 0; i < 6; i++) {
-      var value = (currentYear - i).toString();
+      var value = ((currentYear + 1) - i).toString();
       result.add(
         DropdownMenuItem<String>(
           value: value,
@@ -147,11 +196,15 @@ class HomeController extends BaseController {
 
   void onChangeYearLembur(String selected) {
     yearLembur = selected;
+    getCountLembur();
+    getListLembur();
     update();
   }
 
   void onChangeYearIjin(String selected) {
     yearIjin = selected;
+    getCountIjin();
+    getListIjin();
     update();
   }
 
@@ -165,14 +218,40 @@ class HomeController extends BaseController {
     update();
   }
 
-  void getCountIjin() {
-    callDataService<ResponseIjinModel>(
-      () => _ijinDataSource.getCountIjin(),
+  void getCountLembur([bool isRefresh = false]) async {
+    if (!isRefresh) {
+      isLoadingCountLembur = true;
+    }
+    update();
+
+    await callDataService<ResponseIjinCountModel>(
+      () => _ijinDataSource.getCountLembur(yearLembur),
       onSuccess: (res) {
-        ijinCountData = res.data;
+        lemburCountData = res;
         update();
       },
     );
+
+    isLoadingCountLembur = false;
+    update();
+  }
+
+  void getCountIjin([bool isRefresh = false]) async {
+    if (!isRefresh) {
+      isLoadingCountIjin = true;
+    }
+    update();
+
+    await callDataService<ResponseIjinCountModel>(
+      () => _ijinDataSource.getCountIjin(yearIjin),
+      onSuccess: (res) {
+        ijinCountData = res;
+        update();
+      },
+    );
+
+    isLoadingCountIjin = false;
+    update();
   }
 
   void getProfile() {
@@ -183,5 +262,63 @@ class HomeController extends BaseController {
         update();
       },
     );
+
+    profileRefreshController.refreshCompleted();
+    update();
+  }
+
+  void getAbsent([bool isRefresh = false]) async {
+    if (!isRefresh) {
+      isLoadingAbsent = true;
+    }
+    update();
+
+    await callDataService<ResponseAbsentModel>(
+      () => _absentDataSource.getMyAbsent(),
+      onSuccess: (res) {
+        absentDataModel = res.data;
+        update();
+      },
+    );
+
+    isLoadingAbsent = false;
+    homeRefreshController.refreshCompleted();
+    update();
+  }
+
+  void getListLembur([bool isRefresh = false]) async {
+    if (!isRefresh) {
+      isLoadingLembur = true;
+    }
+    update();
+
+    await callDataService<ResponseIjinListModel>(
+      () => _ijinDataSource.getListLembur(yearLembur),
+      onSuccess: (res) {
+        listLembur = res;
+      },
+    );
+
+    isLoadingLembur = false;
+    lemburRefreshController.refreshCompleted();
+    update();
+  }
+
+  void getListIjin([bool isRefresh = false]) async {
+    if (!isRefresh) {
+      isLoadingIjin = true;
+    }
+    update();
+
+    await callDataService<ResponseIjinListModel>(
+      () => _ijinDataSource.getListIjin(yearIjin),
+      onSuccess: (res) {
+        listIjin = res;
+      },
+    );
+
+    isLoadingIjin = false;
+    ijinRefreshController.refreshCompleted();
+    update();
   }
 }

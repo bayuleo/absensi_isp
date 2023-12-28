@@ -15,6 +15,8 @@ abstract class UsersRepository {
     String? desc,
     String? filePath,
   });
+
+  Future<ResponseAbsentModel> getMyAbsent();
 }
 
 class UsersRepositoryImpl implements UsersRepository {
@@ -45,6 +47,12 @@ class UsersRepositoryImpl implements UsersRepository {
       desc: desc,
       filePath: filePath,
     );
+    return res;
+  }
+
+  @override
+  Future<ResponseAbsentModel> getMyAbsent() async {
+    final res = await _absentDataSource.getMyAbsent();
     return res;
   }
 }

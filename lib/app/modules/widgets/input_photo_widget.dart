@@ -1,21 +1,26 @@
 import 'dart:io';
 
 import 'package:asiagolf_app/app/modules/splash/views/widget/button_widget.dart';
+import 'package:asiagolf_app/app/routes/app_pages.dart';
 import 'package:asiagolf_app/app/utils/theme.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class InputPhotoWidget extends StatelessWidget {
+class InputPhotoWidget extends StatefulWidget {
   const InputPhotoWidget({
     super.key,
-    required this.controller,
-    required this.onTap,
-    this.photo,
+    required this.onSelectedImage,
   });
 
-  final CameraController controller;
-  final Function() onTap;
-  final XFile? photo;
+  final Function(String? path) onSelectedImage;
+
+  @override
+  State<InputPhotoWidget> createState() => _InputPhotoWidgetState();
+}
+
+class _InputPhotoWidgetState extends State<InputPhotoWidget> {
+  XFile? photo;
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +46,16 @@ class InputPhotoWidget extends StatelessWidget {
                     isFill: false,
                     text: 'Ambil Gambar',
                     prefix: Icon(Icons.camera_alt_outlined),
-                    onTap: onTap,
+                    onTap: () async {
+                      var result = await Get.toNamed(Routes.CAMERA_PREVIEW);
+                      photo = result;
+                      widget.onSelectedImage(photo?.path);
+                      setState(() {});
+                    },
                   )
                 : SizedBox(
                     width: double.infinity,
+                    height: 400,
                     child: Image.file(
                       fit: BoxFit.cover,
                       File(photo!.path),

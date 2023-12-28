@@ -104,7 +104,7 @@ class TextFieldWithLabelWidget extends StatelessWidget {
             initialValue: initialValue,
             validator: validator,
             // onChanged: (value) => onChangedText?.call(value),
-            // onTap: onTap,
+            onTap: onTap,
             textInputAction: textInputAction,
             // onFieldSubmitted: (value) => onFieldSubmitted?.call(value),
             style: TextStyle(
