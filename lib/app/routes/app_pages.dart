@@ -20,6 +20,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+import '../modules/test/bindings/test_binding.dart';
+import '../modules/test/views/test_view.dart';
 
 part 'app_routes.dart';
 
@@ -78,6 +80,11 @@ class AppPages {
       name: _Paths.DETAIL_REQUEST,
       page: () => const DetailRequestView(),
       binding: DetailRequestBinding(),
+    ),
+    GetPage(
+      name: _Paths.TEST,
+      page: () => const TestView(),
+      binding: TestBinding(),
     ),
   ];
 }

@@ -168,6 +168,7 @@ class HomeController extends BaseController {
       Routes.DETAIL_ABSENSI,
       arguments: id,
     );
+    // Get.toNamed(Routes.TEST);
   }
 
   void onTapBottomMenu(int index) {
@@ -210,11 +211,13 @@ class HomeController extends BaseController {
 
   void onChangeStatusLembur(String selected) {
     statusLembur = selected;
+    getListLembur();
     update();
   }
 
   void onChangeStatusIjin(String selected) {
     statusIjin = selected;
+    getListIjin();
     update();
   }
 
@@ -293,7 +296,7 @@ class HomeController extends BaseController {
     update();
 
     await callDataService<ResponseIjinListModel>(
-      () => _ijinDataSource.getListLembur(yearLembur),
+      () => _ijinDataSource.getListLembur(yearLembur, statusLembur),
       onSuccess: (res) {
         listLembur = res;
       },
@@ -311,7 +314,7 @@ class HomeController extends BaseController {
     update();
 
     await callDataService<ResponseIjinListModel>(
-      () => _ijinDataSource.getListIjin(yearIjin),
+      () => _ijinDataSource.getListIjin(yearIjin, statusIjin),
       onSuccess: (res) {
         listIjin = res;
       },

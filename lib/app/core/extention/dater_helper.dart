@@ -5,7 +5,8 @@ extension DateFromString on String {
 }
 
 extension DateFromSimpleString on String {
-  DateTime? toDateFromSimpleString() => DateFormat('dd/MM/yyyy').parse(this);
+  DateTime? toDateFromSimpleString([String? format]) =>
+      DateFormat(format ?? 'dd/MM/yyyy').parse(this);
 }
 
 extension DateToSimple on DateTime {
