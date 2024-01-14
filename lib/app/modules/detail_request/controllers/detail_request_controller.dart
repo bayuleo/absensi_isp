@@ -103,7 +103,7 @@ class DetailRequestController extends BaseController {
           timeEnd: dateEndTextEditingController.text.trim(),
           description: descTextEditingController.text.trim(),
         ),
-        File(imagePath ?? ''),
+        imagePath != null ? File(imagePath!) : null,
       ),
       onSuccess: (res) {
         Get.back(result: true);

@@ -1,4 +1,5 @@
 import 'package:asiagolf_app/app/data/remote/absent_data_source.dart';
+import 'package:asiagolf_app/app/data/remote/admin_data_source.dart';
 import 'package:asiagolf_app/app/data/remote/ijin_data_source.dart';
 import 'package:asiagolf_app/app/data/remote/users_data_source.dart';
 import 'package:get/get.dart';
@@ -22,6 +23,10 @@ class RemoteSourceBindings implements Bindings {
     );
     Get.lazyPut<IjinDataSource>(
       () => IjinDataSourceImpl(),
+      fenix: true,
+    );
+    Get.lazyPut<AdminDataSource>(
+      () => AdminDataSourceImpl(),
       fenix: true,
     );
   }

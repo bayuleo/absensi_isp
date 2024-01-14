@@ -1,6 +1,7 @@
 import 'package:asiagolf_app/app/modules/home/controllers/home_controller.dart';
 import 'package:asiagolf_app/app/modules/login/views/widget/text_field_with_label_widget.dart';
 import 'package:asiagolf_app/app/modules/splash/views/widget/button_widget.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
@@ -27,10 +28,12 @@ class ProfileViewWidget extends StatelessWidget {
                   const SizedBox(
                     height: 40,
                   ),
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 80,
-                    backgroundImage: NetworkImage(
-                        'https://fastly.picsum.photos/id/64/400/400.jpg?hmac=ErFmAl4erEx5YCaq80Ik_J0J5YXwmgvoDkCmyekuL_I'),
+                    backgroundImage: CachedNetworkImageProvider(
+                      controller.profileData!.filename,
+                      maxHeight: 300,
+                    ),
                   ),
                   const SizedBox(
                     height: 20,

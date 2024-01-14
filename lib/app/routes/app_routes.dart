@@ -17,6 +17,9 @@ abstract class Routes {
   static const INTRO = _Paths.INTRO;
   static const DETAIL_REQUEST = _Paths.DETAIL_REQUEST;
   static const TEST = _Paths.TEST;
+  static const HOME_ADMIN = _Paths.HOME_ADMIN;
+  static const USERS_LIST = _Paths.USERS_LIST;
+  static const USERS_CREATE = _Paths.USERS_CREATE;
 }
 
 abstract class _Paths {
@@ -35,4 +38,7 @@ abstract class _Paths {
   static const INTRO = '/intro';
   static const DETAIL_REQUEST = '/detail-request';
   static const TEST = '/test';
+  static const HOME_ADMIN = '/home-admin';
+  static const USERS_LIST = '/users-list';
+  static const USERS_CREATE = '/users-create';
 }

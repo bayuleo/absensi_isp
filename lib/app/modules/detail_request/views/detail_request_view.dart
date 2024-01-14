@@ -2,9 +2,12 @@ import 'package:asiagolf_app/app/modules/detail_request/views/widgets/loading_de
 import 'package:asiagolf_app/app/modules/login/views/widget/text_field_with_label_widget.dart';
 import 'package:asiagolf_app/app/modules/splash/views/widget/button_widget.dart';
 import 'package:asiagolf_app/app/modules/widgets/input_photo_widget.dart';
+import 'package:asiagolf_app/app/utils/extensions.dart';
 import 'package:asiagolf_app/app/utils/theme.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 import '../controllers/detail_request_controller.dart';
 
@@ -214,12 +217,25 @@ class DetailRequestView extends GetView<DetailRequestController> {
                                     controller.onImageSelected(photoPath);
                                   },
                                 )
-                              : Placeholder(
-                                  child: SizedBox(
+                              : Center(
+                                  child: CachedNetworkImage(
                                     width: double.infinity,
-                                    height: 200,
-                                    child: Center(
-                                      child: Text('Image Preview'),
+                                    height: 300.h,
+                                    fit: BoxFit.cover,
+                                    imageUrl:
+                                        controller.detailData?.filename ?? '',
+                                    placeholder: (context, url) => Lottie.asset(
+                                      'assets/lottie/loading_image.json',
+                                      repeat: true,
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(Icons.error),
+                                        Text("Failed load image")
+                                      ],
                                     ),
                                   ),
                                 ),

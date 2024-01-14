@@ -40,6 +40,7 @@ class UserCredentialsDataSourceImpl implements UserCredentialsDataSource {
         email: Optional.of(credentials.email),
         accessToken: Optional.of(credentials.accessToken),
         refreshToken: Optional.of(credentials.refreshToken),
+        role: Optional.of(credentials.role),
       ),
     );
   }

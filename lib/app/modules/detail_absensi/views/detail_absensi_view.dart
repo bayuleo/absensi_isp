@@ -1,11 +1,13 @@
 import 'package:asiagolf_app/app/core/extention/dater_helper.dart';
 import 'package:asiagolf_app/app/modules/login/views/widget/text_field_with_label_widget.dart';
 import 'package:asiagolf_app/app/utils/theme.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:lottie/lottie.dart' as L;
 
 import '../controllers/detail_absensi_controller.dart';
 
@@ -82,7 +84,7 @@ class DetailAbsensiView extends GetView<DetailAbsensiController> {
                       Column(
                         children: [
                           SizedBox(
-                            width: 300,
+                            width: double.infinity,
                             height: 300,
                             child: FlutterMap(
                               mapController: controller.mapController,
@@ -131,10 +133,22 @@ class DetailAbsensiView extends GetView<DetailAbsensiController> {
                           SizedBox(
                             height: 20.h,
                           ),
-                          Image.network(
+                          CachedNetworkImage(
                             width: double.infinity,
-                            fit: BoxFit.fill,
-                            'https://picsum.photos/200',
+                            height: 300.h,
+                            fit: BoxFit.cover,
+                            imageUrl: controller.detailData?.filename ?? '',
+                            placeholder: (context, url) => L.Lottie.asset(
+                              'assets/lottie/loading_image.json',
+                              repeat: true,
+                            ),
+                            errorWidget: (context, url, error) => Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.error),
+                                Text("Failed load image")
+                              ],
+                            ),
                           ),
                         ],
                       ),

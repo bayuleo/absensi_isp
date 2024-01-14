@@ -13,6 +13,7 @@ class ResponseDetailAbsentDataModel {
     required this.type,
     required this.description,
     this.longlat,
+    required this.filename,
     this.imagePath,
     required this.createdAt,
     required this.updatedAt,
@@ -25,6 +26,7 @@ class ResponseDetailAbsentDataModel {
   final String type;
   final String description;
   final String? longlat;
+  final String filename;
   final String? imagePath;
   final String createdAt;
   final String updatedAt;
@@ -37,6 +39,7 @@ class ResponseDetailAbsentDataModel {
     type: json['type'].toString(),
     description: json['description'].toString(),
     longlat: json['longlat']?.toString(),
+    filename: json['filename'].toString(),
     imagePath: json['imagePath']?.toString(),
     createdAt: json['created_at'].toString(),
     updatedAt: json['updated_at'].toString(),
@@ -50,6 +53,7 @@ class ResponseDetailAbsentDataModel {
     'type': type,
     'description': description,
     'longlat': longlat,
+    'filename': filename,
     'imagePath': imagePath,
     'created_at': createdAt,
     'updated_at': updatedAt,
@@ -63,6 +67,7 @@ class ResponseDetailAbsentDataModel {
     type: type,
     description: description,
     longlat: longlat,
+    filename: filename,
     imagePath: imagePath,
     createdAt: createdAt,
     updatedAt: updatedAt,
@@ -77,6 +82,7 @@ class ResponseDetailAbsentDataModel {
     String? type,
     String? description,
     Optional<String?>? longlat,
+    String? filename,
     Optional<String?>? imagePath,
     String? createdAt,
     String? updatedAt,
@@ -88,6 +94,7 @@ class ResponseDetailAbsentDataModel {
     type: type ?? this.type,
     description: description ?? this.description,
     longlat: checkOptional(longlat, () => this.longlat),
+    filename: filename ?? this.filename,
     imagePath: checkOptional(imagePath, () => this.imagePath),
     createdAt: createdAt ?? this.createdAt,
     updatedAt: updatedAt ?? this.updatedAt,
@@ -96,8 +103,8 @@ class ResponseDetailAbsentDataModel {
 
   @override
   bool operator ==(Object other) => identical(this, other)
-    || other is ResponseDetailAbsentDataModel && id == other.id && date == other.date && time == other.time && type == other.type && description == other.description && longlat == other.longlat && imagePath == other.imagePath && createdAt == other.createdAt && updatedAt == other.updatedAt && users == other.users;
+    || other is ResponseDetailAbsentDataModel && id == other.id && date == other.date && time == other.time && type == other.type && description == other.description && longlat == other.longlat && filename == other.filename && imagePath == other.imagePath && createdAt == other.createdAt && updatedAt == other.updatedAt && users == other.users;
 
   @override
-  int get hashCode => id.hashCode ^ date.hashCode ^ time.hashCode ^ type.hashCode ^ description.hashCode ^ longlat.hashCode ^ imagePath.hashCode ^ createdAt.hashCode ^ updatedAt.hashCode ^ users.hashCode;
+  int get hashCode => id.hashCode ^ date.hashCode ^ time.hashCode ^ type.hashCode ^ description.hashCode ^ longlat.hashCode ^ filename.hashCode ^ imagePath.hashCode ^ createdAt.hashCode ^ updatedAt.hashCode ^ users.hashCode;
 }

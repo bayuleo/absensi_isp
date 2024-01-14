@@ -44,8 +44,13 @@ class LoginController extends BaseController {
             email: data?.email,
             accessToken: data?.accessToken,
             refreshToken: data?.refreshToken,
+            role: data?.role,
           ));
-          Get.offAllNamed(Routes.HOME);
+          if (res.data?.role == 'admin') {
+            Get.offAllNamed(Routes.HOME_ADMIN);
+          } else {
+            Get.offAllNamed(Routes.HOME);
+          }
         },
       );
 

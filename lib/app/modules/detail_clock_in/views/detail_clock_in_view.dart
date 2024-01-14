@@ -1,5 +1,4 @@
 import 'package:asiagolf_app/app/core/enum/absent_type.dart';
-import 'package:asiagolf_app/app/core/enum/page_state.dart';
 import 'package:asiagolf_app/app/modules/widgets/map_widget.dart';
 import 'package:asiagolf_app/app/utils/extensions.dart';
 import 'package:asiagolf_app/app/utils/theme.dart';
@@ -82,7 +81,7 @@ class DetailClockInView extends GetView<DetailClockInController> {
                         height: 40.h,
                       ),
                       ButtonWidget(
-                        isLoading: controller.pageState == PageState.LOADING,
+                        isLoading: controller.isLoading,
                         text: controller.absenMode == AbsentType.checkIn
                             ? 'Clock In'
                             : 'Clock Out',

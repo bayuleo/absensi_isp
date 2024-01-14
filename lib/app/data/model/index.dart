@@ -26,7 +26,11 @@ export 'auth/login/response_login_model.dart';
 export 'auth/login/request_login_model.dart';
 export 'auth/login/response_login_data_model.dart';
 export 'users/response_users_model.dart';
+export 'users/list_user/response_list_users_data_model.dart';
+export 'users/list_user/response_list_users_model.dart';
 export 'users/response_users_data_model.dart';
+export 'users/create/response_create_user_model.dart';
+export 'users/create/response_create_user_data_model.dart';
 import 'package:quiver/core.dart';
 
 T? checkOptional<T>(Optional<T?>? optional, T? Function()? def) {

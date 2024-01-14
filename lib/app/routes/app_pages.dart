@@ -16,12 +16,18 @@ import '../modules/forgot_password_otp/bindings/forgot_password_otp_binding.dart
 import '../modules/forgot_password_otp/views/forgot_password_otp_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/home_admin/bindings/home_admin_binding.dart';
+import '../modules/home_admin/views/home_admin_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 import '../modules/test/bindings/test_binding.dart';
 import '../modules/test/views/test_view.dart';
+import '../modules/users_create/bindings/users_create_binding.dart';
+import '../modules/users_create/views/users_create_view.dart';
+import '../modules/users_list/bindings/users_list_binding.dart';
+import '../modules/users_list/views/users_list_view.dart';
 
 part 'app_routes.dart';
 
@@ -85,6 +91,21 @@ class AppPages {
       name: _Paths.TEST,
       page: () => const TestView(),
       binding: TestBinding(),
+    ),
+    GetPage(
+      name: _Paths.HOME_ADMIN,
+      page: () => const HomeAdminView(),
+      binding: HomeAdminBinding(),
+    ),
+    GetPage(
+      name: _Paths.USERS_LIST,
+      page: () => const UsersListView(),
+      binding: UsersListBinding(),
+    ),
+    GetPage(
+      name: _Paths.USERS_CREATE,
+      page: () => const UsersCreateView(),
+      binding: UsersCreateBinding(),
     ),
   ];
 }

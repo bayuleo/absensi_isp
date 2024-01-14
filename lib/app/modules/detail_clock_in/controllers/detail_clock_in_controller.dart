@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:asiagolf_app/app/core/base/base_controllerr.dart';
 import 'package:asiagolf_app/app/core/enum/absent_type.dart';
 import 'package:asiagolf_app/app/core/utils/snackbar.dart';
@@ -18,6 +20,7 @@ class DetailClockInController extends BaseController {
   MapController mapController = MapController();
   XFile? picture;
   bool isCaptured = false;
+  bool isLoading = false;
   AbsentType? absenMode;
   String? imagePath;
 
@@ -59,11 +62,13 @@ class DetailClockInController extends BaseController {
   }
 
   void ClockIn() {
+    isLoading = true;
+    update();
     callDataService<ResponseAbsentModel>(
       () => _absentDataSource.clockIn(
         longlat: '${position?.longitude},${position?.latitude}',
         desc: descTextEditingController.text.trim(),
-        filePath: picture?.path,
+        image: File(imagePath!),
       ),
       onSuccess: (res) {
         Get.back(result: true);
@@ -73,14 +78,20 @@ class DetailClockInController extends BaseController {
         );
       },
     );
+
+    isLoading = false;
+    update();
   }
 
   void ClockOut() {
+    isLoading = true;
+    update();
+
     callDataService<ResponseAbsentModel>(
       () => _absentDataSource.clockOut(
         longlat: '${position!.longitude},${position!.latitude}',
         desc: descTextEditingController.text.trim(),
-        filePath: picture?.path,
+        image: File(imagePath!),
       ),
       onSuccess: (res) {
         Get.back(result: true);
@@ -90,6 +101,9 @@ class DetailClockInController extends BaseController {
         );
       },
     );
+
+    isLoading = false;
+    update();
   }
 
   void onImageSelected(String? filePath) {

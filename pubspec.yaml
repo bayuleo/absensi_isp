@@ -39,6 +39,8 @@ dependencies:
   pull_to_refresh_flutter3: ^2.0.2
   loading_animation_widget: ^1.2.0+4
   lottie: ^2.7.0
+  cached_network_image: ^3.3.1
+  dropdown_button2: ^2.3.9
   
 
 dev_dependencies: 

@@ -5,6 +5,7 @@ import 'package:asiagolf_app/app/data/model/index.dart';
 import 'package:asiagolf_app/app/network/dio_config.dart';
 import 'package:asiagolf_app/app/network/endpoints.dart';
 import 'package:asiagolf_app/app/utils/enum/status.dart';
+import 'package:dio/dio.dart' as d;
 import 'package:get/get.dart';
 
 abstract class IjinDataSource {
@@ -41,31 +42,24 @@ class IjinDataSourceImpl implements IjinDataSource {
   @override
   Future<ResponseCreateIjinModel> createIjin(
       RequestCreateIjinMode requestCreateIjinMode, File? file) async {
-    // final formData = FormData({
-    //   "title": requestCreateIjinMode.title,
-    //   "type": requestCreateIjinMode.type,
-    //   "time_start": requestCreateIjinMode.timeStart,
-    //   "time_end": requestCreateIjinMode.timeEnd,
-    //   "description": requestCreateIjinMode.description,
-    //   'file': await d.MultipartFile.fromFile(file!.path,
-    //       filename: file!.path.split('/').last),
-    // });
-    var bodyData = {
-      "title": requestCreateIjinMode.title,
-      "type": requestCreateIjinMode.type,
-      "time_start": requestCreateIjinMode.timeStart,
-      "time_end": requestCreateIjinMode.timeEnd,
-      "description": requestCreateIjinMode.description,
-      // "file": d.MultipartFile.fromFile(file!.path,
-      //     filename: file!.path.split('/').last),
-    };
+    final formData = d.FormData.fromMap({
+      if (requestCreateIjinMode.title.isNotEmpty)
+        "title": requestCreateIjinMode.title,
+      if (requestCreateIjinMode.type.isNotEmpty)
+        "type": requestCreateIjinMode.type,
+      if (requestCreateIjinMode.timeStart.isNotEmpty)
+        "time_start": requestCreateIjinMode.timeStart,
+      if (requestCreateIjinMode.timeEnd.isNotEmpty)
+        "time_end": requestCreateIjinMode.timeEnd,
+      if (requestCreateIjinMode.description.isNotEmpty)
+        "description": requestCreateIjinMode.description,
+      if (file != null)
+        'file': await d.MultipartFile.fromFile(file!.path,
+            filename: file!.path.split('/').last),
+    });
     var response = await dioConfigure.dio.post(
       endpoints.ijin.ijin,
-      // data: formData,
-      data: bodyData,
-      // data: jsonEncode(
-      //   requestCreateIjinMode.toJson(),
-      // ),
+      data: formData,
     );
     return ResponseCreateIjinModel.fromJson(response.data);
   }

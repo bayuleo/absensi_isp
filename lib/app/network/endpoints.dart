@@ -3,12 +3,14 @@ class Endpoints {
   late UsersEndpoint users;
   late AbsenEndpoint absent;
   late IjinEndpoint ijin;
+  late AdminEndpoint admin;
 
   Endpoints() {
     auth = AuthEndpoint();
     users = UsersEndpoint();
     absent = AbsenEndpoint();
     ijin = IjinEndpoint();
+    admin = AdminEndpoint();
   }
 }
 
@@ -56,5 +58,13 @@ class IjinEndpoint {
     this.countIjin = "/ijin/count/status",
     this.ijin = "/ijin",
     this.users = "/ijin/users",
+  });
+}
+
+class AdminEndpoint {
+  final String users;
+
+  AdminEndpoint({
+    this.users = "/users",
   });
 }

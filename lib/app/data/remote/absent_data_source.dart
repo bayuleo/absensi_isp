@@ -1,22 +1,23 @@
-import 'dart:convert';
+import 'dart:io';
 
 import 'package:asiagolf_app/app/data/local/user_credentials_data_source.dart';
 import 'package:asiagolf_app/app/data/model/index.dart';
 import 'package:asiagolf_app/app/network/dio_config.dart';
 import 'package:asiagolf_app/app/network/endpoints.dart';
+import 'package:dio/dio.dart' as d;
 import 'package:get/get.dart';
 
 abstract class AbsentDataSource {
   Future<ResponseAbsentModel> clockIn({
     String? longlat,
     String? desc,
-    String? filePath,
+    File? image,
   });
 
   Future<ResponseAbsentModel> clockOut({
     String? longlat,
     String? desc,
-    String? filePath,
+    File? image,
   });
 
   Future<ResponseAbsentModel> getMyAbsent();
@@ -33,28 +34,19 @@ class AbsentDataSourceImpl implements AbsentDataSource {
   Future<ResponseAbsentModel> clockIn({
     String? longlat,
     String? desc,
-    String? filePath,
+    File? image,
   }) async {
-    // String fileName = file.path.split('/').last;
-    // var data = d.FormData.fromMap(
-    //   {
-    //     'file': await d.MultipartFile.fromFile(
-    //       file.path,
-    //       filename: fileName,
-    //     )
-    //   },
-    // );
-    var body = {};
-    if (longlat != null) {
-      body['longlat'] = longlat;
-    }
-    if (desc != null) {
-      body['desc'] = desc;
-    }
+    final formData = d.FormData.fromMap({
+      "longlat": longlat,
+      "description": desc,
+      if (image != null)
+        "file": await d.MultipartFile.fromFile(image!.path,
+            filename: image!.path.split('/').last)
+    });
 
     var response = await dioConfigure.dio.post(
       endpoints.absent.checkIn,
-      data: jsonEncode(body),
+      data: formData,
     );
     return ResponseAbsentModel.fromJson(response.data);
   }
@@ -63,28 +55,19 @@ class AbsentDataSourceImpl implements AbsentDataSource {
   Future<ResponseAbsentModel> clockOut({
     String? longlat,
     String? desc,
-    String? filePath,
+    File? image,
   }) async {
-    // String fileName = file.path.split('/').last;
-    // var data = d.FormData.fromMap(
-    //   {
-    //     'file': await d.MultipartFile.fromFile(
-    //       file.path,
-    //       filename: fileName,
-    //     )
-    //   },
-    // );
-    var body = {};
-    if (longlat != null) {
-      body['longlat'] = longlat;
-    }
-    if (desc != null) {
-      body['desc'] = desc;
-    }
+    final formData = d.FormData.fromMap({
+      "longlat": longlat,
+      "description": desc,
+      if (image != null)
+        "file": await d.MultipartFile.fromFile(image!.path,
+            filename: image!.path.split('/').last)
+    });
 
     var response = await dioConfigure.dio.post(
       endpoints.absent.checkOut,
-      data: jsonEncode(body),
+      data: formData,
     );
     return ResponseAbsentModel.fromJson(response.data);
   }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:asiagolf_app/app/data/remote/absent_data_source.dart';
 import 'package:get/get.dart';
 
@@ -7,13 +9,13 @@ abstract class UsersRepository {
   Future<ResponseAbsentModel> clockIn({
     String? longlat,
     String? desc,
-    String? filePath,
+    File image,
   });
 
   Future<ResponseAbsentModel> clockOut({
     String? longlat,
     String? desc,
-    String? filePath,
+    File image,
   });
 
   Future<ResponseAbsentModel> getMyAbsent();
@@ -26,12 +28,12 @@ class UsersRepositoryImpl implements UsersRepository {
   Future<ResponseAbsentModel> clockIn({
     String? longlat,
     String? desc,
-    String? filePath,
+    File? image,
   }) async {
     final res = await _absentDataSource.clockIn(
       longlat: longlat,
       desc: desc,
-      filePath: filePath,
+      image: image,
     );
     return res;
   }
@@ -40,12 +42,12 @@ class UsersRepositoryImpl implements UsersRepository {
   Future<ResponseAbsentModel> clockOut({
     String? longlat,
     String? desc,
-    String? filePath,
+    File? image,
   }) async {
     final res = await _absentDataSource.clockOut(
       longlat: longlat,
       desc: desc,
-      filePath: filePath,
+      image: image,
     );
     return res;
   }

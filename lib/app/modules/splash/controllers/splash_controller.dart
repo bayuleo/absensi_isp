@@ -23,7 +23,11 @@ class SplashController extends GetxController {
     await getPosition();
     final credential = _localData.getCredentials();
     if (credential.accessToken != null) {
-      Get.offAllNamed(Routes.HOME);
+      if (credential.role == 'admin') {
+        Get.offAllNamed(Routes.HOME_ADMIN);
+      } else {
+        Get.offAllNamed(Routes.HOME);
+      }
     } else {
       Get.offAllNamed(Routes.LOGIN);
     }

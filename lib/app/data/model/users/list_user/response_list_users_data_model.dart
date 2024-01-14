@@ -1,19 +1,18 @@
 import 'package:flutter/foundation.dart';
 import 'package:quiver/core.dart';
 
-import '../index.dart';
+import '../../index.dart';
 
 @immutable
-class ResponseUsersDataModel {
+class ResponseListUsersDataModel {
 
-  const ResponseUsersDataModel({
+  const ResponseListUsersDataModel({
     required this.id,
     required this.name,
     required this.password,
     required this.phone,
     required this.nik,
     required this.email,
-    required this.filename,
     required this.address,
     required this.position,
     required this.otpCode,
@@ -27,21 +26,19 @@ class ResponseUsersDataModel {
   final String phone;
   final String nik;
   final String email;
-  final String filename;
   final String address;
   final String position;
   final String otpCode;
   final String createdAt;
   final String updatedAt;
 
-  factory ResponseUsersDataModel.fromJson(Map<String,dynamic> json) => ResponseUsersDataModel(
+  factory ResponseListUsersDataModel.fromJson(Map<String,dynamic> json) => ResponseListUsersDataModel(
     id: json['id'] as int,
     name: json['name'].toString(),
     password: json['password'].toString(),
     phone: json['phone'].toString(),
     nik: json['nik'].toString(),
     email: json['email'].toString(),
-    filename: json['filename'].toString(),
     address: json['address'].toString(),
     position: json['position'].toString(),
     otpCode: json['otpCode'].toString(),
@@ -56,7 +53,6 @@ class ResponseUsersDataModel {
     'phone': phone,
     'nik': nik,
     'email': email,
-    'filename': filename,
     'address': address,
     'position': position,
     'otpCode': otpCode,
@@ -64,14 +60,13 @@ class ResponseUsersDataModel {
     'updated_at': updatedAt
   };
 
-  ResponseUsersDataModel clone() => ResponseUsersDataModel(
+  ResponseListUsersDataModel clone() => ResponseListUsersDataModel(
     id: id,
     name: name,
     password: password,
     phone: phone,
     nik: nik,
     email: email,
-    filename: filename,
     address: address,
     position: position,
     otpCode: otpCode,
@@ -80,27 +75,25 @@ class ResponseUsersDataModel {
   );
 
 
-  ResponseUsersDataModel copyWith({
+  ResponseListUsersDataModel copyWith({
     int? id,
     String? name,
     String? password,
     String? phone,
     String? nik,
     String? email,
-    String? filename,
     String? address,
     String? position,
     String? otpCode,
     String? createdAt,
     String? updatedAt
-  }) => ResponseUsersDataModel(
+  }) => ResponseListUsersDataModel(
     id: id ?? this.id,
     name: name ?? this.name,
     password: password ?? this.password,
     phone: phone ?? this.phone,
     nik: nik ?? this.nik,
     email: email ?? this.email,
-    filename: filename ?? this.filename,
     address: address ?? this.address,
     position: position ?? this.position,
     otpCode: otpCode ?? this.otpCode,
@@ -110,8 +103,8 @@ class ResponseUsersDataModel {
 
   @override
   bool operator ==(Object other) => identical(this, other)
-    || other is ResponseUsersDataModel && id == other.id && name == other.name && password == other.password && phone == other.phone && nik == other.nik && email == other.email && filename == other.filename && address == other.address && position == other.position && otpCode == other.otpCode && createdAt == other.createdAt && updatedAt == other.updatedAt;
+    || other is ResponseListUsersDataModel && id == other.id && name == other.name && password == other.password && phone == other.phone && nik == other.nik && email == other.email && address == other.address && position == other.position && otpCode == other.otpCode && createdAt == other.createdAt && updatedAt == other.updatedAt;
 
   @override
-  int get hashCode => id.hashCode ^ name.hashCode ^ password.hashCode ^ phone.hashCode ^ nik.hashCode ^ email.hashCode ^ filename.hashCode ^ address.hashCode ^ position.hashCode ^ otpCode.hashCode ^ createdAt.hashCode ^ updatedAt.hashCode;
+  int get hashCode => id.hashCode ^ name.hashCode ^ password.hashCode ^ phone.hashCode ^ nik.hashCode ^ email.hashCode ^ address.hashCode ^ position.hashCode ^ otpCode.hashCode ^ createdAt.hashCode ^ updatedAt.hashCode;
 }
