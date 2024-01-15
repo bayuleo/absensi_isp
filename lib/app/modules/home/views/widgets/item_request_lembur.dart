@@ -97,7 +97,7 @@ class ItemRequestLembur extends StatelessWidget {
                           height: 4,
                         ),
                         Text(
-                          'Pending',
+                          data.status,
                           style: TextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.w600,

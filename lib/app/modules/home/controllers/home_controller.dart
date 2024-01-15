@@ -163,14 +163,6 @@ class HomeController extends BaseController {
     }
   }
 
-  void onClickLogAbsenItem(int? id) {
-    Get.toNamed(
-      Routes.DETAIL_ABSENSI,
-      arguments: id,
-    );
-    // Get.toNamed(Routes.TEST);
-  }
-
   void onTapBottomMenu(int index) {
     print(index);
     selectedScreen = index;

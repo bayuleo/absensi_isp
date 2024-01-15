@@ -20,6 +20,14 @@ import '../modules/home_admin/bindings/home_admin_binding.dart';
 import '../modules/home_admin/views/home_admin_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
+import '../modules/report_absensi/bindings/report_absensi_binding.dart';
+import '../modules/report_absensi/views/report_absensi_view.dart';
+import '../modules/report_lembur/bindings/report_lembur_binding.dart';
+import '../modules/report_lembur/views/report_lembur_view.dart';
+import '../modules/report_payroll/bindings/report_payroll_binding.dart';
+import '../modules/report_payroll/views/report_payroll_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 import '../modules/test/bindings/test_binding.dart';
@@ -106,6 +114,26 @@ class AppPages {
       name: _Paths.USERS_CREATE,
       page: () => const UsersCreateView(),
       binding: UsersCreateBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => const ProfileView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.REPORT_ABSENSI,
+      page: () => const ReportAbsensiView(),
+      binding: ReportAbsensiBinding(),
+    ),
+    GetPage(
+      name: _Paths.REPORT_LEMBUR,
+      page: () => const ReportLemburView(),
+      binding: ReportLemburBinding(),
+    ),
+    GetPage(
+      name: _Paths.REPORT_PAYROLL,
+      page: () => const ReportPayrollView(),
+      binding: ReportPayrollBinding(),
     ),
   ];
 }

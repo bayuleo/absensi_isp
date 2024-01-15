@@ -20,6 +20,10 @@ abstract class Routes {
   static const HOME_ADMIN = _Paths.HOME_ADMIN;
   static const USERS_LIST = _Paths.USERS_LIST;
   static const USERS_CREATE = _Paths.USERS_CREATE;
+  static const PROFILE = _Paths.PROFILE;
+  static const REPORT_ABSENSI = _Paths.REPORT_ABSENSI;
+  static const REPORT_LEMBUR = _Paths.REPORT_LEMBUR;
+  static const REPORT_PAYROLL = _Paths.REPORT_PAYROLL;
 }
 
 abstract class _Paths {
@@ -41,4 +45,8 @@ abstract class _Paths {
   static const HOME_ADMIN = '/home-admin';
   static const USERS_LIST = '/users-list';
   static const USERS_CREATE = '/users-create';
+  static const PROFILE = '/profile';
+  static const REPORT_ABSENSI = '/report-absensi';
+  static const REPORT_LEMBUR = '/report-lembur';
+  static const REPORT_PAYROLL = '/report-payroll';
 }

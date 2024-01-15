@@ -1,8 +1,9 @@
 import 'package:asiagolf_app/app/modules/home/controllers/home_controller.dart';
-import 'package:asiagolf_app/app/modules/login/views/widget/text_field_with_label_widget.dart';
-import 'package:asiagolf_app/app/modules/splash/views/widget/button_widget.dart';
+import 'package:asiagolf_app/app/routes/app_pages.dart';
+import 'package:asiagolf_app/app/utils/theme.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
@@ -24,78 +25,108 @@ class ProfileViewWidget extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
                     height: 40,
                   ),
-                  CircleAvatar(
-                    radius: 80,
-                    backgroundImage: CachedNetworkImageProvider(
-                      controller.profileData!.filename,
-                      maxHeight: 300,
+                  Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 32,
+                        backgroundImage: CachedNetworkImageProvider(
+                          controller.profileData?.filename ?? '',
+                          maxHeight: 20,
+                          maxWidth: 20,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 12.w,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.h),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              controller.profileData?.name ?? '',
+                              style: TextStyle(
+                                fontSize: 28.sp,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            Text(
+                              controller.profileData?.position ?? '',
+                              style: TextStyle(
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  Divider(
+                    thickness: 1,
+                  ),
+                  ListTile(
+                    title: Text('Absensi'),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios_outlined,
+                      size: 16,
+                      color: secondaryTextColor,
                     ),
+                    onTap: () {
+                      Get.toNamed(Routes.REPORT_ABSENSI);
+                    },
                   ),
-                  const SizedBox(
-                    height: 20,
+                  ListTile(
+                    title: Text('Lembur'),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios_outlined,
+                      size: 16,
+                      color: secondaryTextColor,
+                    ),
+                    onTap: () {
+                      Get.toNamed(Routes.REPORT_LEMBUR);
+                    },
                   ),
-                  TextFieldWithLabelWidget(
-                    label: "Nama",
-                    initialValue: controller.profileData?.name ?? '',
-                    keyboardType: TextInputType.name,
-                    readOnly: true,
+                  ListTile(
+                    title: Text('Payroll'),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios_outlined,
+                      size: 16,
+                      color: secondaryTextColor,
+                    ),
+                    onTap: () {
+                      Get.toNamed(Routes.REPORT_PAYROLL);
+                    },
                   ),
-                  const SizedBox(
-                    height: 20,
+                  Divider(
+                    thickness: 1,
                   ),
-                  TextFieldWithLabelWidget(
-                    label: "Email",
-                    initialValue: controller.profileData?.email ?? '',
-                    keyboardType: TextInputType.emailAddress,
-                    readOnly: true,
+                  ListTile(
+                    title: Text('My Account'),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios_outlined,
+                      size: 16,
+                      color: secondaryTextColor,
+                    ),
+                    onTap: () {
+                      Get.toNamed(Routes.PROFILE);
+                    },
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFieldWithLabelWidget(
-                    label: "NIK",
-                    initialValue: controller.profileData?.nik ?? '',
-                    keyboardType: TextInputType.number,
-                    readOnly: true,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFieldWithLabelWidget(
-                    label: "Jabatan",
-                    initialValue: controller.profileData?.position ?? '',
-                    keyboardType: TextInputType.text,
-                    readOnly: true,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFieldWithLabelWidget(
-                    label: "No Handphone",
-                    initialValue: controller.profileData?.phone ?? '',
-                    keyboardType: TextInputType.phone,
-                    readOnly: true,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFieldWithLabelWidget(
-                    label: "Alamat",
-                    initialValue: controller.profileData?.address ?? '',
-                    keyboardType: TextInputType.text,
-                    minLines: 3,
-                    maxLines: 5,
-                    readOnly: true,
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  ButtonWidget(
-                    text: 'Logout',
+                  ListTile(
+                    title: Text('Logout'),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios_outlined,
+                      size: 16,
+                      color: secondaryTextColor,
+                    ),
                     onTap: () {
                       controller.onClickLogout();
                     },

@@ -158,12 +158,7 @@ class HomeViewWidget extends StatelessWidget {
                                   }
                                   final data =
                                       controller.absentDataModel?.absent[index];
-                                  return InkWell(
-                                    onTap: () async {
-                                      controller.onClickLogAbsenItem(data?.id);
-                                    },
-                                    child: ItemLogAbsensiWidget(data: data),
-                                  );
+                                  return ItemLogAbsensiWidget(data: data);
                                 },
                               ),
                             ),
