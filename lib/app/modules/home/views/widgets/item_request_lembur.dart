@@ -48,7 +48,7 @@ class ItemRequestLembur extends StatelessWidget {
                             ?.toSimpleString('dd') ??
                         '-',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 20.sp,
                       fontWeight: FontWeight.w600,
                     ),
                   ),

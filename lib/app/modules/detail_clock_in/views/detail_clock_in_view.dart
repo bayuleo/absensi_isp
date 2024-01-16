@@ -2,6 +2,7 @@ import 'package:asiagolf_app/app/core/enum/absent_type.dart';
 import 'package:asiagolf_app/app/modules/widgets/map_widget.dart';
 import 'package:asiagolf_app/app/utils/extensions.dart';
 import 'package:asiagolf_app/app/utils/theme.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -56,6 +57,44 @@ class DetailClockInView extends GetView<DetailClockInController> {
                         mapController: controller.mapController,
                         latitude: controller.position?.latitude,
                         longitude: controller.position?.longitude,
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      const Text(
+                        'Jam Kerja',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: primaryColor,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      DropdownButtonFormField2(
+                        items: controller.workingTime,
+                        isExpanded: true,
+                        decoration: InputDecoration(
+                          contentPadding:
+                              const EdgeInsets.symmetric(vertical: 16),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                        ),
+                        hint: const Text(
+                          'Pilih Jam Kerja',
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        validator: (value) {
+                          if (value == null) {
+                            return 'Pilih Jam Kerja';
+                          }
+                          return null;
+                        },
+                        onChanged: (value) {
+                          controller.onSelectedWorkingTime(value);
+                        },
                       ),
                       SizedBox(
                         height: 16,

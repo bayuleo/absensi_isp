@@ -45,9 +45,9 @@ class HomeViewWidget extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          'Normal',
+                          'Shift Pagi',
                           style: TextStyle(
-                            fontSize: 14.sp,
+                            fontSize: 18.sp,
                             color: secondaryTextColor,
                           ),
                         ),
@@ -55,7 +55,7 @@ class HomeViewWidget extends StatelessWidget {
                           height: 8.h,
                         ),
                         Text(
-                          '08:00 - 17:00',
+                          '07:00 - 14:00',
                           style: TextStyle(
                             fontSize: 20.sp,
                             color: primaryTextColor,

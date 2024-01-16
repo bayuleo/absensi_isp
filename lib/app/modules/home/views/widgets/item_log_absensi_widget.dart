@@ -36,14 +36,16 @@ class ItemLogAbsensiWidget extends StatelessWidget {
                     data?.time ?? '',
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      fontSize: 16.sp,
+                      fontSize: 18.sp,
                     ),
                   ),
                   Text(
-                    (data?.date ?? '').toDate()?.toSimpleString() ?? '',
+                    (data?.date ?? '').toDate()?.toSimpleString('dd MMM yy') ??
+                        '',
                     style: TextStyle(
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w400,
                       color: secondaryTextColor,
+                      fontSize: 18.sp,
                     ),
                   ),
                 ],

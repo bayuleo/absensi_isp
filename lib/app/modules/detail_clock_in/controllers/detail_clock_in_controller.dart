@@ -7,7 +7,7 @@ import 'package:asiagolf_app/app/data/model/absent/response_absent_model.dart';
 import 'package:asiagolf_app/app/data/remote/absent_data_source.dart';
 import 'package:asiagolf_app/app/utils/location.dart';
 import 'package:camera/camera.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -25,6 +25,26 @@ class DetailClockInController extends BaseController {
   String? imagePath;
 
   TextEditingController descTextEditingController = TextEditingController();
+
+  String workingMode = '';
+  List<DropdownMenuItem> workingTime = [
+    DropdownMenuItem<String>(
+      value: 'reguler',
+      child: Text('Reguler (08.00 - 17.00)'),
+    ),
+    DropdownMenuItem<String>(
+      value: 'shift pagi',
+      child: Text('Shift Pagi (07.00 - 14.00)'),
+    ),
+    DropdownMenuItem<String>(
+      value: 'shift siang',
+      child: Text('Shift Siang (13.00 - 21.00)'),
+    ),
+    DropdownMenuItem<String>(
+      value: 'shift malam',
+      child: Text('Shift Malam (20.00 - 07.00)'),
+    ),
+  ];
 
   final count = 0.obs;
   @override
@@ -108,5 +128,10 @@ class DetailClockInController extends BaseController {
 
   void onImageSelected(String? filePath) {
     imagePath = filePath;
+  }
+
+  void onSelectedWorkingTime(String value) {
+    workingMode = value;
+    update();
   }
 }

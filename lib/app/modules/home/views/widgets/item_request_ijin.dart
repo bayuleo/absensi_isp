@@ -50,25 +50,22 @@ class ItemRequestIjin extends StatelessWidget {
                                 ?.toSimpleString('dd') ??
                             '-',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: 40.w,
-                    child: Center(
-                      child: Text(
-                        dataIjin?.timeEnd
-                                ?.toDateFromSimpleString()
-                                ?.toSimpleString('MMM yy') ??
-                            '-',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: secondaryTextColor,
-                        ),
+                  Center(
+                    child: Text(
+                      dataIjin?.timeEnd
+                              ?.toDateFromSimpleString()
+                              ?.toSimpleString('MMM yy') ??
+                          '-',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: secondaryTextColor,
                       ),
                     ),
                   ),

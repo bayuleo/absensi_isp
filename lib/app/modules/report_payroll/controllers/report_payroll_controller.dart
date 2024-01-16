@@ -1,9 +1,6 @@
-import 'package:get/get.dart';
+import 'package:asiagolf_app/app/core/base/base_controllerr.dart';
 
-class ReportPayrollController extends GetxController {
-  //TODO: Implement ReportPayrollController
-
-  final count = 0.obs;
+class ReportPayrollController extends BaseController {
   @override
   void onInit() {
     super.onInit();
@@ -18,6 +15,4 @@ class ReportPayrollController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }
