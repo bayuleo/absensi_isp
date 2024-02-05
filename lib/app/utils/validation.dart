@@ -30,7 +30,7 @@ class Validation {
     if (value == null) {
       return 'Wajib diisi';
     } else if (value.isEmpty) {
-      return 'Tidak boleh kosong';
+      return 'Wajib diisi';
     } else {
       return null;
     }

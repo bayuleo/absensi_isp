@@ -12,12 +12,18 @@ abstract class AbsentDataSource {
     String? longlat,
     String? desc,
     File? image,
+    bool isManual = false,
+    String? shift,
+    String? manualTime,
   });
 
   Future<ResponseAbsentModel> clockOut({
     String? longlat,
     String? desc,
     File? image,
+    bool isManual = false,
+    String? shift,
+    String? manualTime,
   });
 
   Future<ResponseAbsentModel> getMyAbsent();
@@ -35,13 +41,19 @@ class AbsentDataSourceImpl implements AbsentDataSource {
     String? longlat,
     String? desc,
     File? image,
+    bool isManual = false,
+    String? shift,
+    String? manualTime,
   }) async {
     final formData = d.FormData.fromMap({
       "longlat": longlat,
       "description": desc,
       if (image != null)
         "file": await d.MultipartFile.fromFile(image!.path,
-            filename: image!.path.split('/').last)
+            filename: image!.path.split('/').last),
+      "is_manual": isManual,
+      "shift": shift,
+      if (manualTime != null && manualTime != '') "manual_time": manualTime,
     });
 
     var response = await dioConfigure.dio.post(
@@ -56,13 +68,19 @@ class AbsentDataSourceImpl implements AbsentDataSource {
     String? longlat,
     String? desc,
     File? image,
+    bool isManual = false,
+    String? shift,
+    String? manualTime,
   }) async {
     final formData = d.FormData.fromMap({
       "longlat": longlat,
       "description": desc,
       if (image != null)
         "file": await d.MultipartFile.fromFile(image!.path,
-            filename: image!.path.split('/').last)
+            filename: image!.path.split('/').last),
+      "is_manual": isManual,
+      "shift": shift,
+      if (manualTime != null && manualTime != '') "manual_time": manualTime,
     });
 
     var response = await dioConfigure.dio.post(

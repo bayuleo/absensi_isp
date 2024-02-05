@@ -19,12 +19,14 @@ enum IjinType { ijin, cuti }
 
 class DetailRequestController extends BaseController {
   final _ijinDataSource = Get.find<IjinDataSource>();
+  final requestKey = GlobalKey<FormState>();
+
   XFile? picture;
   bool isCaptured = false;
   bool isCreatePage = false;
   bool isLoading = false;
   bool isLoadingGetData = false;
-  String type = '';
+  String type = 'cuti';
   String? imagePath;
   RequestType requestType = RequestType.lembur;
   DateTime? selectedDate;
@@ -91,36 +93,39 @@ class DetailRequestController extends BaseController {
   }
 
   void onConfirm() async {
-    isLoading = true;
-    update();
+    FocusScope.of(Get.context!).unfocus();
+    if (requestKey.currentState!.validate()) {
+      isLoading = true;
+      update();
 
-    await callDataService<ResponseCreateIjinModel>(
-      () => _ijinDataSource.createIjin(
-        RequestCreateIjinMode(
-          title: titleTextEditingController.text.trim(),
-          type: requestType == RequestType.lembur ? 'lembur' : type,
-          timeStart: dateStartTextEditingController.text.trim(),
-          timeEnd: dateEndTextEditingController.text.trim(),
-          description: descTextEditingController.text.trim(),
+      await callDataService<ResponseCreateIjinModel>(
+        () => _ijinDataSource.createIjin(
+          RequestCreateIjinMode(
+            title: titleTextEditingController.text.trim(),
+            type: requestType == RequestType.lembur ? 'lembur' : type,
+            timeStart: dateStartTextEditingController.text.trim(),
+            timeEnd: dateEndTextEditingController.text.trim(),
+            description: descTextEditingController.text.trim(),
+          ),
+          imagePath != null ? File(imagePath!) : null,
         ),
-        imagePath != null ? File(imagePath!) : null,
-      ),
-      onSuccess: (res) {
-        Get.back(result: true);
-        Fluttertoast.showToast(
-          msg: "Berhasil",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: primaryColor,
-          textColor: Colors.white,
-          fontSize: 16.0,
-        );
-      },
-    );
+        onSuccess: (res) {
+          Get.back(result: true);
+          Fluttertoast.showToast(
+            msg: "Berhasil",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: primaryColor,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+        },
+      );
 
-    isLoading = false;
-    update();
+      isLoading = false;
+      update();
+    }
   }
 
   void onGetDataDetail() async {

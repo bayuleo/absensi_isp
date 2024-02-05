@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:asiagolf_app/app/core/base/base_controllerr.dart';
 import 'package:asiagolf_app/app/core/enum/absent_type.dart';
+import 'package:asiagolf_app/app/core/extention/dater_helper.dart';
 import 'package:asiagolf_app/app/core/utils/snackbar.dart';
 import 'package:asiagolf_app/app/data/model/absent/response_absent_model.dart';
 import 'package:asiagolf_app/app/data/remote/absent_data_source.dart';
@@ -15,33 +16,33 @@ import 'package:latlong2/latlong.dart';
 
 class DetailClockInController extends BaseController {
   final _absentDataSource = Get.find<AbsentDataSource>();
+  final clockInKey = GlobalKey<FormState>();
 
   Position? position;
   MapController mapController = MapController();
   XFile? picture;
   bool isCaptured = false;
   bool isLoading = false;
+  bool isManualMode = false;
   AbsentType? absenMode;
   String? imagePath;
+  DateTime? manualSelectedDate;
 
   TextEditingController descTextEditingController = TextEditingController();
+  TextEditingController inputTimeManualController = TextEditingController();
 
   String workingMode = '';
   List<DropdownMenuItem> workingTime = [
-    DropdownMenuItem<String>(
-      value: 'reguler',
-      child: Text('Reguler (08.00 - 17.00)'),
-    ),
-    DropdownMenuItem<String>(
-      value: 'shift pagi',
+    const DropdownMenuItem<String>(
+      value: '1',
       child: Text('Shift Pagi (07.00 - 14.00)'),
     ),
-    DropdownMenuItem<String>(
-      value: 'shift siang',
+    const DropdownMenuItem<String>(
+      value: '2',
       child: Text('Shift Siang (13.00 - 21.00)'),
     ),
-    DropdownMenuItem<String>(
-      value: 'shift malam',
+    const DropdownMenuItem<String>(
+      value: '3',
       child: Text('Shift Malam (20.00 - 07.00)'),
     ),
   ];
@@ -73,12 +74,16 @@ class DetailClockInController extends BaseController {
     super.onClose();
     mapController.dispose();
     descTextEditingController.dispose();
+    inputTimeManualController.dispose();
   }
 
   void onClickSubmit() {
-    showLoading();
-    absenMode == AbsentType.checkIn ? ClockIn() : ClockOut();
-    hideLoading();
+    FocusScope.of(Get.context!).unfocus();
+    if (clockInKey.currentState!.validate()) {
+      showLoading();
+      absenMode == AbsentType.checkIn ? ClockIn() : ClockOut();
+      hideLoading();
+    }
   }
 
   void ClockIn() {
@@ -88,7 +93,10 @@ class DetailClockInController extends BaseController {
       () => _absentDataSource.clockIn(
         longlat: '${position?.longitude},${position?.latitude}',
         desc: descTextEditingController.text.trim(),
-        image: File(imagePath!),
+        image: imagePath != null ? File(imagePath!) : null,
+        isManual: isManualMode,
+        shift: workingMode,
+        manualTime: inputTimeManualController.text.trim(),
       ),
       onSuccess: (res) {
         Get.back(result: true);
@@ -111,7 +119,10 @@ class DetailClockInController extends BaseController {
       () => _absentDataSource.clockOut(
         longlat: '${position!.longitude},${position!.latitude}',
         desc: descTextEditingController.text.trim(),
-        image: File(imagePath!),
+        image: imagePath != null ? File(imagePath!) : null,
+        isManual: isManualMode,
+        shift: workingMode,
+        manualTime: inputTimeManualController.text.trim(),
       ),
       onSuccess: (res) {
         Get.back(result: true);
@@ -132,6 +143,21 @@ class DetailClockInController extends BaseController {
 
   void onSelectedWorkingTime(String value) {
     workingMode = value;
+    update();
+  }
+
+  void onTapSwitchMode(int index) {
+    if (index == 0) {
+      isManualMode = false;
+    } else {
+      isManualMode = true;
+    }
+    update();
+  }
+
+  void onInputManualDate(DateTime value) {
+    manualSelectedDate = value;
+    inputTimeManualController.text = value.toSimpleString('dd/MM/yyyy HH:mm')!;
     update();
   }
 }
