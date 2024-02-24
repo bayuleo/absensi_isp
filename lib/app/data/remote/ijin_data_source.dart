@@ -12,7 +12,11 @@ abstract class IjinDataSource {
   Future<ResponseIjinCountModel> getCountLembur(String year);
   Future<ResponseIjinCountModel> getCountIjin(String year);
   Future<ResponseIjinListModel> getListIjin(String year, String status);
+  Future<ResponseIjinByIdModel> getListIjinById(
+      String year, String status, String id);
   Future<ResponseIjinListModel> getListLembur(String year, String status);
+  Future<ResponseIjinByIdModel> getListLemburById(
+      String year, String status, String id);
   Future<ResponseDetailIjinModel> getDetailIjin(int id);
   Future<ResponseCreateIjinModel> createIjin(
       RequestCreateIjinMode requestCreateIjinMode, File? file);
@@ -71,6 +75,24 @@ class IjinDataSourceImpl implements IjinDataSource {
       "${endpoints.ijin.ijin}?type=cuti,ijin&tahun=$year${status != StatusRequest.all.value ? '&status=$status' : ''}",
     );
     return ResponseIjinListModel.fromJson(response.data);
+  }
+
+  @override
+  Future<ResponseIjinByIdModel> getListIjinById(
+      String year, String status, String id) async {
+    var response = await dioConfigure.dio.get(
+      "${endpoints.ijin.ijin}/users/$id?type=cuti,ijin&tahun=$year${status != StatusRequest.all.value ? '&status=$status' : ''}",
+    );
+    return ResponseIjinByIdModel.fromJson(response.data);
+  }
+
+  @override
+  Future<ResponseIjinByIdModel> getListLemburById(
+      String year, String status, String id) async {
+    var response = await dioConfigure.dio.get(
+      "${endpoints.ijin.ijin}/users/$id?type=lembur&tahun=$year${status != StatusRequest.all.value ? '&status=$status' : ''}",
+    );
+    return ResponseIjinByIdModel.fromJson(response.data);
   }
 
   @override

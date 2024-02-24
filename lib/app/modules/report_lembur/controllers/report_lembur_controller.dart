@@ -1,18 +1,19 @@
 import 'package:asiagolf_app/app/core/base/base_controllerr.dart';
-import 'package:asiagolf_app/app/data/model/ijin/list/response_ijin_list_ijin_model.dart';
+import 'package:asiagolf_app/app/data/model/ijin/byId/response_ijin_by_id_data_ijin_model.dart';
 
 class ReportLemburController extends BaseController {
-  ResponseIjinListIjinModel dummyData = const ResponseIjinListIjinModel(
-    id: 1,
-    title: "malam 2027",
-    type: 'lembur',
-    description: 'description',
-    status: 'approve',
-    timeStart: "28/12/2023 18:50",
-    timeEnd: "28/12/2023 06:50",
-    createdAt: '2023-12-28T13:28:03.761Z',
-    updatedAt: '2023-12-28T13:28:03.761Z',
-  );
+  ResponseIjinByIdDataIjinModel dummyData = const ResponseIjinByIdDataIjinModel(
+      id: 70,
+      title: "bayu ijin",
+      type: "ijin",
+      description: "ijin ga masuk",
+      status: "pending",
+      notes: "null",
+      filename: "https://api.ccpmanagement.my.id/ijin/img/undefined",
+      timeStart: "26/02/2024",
+      timeEnd: "27/02/2024",
+      createdAt: "2024-02-24T15:09:58.024Z",
+      updatedAt: "2024-02-24T15:09:58.024Z");
 
   @override
   void onInit() {

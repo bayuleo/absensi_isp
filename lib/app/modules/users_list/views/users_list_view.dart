@@ -48,11 +48,18 @@ class UsersListView extends BaseView<UsersListController> {
                               }
                               var data = controller.dataUsers?[index];
                               return InkWell(
-                                onTap: () {
-                                  Get.toNamed(
-                                    Routes.USERS_CREATE,
-                                    arguments: data!.id,
+                                onTap: () async {
+                                  // var result = await Get.toNamed(
+                                  //   Routes.USERS_CREATE,
+                                  //   arguments: data!.id,
+                                  // );
+                                  var result = await Get.toNamed(
+                                    Routes.USER_DETAIL,
+                                    arguments: data!,
                                   );
+                                  if (result) {
+                                    controller.getAllUsers();
+                                  }
                                 },
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,

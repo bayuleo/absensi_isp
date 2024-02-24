@@ -19,6 +19,19 @@ abstract class AdminDataSource {
     File? image,
   });
 
+  Future<bool> updateUser({
+    required String id,
+    String? name,
+    String? nik,
+    String? address,
+    String? email,
+    String? phone,
+    String? role,
+    String? workingHour,
+    String? password,
+    File? image,
+  });
+
   Future<ResponseListUsersModel> getAllUser();
   Future<bool> removeUser(int id);
   Future<ResponseUsersModel> getUserById(int id);
@@ -57,6 +70,38 @@ class AdminDataSourceImpl implements AdminDataSource {
       data: formData,
     );
     return ResponseCreateUserModel.fromJson(response.data);
+  }
+
+  @override
+  Future<bool> updateUser({
+    required String id,
+    String? name,
+    String? nik,
+    String? address,
+    String? email,
+    String? phone,
+    String? role,
+    String? workingHour,
+    String? password,
+    File? image,
+  }) async {
+    final formData = d.FormData.fromMap({
+      "name": name,
+      "nik": nik,
+      "address": address,
+      "phone": phone,
+      "email": email,
+      "position": role,
+      "password": password,
+      if (image != null)
+        'file': await d.MultipartFile.fromFile(image!.path,
+            filename: image!.path.split('/').last),
+    });
+    var response = await dioConfigure.dio.patch(
+      '${endpoints.admin.users}/$id',
+      data: formData,
+    );
+    return true;
   }
 
   @override

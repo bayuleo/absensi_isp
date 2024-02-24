@@ -24,6 +24,7 @@ class HomeController extends BaseController {
   final _ijinDataSource = Get.find<IjinDataSource>();
   final _absentDataSource = Get.find<AbsentDataSource>();
   int selectedScreen = 0;
+  String userId = '';
 
   //Filter
   String yearLembur = DateFormat('yyyy').format(DateTime.now());
@@ -34,8 +35,8 @@ class HomeController extends BaseController {
   ResponseUsersDataModel? profileData;
   ResponseIjinCountModel? lemburCountData;
   ResponseIjinCountModel? ijinCountData;
-  ResponseIjinListModel? listIjin;
-  ResponseIjinListModel? listLembur;
+  ResponseIjinByIdModel? listIjin;
+  ResponseIjinByIdModel? listLembur;
   ResponseAbsentDataModel? absentDataModel;
 
   RefreshController homeRefreshController =
@@ -91,6 +92,7 @@ class HomeController extends BaseController {
   @override
   void onInit() async {
     super.onInit();
+    userId = _userCredentialLocal.getUserCredentials().id.toString();
     generateYearPicker();
     getProfile();
     getCountLembur();
@@ -287,8 +289,8 @@ class HomeController extends BaseController {
     }
     update();
 
-    await callDataService<ResponseIjinListModel>(
-      () => _ijinDataSource.getListLembur(yearLembur, statusLembur),
+    await callDataService<ResponseIjinByIdModel>(
+      () => _ijinDataSource.getListLemburById(yearLembur, statusLembur, userId),
       onSuccess: (res) {
         listLembur = res;
       },
@@ -305,8 +307,8 @@ class HomeController extends BaseController {
     }
     update();
 
-    await callDataService<ResponseIjinListModel>(
-      () => _ijinDataSource.getListIjin(yearIjin, statusIjin),
+    await callDataService<ResponseIjinByIdModel>(
+      () => _ijinDataSource.getListIjinById(yearIjin, statusIjin, userId),
       onSuccess: (res) {
         listIjin = res;
       },

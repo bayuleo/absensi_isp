@@ -1,4 +1,5 @@
 import 'package:asiagolf_app/app/core/extention/dater_helper.dart';
+import 'package:asiagolf_app/app/data/model/ijin/byId/response_ijin_by_id_data_ijin_model.dart';
 import 'package:asiagolf_app/app/modules/detail_request/controllers/detail_request_controller.dart';
 import 'package:asiagolf_app/app/modules/home/controllers/home_controller.dart';
 import 'package:asiagolf_app/app/routes/app_pages.dart';
@@ -7,15 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../../data/model/ijin/list/response_ijin_list_ijin_model.dart';
-
 class ItemRequestLembur extends StatelessWidget {
   const ItemRequestLembur({
     super.key,
     required this.data,
   });
 
-  final ResponseIjinListIjinModel data;
+  final ResponseIjinByIdDataIjinModel data;
 
   @override
   Widget build(BuildContext context) {

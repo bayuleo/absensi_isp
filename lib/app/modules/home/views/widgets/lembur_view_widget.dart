@@ -161,8 +161,10 @@ class LemburViewWidget extends StatelessWidget {
                           ],
                         ),
                         !controller.isLoadingLembur &&
-                                (controller.listLembur?.data?.length == 0 ||
-                                    controller.listLembur?.data?.length == null)
+                                (controller.listLembur?.data?.ijin.length ==
+                                        0 ||
+                                    controller.listLembur?.data?.ijin.length ==
+                                        null)
                             ? Center(
                                 child: Padding(
                                   padding: EdgeInsets.only(
@@ -197,7 +199,8 @@ class LemburViewWidget extends StatelessWidget {
                                     physics: const ScrollPhysics(),
                                     itemCount: controller.isLoadingLembur
                                         ? 8
-                                        : controller.listLembur?.data?.length ??
+                                        : controller.listLembur?.data?.ijin
+                                                .length ??
                                             0,
                                     shrinkWrap: true,
                                     itemBuilder: (context, index) {
@@ -205,8 +208,8 @@ class LemburViewWidget extends StatelessWidget {
                                         return const LoadingItemRequestWidget();
                                       }
 
-                                      var data =
-                                          controller.listLembur?.data![index];
+                                      var data = controller
+                                          .listLembur?.data!.ijin[index];
                                       return ItemRequestLembur(
                                         data: data!,
                                       );

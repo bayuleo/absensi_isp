@@ -161,8 +161,9 @@ class IjinViewWidget extends StatelessWidget {
                           ],
                         ),
                         !controller.isLoadingIjin &&
-                                (controller.listIjin?.data?.length == 0 ||
-                                    controller.listIjin?.data?.length == null)
+                                (controller.listIjin?.data?.ijin.length == 0 ||
+                                    controller.listIjin?.data?.ijin.length ==
+                                        null)
                             ? Center(
                                 child: Padding(
                                   padding: EdgeInsets.only(
@@ -195,15 +196,16 @@ class IjinViewWidget extends StatelessWidget {
                                     physics: const ScrollPhysics(),
                                     itemCount: controller.isLoadingIjin
                                         ? 5
-                                        : controller.listIjin?.data?.length ??
+                                        : controller
+                                                .listIjin?.data?.ijin.length ??
                                             0,
                                     shrinkWrap: true,
                                     itemBuilder: (context, index) {
                                       if (controller.isLoadingIjin) {
                                         return LoadingItemRequestWidget();
                                       }
-                                      var data =
-                                          controller.listIjin?.data![index];
+                                      var data = controller
+                                          .listIjin!.data!.ijin[index];
                                       return ItemRequestIjin(dataIjin: data);
                                     },
                                   ),

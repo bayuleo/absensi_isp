@@ -16,6 +16,7 @@ class ResponseListUsersDataModel {
     required this.address,
     required this.position,
     required this.otpCode,
+    required this.filename,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -29,6 +30,7 @@ class ResponseListUsersDataModel {
   final String address;
   final String position;
   final String otpCode;
+  final String filename;
   final String createdAt;
   final String updatedAt;
 
@@ -42,6 +44,7 @@ class ResponseListUsersDataModel {
     address: json['address'].toString(),
     position: json['position'].toString(),
     otpCode: json['otpCode'].toString(),
+    filename: json['filename'].toString(),
     createdAt: json['created_at'].toString(),
     updatedAt: json['updated_at'].toString()
   );
@@ -56,6 +59,7 @@ class ResponseListUsersDataModel {
     'address': address,
     'position': position,
     'otpCode': otpCode,
+    'filename': filename,
     'created_at': createdAt,
     'updated_at': updatedAt
   };
@@ -70,6 +74,7 @@ class ResponseListUsersDataModel {
     address: address,
     position: position,
     otpCode: otpCode,
+    filename: filename,
     createdAt: createdAt,
     updatedAt: updatedAt
   );
@@ -85,6 +90,7 @@ class ResponseListUsersDataModel {
     String? address,
     String? position,
     String? otpCode,
+    String? filename,
     String? createdAt,
     String? updatedAt
   }) => ResponseListUsersDataModel(
@@ -97,14 +103,15 @@ class ResponseListUsersDataModel {
     address: address ?? this.address,
     position: position ?? this.position,
     otpCode: otpCode ?? this.otpCode,
+    filename: filename ?? this.filename,
     createdAt: createdAt ?? this.createdAt,
     updatedAt: updatedAt ?? this.updatedAt,
   );
 
   @override
   bool operator ==(Object other) => identical(this, other)
-    || other is ResponseListUsersDataModel && id == other.id && name == other.name && password == other.password && phone == other.phone && nik == other.nik && email == other.email && address == other.address && position == other.position && otpCode == other.otpCode && createdAt == other.createdAt && updatedAt == other.updatedAt;
+    || other is ResponseListUsersDataModel && id == other.id && name == other.name && password == other.password && phone == other.phone && nik == other.nik && email == other.email && address == other.address && position == other.position && otpCode == other.otpCode && filename == other.filename && createdAt == other.createdAt && updatedAt == other.updatedAt;
 
   @override
-  int get hashCode => id.hashCode ^ name.hashCode ^ password.hashCode ^ phone.hashCode ^ nik.hashCode ^ email.hashCode ^ address.hashCode ^ position.hashCode ^ otpCode.hashCode ^ createdAt.hashCode ^ updatedAt.hashCode;
+  int get hashCode => id.hashCode ^ name.hashCode ^ password.hashCode ^ phone.hashCode ^ nik.hashCode ^ email.hashCode ^ address.hashCode ^ position.hashCode ^ otpCode.hashCode ^ filename.hashCode ^ createdAt.hashCode ^ updatedAt.hashCode;
 }

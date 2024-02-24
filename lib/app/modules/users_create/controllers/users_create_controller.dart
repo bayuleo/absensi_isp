@@ -92,12 +92,36 @@ class UsersCreateController extends BaseController {
     update();
   }
 
-  void onClickSubmit() async {
+  void onClickSubmitAdd() async {
     isLoading = true;
     update();
 
     await callDataService<ResponseCreateUserModel>(
         () => _adminDataSource.addUser(
+              name: nameController.text.trim(),
+              nik: nikController.text.trim(),
+              email: emailController.text.trim(),
+              address: addressController.text.trim(),
+              phone: phoneController.text.trim(),
+              role: role,
+              workingHour: workingMode,
+              password: passController.text.trim(),
+              image: imagePath != null ? File(imagePath!) : null,
+            ), onSuccess: (res) {
+      Get.back(result: true);
+    });
+
+    isLoading = false;
+    update();
+  }
+
+  void onClickSubmitPatch() async {
+    isLoading = true;
+    update();
+
+    await callDataService<bool>(
+        () => _adminDataSource.updateUser(
+              id: userId.toString(),
               name: nameController.text.trim(),
               nik: nikController.text.trim(),
               email: emailController.text.trim(),

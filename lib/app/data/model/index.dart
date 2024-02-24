@@ -1,3 +1,6 @@
+export 'ijin/byId/response_ijin_by_id_model.dart';
+export 'ijin/byId/response_ijin_by_id_data_model.dart';
+export 'ijin/byId/response_ijin_by_id_data_ijin_model.dart';
 export 'ijin/count/response_ijin_count_data_model.dart';
 export 'ijin/count/response_ijin_count_model.dart';
 export 'ijin/detail/response_detail_ijin_data_model.dart';

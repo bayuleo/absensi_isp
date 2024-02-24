@@ -13,14 +13,15 @@ class UsersCreateView extends BaseView<UsersCreateController> {
 
   @override
   Widget buildScreen(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Tambah Pegawai'),
-        centerTitle: true,
-      ),
-      body: GetBuilder<UsersCreateController>(
-        builder: (controller) {
-          return SingleChildScrollView(
+    return GetBuilder<UsersCreateController>(
+      builder: (controller) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(
+                controller.userId != null ? 'Edit Pegawai' : 'Tambah Pegawai'),
+            centerTitle: true,
+          ),
+          body: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Column(
@@ -180,15 +181,19 @@ class UsersCreateView extends BaseView<UsersCreateController> {
                     text: controller.userId != null ? 'Update' : 'Simpan',
                     isLoading: controller.isLoading,
                     onTap: () {
-                      controller.onClickSubmit();
+                      if (controller.userId != null) {
+                        controller.onClickSubmitPatch();
+                      } else {
+                        controller.onClickSubmitAdd();
+                      }
                     },
                   ),
                 ],
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

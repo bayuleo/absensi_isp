@@ -53,7 +53,7 @@ class AbsentDataSourceImpl implements AbsentDataSource {
             filename: image!.path.split('/').last),
       "is_manual": isManual,
       "shift": shift,
-      if (manualTime != null && manualTime != '') "manual_time": manualTime,
+      if (manualTime != null && manualTime != '') "time": manualTime,
     });
 
     var response = await dioConfigure.dio.post(
@@ -80,7 +80,7 @@ class AbsentDataSourceImpl implements AbsentDataSource {
             filename: image!.path.split('/').last),
       "is_manual": isManual,
       "shift": shift,
-      if (manualTime != null && manualTime != '') "manual_time": manualTime,
+      if (manualTime != null && manualTime != '') "time": manualTime,
     });
 
     var response = await dioConfigure.dio.post(

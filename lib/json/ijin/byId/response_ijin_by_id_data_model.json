@@ -1,0 +1,16 @@
+{
+  "id": 22,
+  "name": "bayu",
+  "password": "2b$10$.3Ppe28Cx0jfWY7ZR27HI.33hVzFQkIYN0E0psDIJlkRw0IgKkzhe",
+  "phone": "081331894444",
+  "nik": "123123123",
+  "email": "bayuleo@gmail.com",
+  "address": "malang",
+  "position": "user",
+  "otpCode": "string",
+  "filename": "https://api.ccpmanagement.my.id/users/img/CAP6365828355224469322_1708787174022.jpg",
+  "is_delete": false,
+  "created_at": "2024-02-24T15:06:14.250Z",
+  "updated_at": "2024-02-24T15:06:14.250Z",
+  "ijin": "$[]./response_ijin_by_id_data_ijin_model"
+}

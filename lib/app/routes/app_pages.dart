@@ -32,6 +32,8 @@ import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 import '../modules/test/bindings/test_binding.dart';
 import '../modules/test/views/test_view.dart';
+import '../modules/user_detail/bindings/user_detail_binding.dart';
+import '../modules/user_detail/views/user_detail_view.dart';
 import '../modules/users_create/bindings/users_create_binding.dart';
 import '../modules/users_create/views/users_create_view.dart';
 import '../modules/users_list/bindings/users_list_binding.dart';
@@ -134,6 +136,11 @@ class AppPages {
       name: _Paths.REPORT_PAYROLL,
       page: () => const ReportPayrollView(),
       binding: ReportPayrollBinding(),
+    ),
+    GetPage(
+      name: _Paths.USER_DETAIL,
+      page: () => const UserDetailView(),
+      binding: UserDetailBinding(),
     ),
   ];
 }

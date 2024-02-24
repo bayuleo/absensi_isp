@@ -1,15 +1,15 @@
 import 'package:asiagolf_app/app/core/extention/dater_helper.dart';
 import 'package:asiagolf_app/app/data/model/ijin/byId/response_ijin_by_id_data_ijin_model.dart';
 import 'package:asiagolf_app/app/modules/detail_request/controllers/detail_request_controller.dart';
-import 'package:asiagolf_app/app/modules/home/controllers/home_controller.dart';
+import 'package:asiagolf_app/app/modules/user_detail/controllers/user_detail_controller.dart';
 import 'package:asiagolf_app/app/routes/app_pages.dart';
 import 'package:asiagolf_app/app/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class ItemRequestIjin extends StatelessWidget {
-  const ItemRequestIjin({
+class ItemIjin extends StatelessWidget {
+  const ItemIjin({
     super.key,
     this.dataIjin,
   });
@@ -18,7 +18,7 @@ class ItemRequestIjin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.find<HomeController>();
+    var controller = Get.find<UserDetailController>();
     return InkWell(
       onTap: () async {
         var isSuccessAddData = Get.toNamed(
@@ -46,7 +46,7 @@ class ItemRequestIjin extends StatelessWidget {
                     child: Center(
                       child: Text(
                         dataIjin?.timeStart
-                                ?.toDateFromSimpleString()
+                                .toDateFromSimpleString()
                                 ?.toSimpleString('dd') ??
                             '-',
                         style: TextStyle(
@@ -59,10 +59,10 @@ class ItemRequestIjin extends StatelessWidget {
                   Center(
                     child: Text(
                       dataIjin?.timeEnd
-                              ?.toDateFromSimpleString()
+                              .toDateFromSimpleString()
                               ?.toSimpleString('MMM yy') ??
                           '-',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
                         color: secondaryTextColor,
@@ -83,30 +83,30 @@ class ItemRequestIjin extends StatelessWidget {
                       children: [
                         Text(
                           dataIjin?.title ?? 'No Title',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 4,
                         ),
                         Text(
                           dataIjin?.description ?? '',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.w400,
                             color: secondaryTextColor,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 4,
                         ),
                         Row(
                           children: [
                             Text(
                               '${dataIjin?.type} | ',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.w400,
                                 color: secondaryTextColor,
@@ -122,7 +122,7 @@ class ItemRequestIjin extends StatelessWidget {
                             // ),
                             Text(
                               '${dataIjin?.status.toUpperCase()}',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.w600,
                                 color: secondaryTextColor,
@@ -132,7 +132,7 @@ class ItemRequestIjin extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Icon(
+                    const Icon(
                       Icons.arrow_forward_ios_outlined,
                       size: 16,
                       color: secondaryTextColor,
