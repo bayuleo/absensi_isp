@@ -35,6 +35,7 @@ abstract class AdminDataSource {
   Future<ResponseListUsersModel> getAllUser();
   Future<bool> removeUser(int id);
   Future<ResponseUsersModel> getUserById(int id);
+  Future<DashboardAbsentModel> getDashboardAbsent();
 }
 
 class AdminDataSourceImpl implements AdminDataSource {
@@ -126,5 +127,13 @@ class AdminDataSourceImpl implements AdminDataSource {
       '${endpoints.admin.users}/$id',
     );
     return ResponseUsersModel.fromJson(response.data);
+  }
+
+  @override
+  Future<DashboardAbsentModel> getDashboardAbsent() async {
+    var response = await dioConfigure.dio.get(
+      endpoints.admin.dashboard,
+    );
+    return DashboardAbsentModel.fromJson(response.data);
   }
 }

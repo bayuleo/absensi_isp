@@ -63,8 +63,10 @@ class IjinEndpoint {
 
 class AdminEndpoint {
   final String users;
+  final String dashboard;
 
   AdminEndpoint({
     this.users = "/users",
+    this.dashboard = "/absent/admin/dashboard",
   });
 }

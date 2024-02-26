@@ -1,16 +1,24 @@
+import 'package:asiagolf_app/app/core/base/base_controllerr.dart';
 import 'package:asiagolf_app/app/core/widgets/dialog/confirmation_dialog_widget.dart';
+import 'package:asiagolf_app/app/data/remote/admin_data_source.dart';
 import 'package:asiagolf_app/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 import '../../../data/local/user_credentials_data_source.dart';
+import '../../../data/model/admin/dashboard_absent_data_model.dart';
+import '../../../data/model/admin/dashboard_absent_model.dart';
 
-class HomeAdminController extends GetxController {
+class HomeAdminController extends BaseController {
   final _userCredentialLocal = Get.find<UserCredentialsDataSource>();
+  final _adminDataSource = Get.find<AdminDataSource>();
+
+  DashboardAbsentDataModel? dashboardData;
 
   final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
+    getAbsentCountData();
   }
 
   @override
@@ -41,5 +49,16 @@ class HomeAdminController extends GetxController {
         },
       ),
     );
+  }
+
+  Future<void> getAbsentCountData() async {
+    await callDataService<DashboardAbsentModel>(
+      () => _adminDataSource.getDashboardAbsent(),
+      loading: false,
+      onSuccess: (res) {
+        dashboardData = res.data;
+      },
+    );
+    update();
   }
 }

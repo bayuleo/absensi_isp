@@ -28,6 +28,8 @@ abstract class AbsentDataSource {
 
   Future<ResponseAbsentModel> getMyAbsent();
 
+  Future<ResponseAbsentModel> getAbsentById(String id);
+
   Future<ResponseDetailAbsentModel> getDetailAbsen(int id);
 }
 
@@ -95,6 +97,13 @@ class AbsentDataSourceImpl implements AbsentDataSource {
     final userId = _userCredentialLocal.getUserCredentials().id;
     var response =
         await dioConfigure.dio.get('${endpoints.absent.myAbsent}/$userId');
+    return ResponseAbsentModel.fromJson(response.data);
+  }
+
+  @override
+  Future<ResponseAbsentModel> getAbsentById(String id) async {
+    var response =
+        await dioConfigure.dio.get('${endpoints.absent.myAbsent}/$id');
     return ResponseAbsentModel.fromJson(response.data);
   }
 
