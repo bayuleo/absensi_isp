@@ -73,8 +73,9 @@ class HomeAdminView extends GetView<HomeAdminController> {
                                 ),
                               ),
                               AnimatedDigitWidget(
-                                value:
-                                    controller.dashboardData?.kerja.count ?? 0,
+                                value: controller
+                                        .dashboardAbsentData?.kerja.count ??
+                                    0,
                                 textStyle: const TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 80,
@@ -110,8 +111,9 @@ class HomeAdminView extends GetView<HomeAdminController> {
                                 ),
                               ),
                               AnimatedDigitWidget(
-                                value:
-                                    controller.dashboardData?.ijin.count ?? 0,
+                                value: controller
+                                        .dashboardAbsentData?.ijin.count ??
+                                    0,
                                 textStyle: const TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 80,
@@ -146,7 +148,7 @@ class HomeAdminView extends GetView<HomeAdminController> {
                               Radius.circular(20),
                             ),
                           ),
-                          child: const Column(
+                          child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
@@ -157,9 +159,11 @@ class HomeAdminView extends GetView<HomeAdminController> {
                                   color: Colors.white,
                                 ),
                               ),
-                              Text(
-                                '7',
-                                style: TextStyle(
+                              AnimatedDigitWidget(
+                                value:
+                                    controller.dashboardIjinData?.ijin.count ??
+                                        0,
+                                textStyle: const TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 80,
                                   color: Colors.white,
@@ -182,7 +186,7 @@ class HomeAdminView extends GetView<HomeAdminController> {
                               Radius.circular(20),
                             ),
                           ),
-                          child: const Column(
+                          child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
@@ -193,9 +197,11 @@ class HomeAdminView extends GetView<HomeAdminController> {
                                   color: Colors.white,
                                 ),
                               ),
-                              Text(
-                                '7',
-                                style: TextStyle(
+                              AnimatedDigitWidget(
+                                value: controller
+                                        .dashboardIjinData?.lembur.count ??
+                                    0,
+                                textStyle: const TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 80,
                                   color: Colors.white,

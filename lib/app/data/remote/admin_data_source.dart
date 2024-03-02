@@ -36,6 +36,7 @@ abstract class AdminDataSource {
   Future<bool> removeUser(int id);
   Future<ResponseUsersModel> getUserById(int id);
   Future<DashboardAbsentModel> getDashboardAbsent();
+  Future<DashboardIjinModel> getDashboardIjin();
 }
 
 class AdminDataSourceImpl implements AdminDataSource {
@@ -132,8 +133,16 @@ class AdminDataSourceImpl implements AdminDataSource {
   @override
   Future<DashboardAbsentModel> getDashboardAbsent() async {
     var response = await dioConfigure.dio.get(
-      endpoints.admin.dashboard,
+      endpoints.admin.dashboardAbsen,
     );
     return DashboardAbsentModel.fromJson(response.data);
+  }
+
+  @override
+  Future<DashboardIjinModel> getDashboardIjin() async {
+    var response = await dioConfigure.dio.get(
+      endpoints.admin.dashboardIjin,
+    );
+    return DashboardIjinModel.fromJson(response.data);
   }
 }

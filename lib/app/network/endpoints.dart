@@ -63,10 +63,12 @@ class IjinEndpoint {
 
 class AdminEndpoint {
   final String users;
-  final String dashboard;
+  final String dashboardAbsen;
+  final String dashboardIjin;
 
   AdminEndpoint({
     this.users = "/users",
-    this.dashboard = "/absent/admin/dashboard",
+    this.dashboardAbsen = "/absent/admin/dashboard",
+    this.dashboardIjin = "/ijin/admin/dashboard",
   });
 }

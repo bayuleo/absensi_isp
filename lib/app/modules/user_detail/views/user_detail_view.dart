@@ -1,6 +1,7 @@
 import 'package:asiagolf_app/app/core/base/base_view.dart';
 import 'package:asiagolf_app/app/modules/user_detail/widgets/absent_view_widget.dart';
 import 'package:asiagolf_app/app/modules/user_detail/widgets/biodata_view_widget.dart';
+import 'package:asiagolf_app/app/modules/user_detail/widgets/gaji_view_widget.dart';
 import 'package:asiagolf_app/app/modules/user_detail/widgets/ijin_view_widget.dart';
 import 'package:asiagolf_app/app/modules/user_detail/widgets/lembur_view_widget.dart';
 import 'package:asiagolf_app/app/modules/user_detail/widgets/perform_view_widget.dart';
@@ -73,6 +74,12 @@ class UserDetailView extends BaseView<UserDetailController> {
                       ),
                       Tab(
                         child: Text(
+                          'Gaji',
+                          style: tabTextTheme,
+                        ),
+                      ),
+                      Tab(
+                        child: Text(
                           'Absensi',
                           style: tabTextTheme,
                         ),
@@ -104,6 +111,7 @@ class UserDetailView extends BaseView<UserDetailController> {
                         BiodataViewWidget(
                           userData: controller.userData!,
                         ),
+                        GajiViewWidget(userData: controller.userData!),
                         AbsentViewWidget(),
                         LemburViewWidget(),
                         IjinViewWidget(),

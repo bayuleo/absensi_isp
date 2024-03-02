@@ -17,6 +17,8 @@ class ResponseUsersDataModel {
     required this.address,
     required this.position,
     required this.otpCode,
+    this.gaji,
+    required this.tunjangan,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -31,6 +33,8 @@ class ResponseUsersDataModel {
   final String address;
   final String position;
   final String otpCode;
+  final int? gaji;
+  final List<ResponseListUsersDataTunjanganModel> tunjangan;
   final String createdAt;
   final String updatedAt;
 
@@ -45,6 +49,8 @@ class ResponseUsersDataModel {
     address: json['address'].toString(),
     position: json['position'].toString(),
     otpCode: json['otpCode'].toString(),
+    gaji: json['gaji'] != null ? json['gaji'] as int : null,
+    tunjangan: (json['tunjangan'] as List? ?? []).map((e) => ResponseListUsersDataTunjanganModel.fromJson(e as Map<String, dynamic>)).toList(),
     createdAt: json['created_at'].toString(),
     updatedAt: json['updated_at'].toString()
   );
@@ -60,6 +66,8 @@ class ResponseUsersDataModel {
     'address': address,
     'position': position,
     'otpCode': otpCode,
+    'gaji': gaji,
+    'tunjangan': tunjangan.map((e) => e.toJson()).toList(),
     'created_at': createdAt,
     'updated_at': updatedAt
   };
@@ -75,6 +83,8 @@ class ResponseUsersDataModel {
     address: address,
     position: position,
     otpCode: otpCode,
+    gaji: gaji,
+    tunjangan: tunjangan.map((e) => e.clone()).toList(),
     createdAt: createdAt,
     updatedAt: updatedAt
   );
@@ -91,6 +101,8 @@ class ResponseUsersDataModel {
     String? address,
     String? position,
     String? otpCode,
+    Optional<int?>? gaji,
+    List<ResponseListUsersDataTunjanganModel>? tunjangan,
     String? createdAt,
     String? updatedAt
   }) => ResponseUsersDataModel(
@@ -104,14 +116,16 @@ class ResponseUsersDataModel {
     address: address ?? this.address,
     position: position ?? this.position,
     otpCode: otpCode ?? this.otpCode,
+    gaji: checkOptional(gaji, () => this.gaji),
+    tunjangan: tunjangan ?? this.tunjangan,
     createdAt: createdAt ?? this.createdAt,
     updatedAt: updatedAt ?? this.updatedAt,
   );
 
   @override
   bool operator ==(Object other) => identical(this, other)
-    || other is ResponseUsersDataModel && id == other.id && name == other.name && password == other.password && phone == other.phone && nik == other.nik && email == other.email && filename == other.filename && address == other.address && position == other.position && otpCode == other.otpCode && createdAt == other.createdAt && updatedAt == other.updatedAt;
+    || other is ResponseUsersDataModel && id == other.id && name == other.name && password == other.password && phone == other.phone && nik == other.nik && email == other.email && filename == other.filename && address == other.address && position == other.position && otpCode == other.otpCode && gaji == other.gaji && tunjangan == other.tunjangan && createdAt == other.createdAt && updatedAt == other.updatedAt;
 
   @override
-  int get hashCode => id.hashCode ^ name.hashCode ^ password.hashCode ^ phone.hashCode ^ nik.hashCode ^ email.hashCode ^ filename.hashCode ^ address.hashCode ^ position.hashCode ^ otpCode.hashCode ^ createdAt.hashCode ^ updatedAt.hashCode;
+  int get hashCode => id.hashCode ^ name.hashCode ^ password.hashCode ^ phone.hashCode ^ nik.hashCode ^ email.hashCode ^ filename.hashCode ^ address.hashCode ^ position.hashCode ^ otpCode.hashCode ^ gaji.hashCode ^ tunjangan.hashCode ^ createdAt.hashCode ^ updatedAt.hashCode;
 }
