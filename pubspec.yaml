@@ -43,6 +43,7 @@ dependencies:
   dropdown_button2: ^2.3.9
   toggle_switch: ^2.1.0
   animated_digit: ^3.2.3
+  flutter_masked_text2: ^0.9.1
   
 
 dev_dependencies: 

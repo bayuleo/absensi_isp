@@ -2,6 +2,7 @@ import 'package:asiagolf_app/app/data/model/users/list_user/response_list_users_
 import 'package:asiagolf_app/app/modules/splash/views/widget/button_widget.dart';
 import 'package:asiagolf_app/app/modules/users_list/controllers/users_list_controller.dart';
 import 'package:asiagolf_app/app/routes/app_pages.dart';
+import 'package:asiagolf_app/app/utils/extensions.dart';
 import 'package:asiagolf_app/app/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,6 +27,7 @@ class BiodataViewWidget extends StatelessWidget {
           {'Alamat': selectedData!.address},
           {'Nomor HP': selectedData!.phone},
           {'Jabatan': selectedData!.position},
+          {'Gaji': (selectedData?.gaji ?? '0').convertStringToCurrency ?? ''},
         ];
         return SingleChildScrollView(
           child: Column(

@@ -32,7 +32,7 @@ class ResponseListUsersDataModel {
   final String address;
   final String position;
   final String otpCode;
-  final int? gaji;
+  final String? gaji;
   final String filename;
   final List<ResponseListUsersDataTunjanganModel> tunjangan;
   final String createdAt;
@@ -48,7 +48,7 @@ class ResponseListUsersDataModel {
     address: json['address'].toString(),
     position: json['position'].toString(),
     otpCode: json['otpCode'].toString(),
-    gaji: json['gaji'] != null ? json['gaji'] as int : null,
+    gaji: json['gaji']?.toString(),
     filename: json['filename'].toString(),
     tunjangan: (json['tunjangan'] as List? ?? []).map((e) => ResponseListUsersDataTunjanganModel.fromJson(e as Map<String, dynamic>)).toList(),
     createdAt: json['created_at'].toString(),
@@ -100,7 +100,7 @@ class ResponseListUsersDataModel {
     String? address,
     String? position,
     String? otpCode,
-    Optional<int?>? gaji,
+    Optional<String?>? gaji,
     String? filename,
     List<ResponseListUsersDataTunjanganModel>? tunjangan,
     String? createdAt,

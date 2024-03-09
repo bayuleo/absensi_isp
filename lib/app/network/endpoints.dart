@@ -65,10 +65,12 @@ class AdminEndpoint {
   final String users;
   final String dashboardAbsen;
   final String dashboardIjin;
+  final String tunjangan;
 
   AdminEndpoint({
     this.users = "/users",
     this.dashboardAbsen = "/absent/admin/dashboard",
     this.dashboardIjin = "/ijin/admin/dashboard",
+    this.tunjangan = "/users/tunjangan",
   });
 }

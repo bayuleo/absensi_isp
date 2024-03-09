@@ -14,6 +14,7 @@ abstract class AdminDataSource {
     String? email,
     String? phone,
     String? role,
+    String? gaji,
     String? workingHour,
     String? password,
     File? image,
@@ -27,6 +28,7 @@ abstract class AdminDataSource {
     String? email,
     String? phone,
     String? role,
+    String? gaji,
     String? workingHour,
     String? password,
     File? image,
@@ -37,6 +39,9 @@ abstract class AdminDataSource {
   Future<ResponseUsersModel> getUserById(int id);
   Future<DashboardAbsentModel> getDashboardAbsent();
   Future<DashboardIjinModel> getDashboardIjin();
+  Future<bool> postTunjangan(RequestAddTunjangan requestAddTunjangan);
+  Future<bool> deleteTunjangan(int id);
+  Future<bool> updateTunjangan(int id, String amount);
 }
 
 class AdminDataSourceImpl implements AdminDataSource {
@@ -51,6 +56,7 @@ class AdminDataSourceImpl implements AdminDataSource {
     String? email,
     String? phone,
     String? role,
+    String? gaji,
     String? workingHour,
     String? password,
     File? image,
@@ -61,6 +67,7 @@ class AdminDataSourceImpl implements AdminDataSource {
       "address": address,
       "phone": phone,
       "email": email,
+      "gaji": gaji,
       "position": role,
       "password": password,
       if (image != null)
@@ -83,6 +90,7 @@ class AdminDataSourceImpl implements AdminDataSource {
     String? email,
     String? phone,
     String? role,
+    String? gaji,
     String? workingHour,
     String? password,
     File? image,
@@ -93,6 +101,7 @@ class AdminDataSourceImpl implements AdminDataSource {
       "address": address,
       "phone": phone,
       "email": email,
+      "gaji": gaji,
       "position": role,
       "password": password,
       if (image != null)
@@ -144,5 +153,32 @@ class AdminDataSourceImpl implements AdminDataSource {
       endpoints.admin.dashboardIjin,
     );
     return DashboardIjinModel.fromJson(response.data);
+  }
+
+  @override
+  Future<bool> postTunjangan(RequestAddTunjangan requestAddTunjangan) async {
+    var response = await dioConfigure.dio.post(
+      endpoints.admin.tunjangan,
+      data: requestAddTunjangan.toJson(),
+    );
+    return true;
+  }
+
+  @override
+  Future<bool> deleteTunjangan(int id) async {
+    var response = await dioConfigure.dio.delete(
+      '${endpoints.admin.tunjangan}/$id',
+    );
+    return true;
+  }
+
+  @override
+  Future<bool> updateTunjangan(int id, String amount) async {
+    var body = RequestPatchTunjangan(amount: amount);
+    var response = await dioConfigure.dio.patch(
+      '${endpoints.admin.tunjangan}/$id',
+      data: body.toJson(),
+    );
+    return true;
   }
 }

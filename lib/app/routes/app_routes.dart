@@ -25,6 +25,7 @@ abstract class Routes {
   static const REPORT_LEMBUR = _Paths.REPORT_LEMBUR;
   static const REPORT_PAYROLL = _Paths.REPORT_PAYROLL;
   static const USER_DETAIL = _Paths.USER_DETAIL;
+  static const USER_EDIT_SALARY = _Paths.USER_EDIT_SALARY;
 }
 
 abstract class _Paths {
@@ -51,4 +52,5 @@ abstract class _Paths {
   static const REPORT_LEMBUR = '/report-lembur';
   static const REPORT_PAYROLL = '/report-payroll';
   static const USER_DETAIL = '/user-detail';
+  static const USER_EDIT_SALARY = '/user-edit-salary';
 }

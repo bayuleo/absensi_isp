@@ -70,8 +70,9 @@ extension Crypto on String {
 }
 
 extension Currency on int {
-  String get convertToCurrency {
-    final currency = NumberFormat.currency(locale: 'ID', symbol: 'Rp ');
+  String get convertIntToCurrency {
+    final currency =
+        NumberFormat.currency(locale: 'ID', symbol: 'Rp ', decimalDigits: 0);
     return currency.format(this);
   }
 }
@@ -80,4 +81,17 @@ extension TextFormat on String {
   String get toCamelCase {
     return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
   }
+
+  String get currencyToPlainText {
+    return replaceAll('Rp', '').replaceAll('.', '').replaceAll(' ', '');
+  }
+
+  String get convertStringToCurrency {
+    var value = int.tryParse(this) ?? 0;
+    final currency =
+        NumberFormat.currency(locale: 'ID', symbol: 'Rp ', decimalDigits: 0);
+    return currency.format(value);
+  }
 }
+
+extension TextFormatNullAble on String? {}

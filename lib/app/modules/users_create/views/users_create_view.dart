@@ -131,6 +131,15 @@ class UsersCreateView extends BaseView<UsersCreateController> {
                   const SizedBox(
                     height: 20,
                   ),
+                  TextFieldWithLabelWidget(
+                    label: "Gaji",
+                    // initialValue: controller.profileData?.name ?? '',
+                    keyboardType: TextInputType.number,
+                    controller: controller.gajiController,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   //TODO JIKA BUTUH INPUT JAM KERJA
                   // const Text(
                   //   'Jam Kerja',

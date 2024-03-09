@@ -34,6 +34,8 @@ import '../modules/test/bindings/test_binding.dart';
 import '../modules/test/views/test_view.dart';
 import '../modules/user_detail/bindings/user_detail_binding.dart';
 import '../modules/user_detail/views/user_detail_view.dart';
+import '../modules/user_edit_salary/bindings/user_edit_salary_binding.dart';
+import '../modules/user_edit_salary/views/user_edit_salary_view.dart';
 import '../modules/users_create/bindings/users_create_binding.dart';
 import '../modules/users_create/views/users_create_view.dart';
 import '../modules/users_list/bindings/users_list_binding.dart';
@@ -141,6 +143,11 @@ class AppPages {
       name: _Paths.USER_DETAIL,
       page: () => const UserDetailView(),
       binding: UserDetailBinding(),
+    ),
+    GetPage(
+      name: _Paths.USER_EDIT_SALARY,
+      page: () => const UserEditSalaryView(),
+      binding: UserEditSalaryBinding(),
     ),
   ];
 }

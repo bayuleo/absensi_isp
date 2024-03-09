@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:asiagolf_app/app/core/base/base_controllerr.dart';
 import 'package:asiagolf_app/app/data/model/index.dart';
 import 'package:asiagolf_app/app/data/remote/admin_data_source.dart';
+import 'package:asiagolf_app/app/utils/extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:get/get.dart';
 
 class UsersCreateController extends BaseController {
@@ -14,6 +16,8 @@ class UsersCreateController extends BaseController {
   TextEditingController emailController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+  TextEditingController gajiController =
+      MoneyMaskedTextController(precision: 0, decimalSeparator: '');
   TextEditingController roleController = TextEditingController();
   TextEditingController workHourController = TextEditingController();
   TextEditingController passController = TextEditingController();
@@ -59,6 +63,7 @@ class UsersCreateController extends BaseController {
     emailController.dispose();
     addressController.dispose();
     phoneController.dispose();
+    gajiController.dispose();
     roleController.dispose();
     workHourController.dispose();
     passController.dispose();
@@ -82,6 +87,8 @@ class UsersCreateController extends BaseController {
         nikController.text = dataUser?.data?.nik ?? '';
         emailController.text = dataUser?.data?.email ?? '';
         addressController.text = dataUser?.data?.address ?? '';
+        gajiController.text =
+            (dataUser?.data?.gaji ?? '').convertStringToCurrency;
         phoneController.text = dataUser?.data?.phone ?? '';
         role = dataUser?.data?.position.toLowerCase() ?? '';
         update();
